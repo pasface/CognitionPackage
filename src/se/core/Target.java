@@ -19,22 +19,23 @@ public class Target{
     private static JLabel TARGET = new JLabel();
 
     public Target() {
+        TARGET.setSize(1,1);
     }
 
     public Target(int x, int y) {
         TARGET.setSize(100,100);
         TARGET.setLocation(x, y);
-        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("target.png"));
+        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("targetS.png"));
         TARGET.setIcon(icon);
     }
 
     public JLabel getTARGET() {
         return TARGET;
     }
-    
+
     @Override
     public String toString() {
-        return "Target{" + TARGET.toString() + '}';
+        return "Target{" + getTARGET() + '}';
     }
     
 }

@@ -7,16 +7,12 @@ package test.img;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import se.core.Game;
-import se.core.Indicator;
-import se.core.Room;
-import se.core.Target;
 /**
  *
  * @author nikki
@@ -56,8 +52,8 @@ public class GameTest {
         INDICATORLABEL.setLocation(35, 35);
         INDICATORLABEL.setIcon(icon(2));
         
-        Target target = new Target(10,10);
-        FRAME.add(target.getTARGET());
+        //Target target = new Target(10,10);
+        //FRAME.add(target.getTARGET());
         FRAME.add(INDICATORLABEL);
         FRAME.add(ROOMLABEL);
         
@@ -66,14 +62,6 @@ public class GameTest {
         FRAME.show();        
         
         Game g = new Game(3,1);
-        Indicator i = new Indicator(1, "a");
-        Target t = new Target(30, 30);
-        ArrayList<Indicator> ai = new ArrayList();
-        ai.add(i);
-        Room r = new Room(ai, t, 1);
-
-        
-        
-        
+        g.toString();
     }
 }

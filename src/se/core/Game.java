@@ -28,11 +28,8 @@ public class Game {
     public Game(int numberOfRooms, int id) {
         // set Game id
         this.id = id;
-        // generate specified number of roomArray
+        // generate specified number of rooms in array list
         roomArrayGenerator(numberOfRooms);
-        // for testing purposes ******************
-        String roomArrayString = Arrays.toString(roomArray);
-        System.out.println("Game " + id + ":\n " + roomArrayString);
     }
 
     // getters
@@ -55,7 +52,7 @@ public class Game {
 
     // methods
     // method to create and populate a room array
-    private Room[] roomArrayGenerator(int totalRooms) throws NullPointerException{
+    private Room[] roomArrayGenerator(int totalRooms){
         // create a roomArray array
         setRoomArray(totalRooms);
         // create variable for roomArray number
@@ -68,14 +65,15 @@ public class Game {
             // randomly place a target into a roomArray 
             // (if no target built, 50% chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
-            if ((b == false && randInt == 1) || (currentRoom == totalRooms - 1 && b == false)) {
-                Target target = new Target(30,30);
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(1), target, currentRoom + 1);
+            if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
+                Target t1 = new Target(30,30);
+                roomArray[currentRoom] = new Room(modifiedIndicatorList(1), t1, currentRoom + 1);
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(0), new Target(), currentRoom + 1);
+                Target t0 = new Target();
+                roomArray[currentRoom] = new Room(modifiedIndicatorList(0), t0, currentRoom + 1);
                 currentRoom++;
             }
         }
@@ -129,4 +127,10 @@ public class Game {
             return modList;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Game{" + "id=" + id + ", roomArray=" + Arrays.toString(roomArray) + ", f=" + f + ", p=" + p + '}';
+    }
+    
 }

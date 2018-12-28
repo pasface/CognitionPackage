@@ -26,9 +26,9 @@ public class Room {
         this.indicators = indicators;
         this.target = target;
         this.id = id;
-        labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("office.jpg")));
-        labelIcon.setSize(30, 30);
-        labelIcon.setText("purple");
+        //labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("office.jpg")));
+        //labelIcon.setSize(30, 30);
+        //labelIcon.setText("purple");
     }
     
     // getters
@@ -64,7 +64,7 @@ public class Room {
     //toString
     @Override
     public String toString() {
-        return "Room{" + "id=" + id + ", indicators=" + indicators + ", target=" + target + "Icon: " + labelIcon + "\n";
+        return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString()  + "  Icon: " + labelIcon + "    \n";
     }
 
 
