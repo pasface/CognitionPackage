@@ -16,17 +16,18 @@ import javax.swing.JLabel;
 
 public class Target{
     // fields
-    private static JLabel TARGET = new JLabel();
+    private final JLabel TARGET;
 
     public Target() {
-        TARGET.setSize(1,1);
+        this.TARGET = new JLabel();
     }
 
     public Target(int x, int y) {
-        TARGET.setSize(100,100);
-        TARGET.setLocation(x, y);
+        this.TARGET = new JLabel();
+        this.TARGET.setSize(100,100);
+        this.TARGET.setLocation(x, y);
         ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("targetS.png"));
-        TARGET.setIcon(icon);
+        this.TARGET.setIcon(icon);
     }
 
     public JLabel getTARGET() {

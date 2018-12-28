@@ -18,7 +18,7 @@ import se.core.Game;
  * @author nikki
  */
 public class GameTest {
-    private static final JFrame FRAME = new JFrame("My Dingus");
+    private static final JFrame FRAME = new JFrame("Cognition Package");
     private static final JPanel PANEL = new JPanel();
     private static final JLabel ROOMLABEL = new JLabel();
     private static final JLabel INDICATORLABEL = new JLabel();
@@ -62,6 +62,6 @@ public class GameTest {
         FRAME.show();        
         
         Game g = new Game(3,1);
-        g.toString();
+        //System.out.println(g.toString());
     }
 }

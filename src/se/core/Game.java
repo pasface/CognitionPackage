@@ -2,7 +2,6 @@ package se.core;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,7 +18,7 @@ import javax.swing.JPanel;
 public class Game {
     // fields
     private int id;
-    private Room[] roomArray;
+    private ArrayList<Room> roomArray;
     private static final SecureRandom RAND = new SecureRandom();
     private JFrame f = new JFrame();
     private JPanel p = new JPanel();
@@ -28,12 +27,13 @@ public class Game {
     public Game(int numberOfRooms, int id) {
         // set Game id
         this.id = id;
+        this.roomArray = roomArrayGenerator(numberOfRooms);
         // generate specified number of rooms in array list
-        roomArrayGenerator(numberOfRooms);
+        System.out.println(roomArray.toString());
     }
 
     // getters
-    public Room[] getRoomArray() {
+    public ArrayList<Room> getRoomArray() {
         return roomArray;
     }
 
@@ -42,19 +42,14 @@ public class Game {
     }
 
     // setters
-    public void setRoomArray(int totalRooms) {
-        this.roomArray = new Room[totalRooms];
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
     // methods
     // method to create and populate a room array
-    private Room[] roomArrayGenerator(int totalRooms){
-        // create a roomArray array
-        setRoomArray(totalRooms);
+    private ArrayList<Room> roomArrayGenerator(int totalRooms){
+        ArrayList<Room> r = new ArrayList();
         // create variable for roomArray number
         int currentRoom = 0;
         // create a bool to check if target exists
@@ -67,17 +62,18 @@ public class Game {
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30,30);
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(1), t1, currentRoom + 1);
+                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1)));
+                //System.out.println("Placed target in room: " + (currentRoom+1));
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(0), t0, currentRoom + 1);
+                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1)));
                 currentRoom++;
             }
         }
-        return roomArray;
+        return r;
     }
 
     // ArrayList that stores all possible Indicators
@@ -130,7 +126,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + id + ", roomArray=" + Arrays.toString(roomArray) + ", f=" + f + ", p=" + p + '}';
+        return "Game{ \n" + "id=" + id + ",\n " + roomArray.toString() +'}';
     }
     
 }
