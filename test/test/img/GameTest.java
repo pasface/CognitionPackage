@@ -5,12 +5,12 @@
  */
 package test.img;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 /**
  *
@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 public class GameTest {
     private static final JFrame FRAME = new JFrame("My Dingus");
     private static final JPanel PANEL = new JPanel();
-    //private static final JLayeredPane PANEL = new JLayeredPane();
     private static final JLabel ROOMLABEL = new JLabel();
     private static final JLabel INDICATORLABEL = new JLabel();
     private static String S;
@@ -39,25 +38,22 @@ public class GameTest {
     public static void main(String[] args) {
         FRAME.setSize(1920,1100);
         
-        //PANEL.setPreferredSize(new Dimension(300,300));
-        PANEL.setBorder(BorderFactory.createTitledBorder("Move the Mouse to Move Duke"));
+        PANEL.setSize(new Dimension(400,400));
+        PANEL.setBorder(BorderFactory.createTitledBorder("name of panel"));
         PANEL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        //ROOMLABEL.setSize(340,170);
-        //ROOMLABEL.setLocation(30, 30);
+        PANEL.setBackground(Color.darkGray);
+        
+        ROOMLABEL.setSize(340,170);
+        ROOMLABEL.setLocation(30, 30);
         ROOMLABEL.setIcon(icon(1));
         
-        //INDICATORLABEL.setSize(340,170);
-        //INDICATORLABEL.setLocation(30, 30);
-        //INDICATORLABEL.setIcon(icon(2));
-        
-        PANEL.add(ROOMLABEL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
-        //PANEL.add(INDICATORLABEL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
-        //PANE.setLayer(ROOMLABEL, 0);
-        //PANE.setLayer(INDICATORLABEL, 1);
-        
-        FRAME.add(PANEL);
-        FRAME.add(ROOMLABEL);
+        INDICATORLABEL.setSize(200,100);
+        INDICATORLABEL.setLocation(35, 35);
+        INDICATORLABEL.setIcon(icon(2));
+
         FRAME.add(INDICATORLABEL);
+        FRAME.add(ROOMLABEL);
+        FRAME.add(PANEL);
         FRAME.show();        
         
 //        Game g = new Game(3,1);
