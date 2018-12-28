@@ -2,8 +2,6 @@ package se.core;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -77,22 +75,18 @@ public class Game {
     // ArrayList that stores all possible Indicators
     public ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
-        // create indicator objects
-        Indicator i0 = new Indicator(0, "I:0");
-        Indicator i1 = new Indicator(101, "I:Green");
-        Indicator i2 = new Indicator(102, "I:Purple");
-        Indicator i3 = new Indicator(103, "I:Red");
-        Indicator i4 = new Indicator(104, "I:Orange");
-        Indicator i5 = new Indicator(105, "I:Blue");
-        Indicator i6 = new Indicator(106, "I:Magenta");
+        // create indicator objects (location x, location y, imagename)
+        Indicator i0 = new Indicator(1,1,"mug.png");
+        Indicator i1 = new Indicator(2,2,"pen.png");
+        Indicator i2 = new Indicator(3,3,"bird.png");
+        Indicator i3 = new Indicator(4,4,"tissue.png");
+        Indicator i4 = new Indicator(5,5,"bowl.png");
         // add indicator objects to indicators list
         indicators.add(i0);
         indicators.add(i1);
         indicators.add(i2);
         indicators.add(i3);
         indicators.add(i4);
-        indicators.add(i5);
-        indicators.add(i6);
         // return indicator list
         return indicators;
     }

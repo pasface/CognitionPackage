@@ -59,9 +59,9 @@ public class GameTest {
         
         FRAME.add(PANEL);
         
-        FRAME.show();        
+        //FRAME.show();        
         
-        Game g = new Game(3,1);
+        Game g = new Game(6,1);
         //System.out.println(g.toString());
     }
 }

@@ -1,7 +1,6 @@
 package se.core;
 
 import java.util.ArrayList;
-import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +15,6 @@ import javax.swing.JLabel;
 
 public class Room {
     // fields
-    private static final JLabel labelIcon = new JLabel();
     private int id;
     private ArrayList<Indicator> indicators;
     private Target target;
@@ -43,10 +41,6 @@ public class Room {
     public int getId(){
         return id;
     }
-
-    public static JLabel getLabelIcon() {
-        return labelIcon;
-    }
     
     // setters
     public void setIndicator(ArrayList<Indicator> indicators) {
@@ -64,7 +58,7 @@ public class Room {
     //toString
     @Override
     public String toString() {
-        return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString()  + "  Icon: " + labelIcon + "    \n";
+        return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
     }
 
 

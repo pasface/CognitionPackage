@@ -20,10 +20,12 @@ public class Indicator {
     
     public Indicator() {
         this.INDICATOR = new JLabel();
+        this.INDICATOR.setName("Blank");
     }
 
     public Indicator(int x, int y, String image) {
         this.INDICATOR = new JLabel();
+        this.INDICATOR.setName(image);
         this.INDICATOR.setSize(100,100);
         this.INDICATOR.setLocation(x, y);
         ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource(image));
@@ -36,7 +38,7 @@ public class Indicator {
 
     @Override
     public String toString() {
-        return "Indicator{" + getIndicator() + '}';
+        return '{' + getIndicator().getName() + '}';
     }
     
 }

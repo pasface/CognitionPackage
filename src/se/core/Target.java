@@ -14,16 +14,18 @@ import javax.swing.JLabel;
  * @author nikki
  */
 
-public class Target{
+public class Target extends JLabel{
     // fields
     private final JLabel TARGET;
 
     public Target() {
         this.TARGET = new JLabel();
+        this.TARGET.setName("");
     }
 
     public Target(int x, int y) {
         this.TARGET = new JLabel();
+        this.TARGET.setName("Target");
         this.TARGET.setSize(100,100);
         this.TARGET.setLocation(x, y);
         ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("targetS.png"));
@@ -36,7 +38,7 @@ public class Target{
 
     @Override
     public String toString() {
-        return "Target{" + getTARGET() + '}';
+        return '{' + getTARGET().getName() + '}';
     }
     
 }
