@@ -18,10 +18,8 @@ import javax.swing.JPanel;
 public class Game {
     // fields
     private int id;
-    private ArrayList<Room> roomArray;
+    private final ArrayList<Room> roomArray;
     private static final SecureRandom RAND = new SecureRandom();
-    private JFrame f = new JFrame();
-    private JPanel p = new JPanel();
 
     // constructor
     public Game(int numberOfRooms, int id) {

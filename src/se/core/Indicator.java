@@ -1,5 +1,8 @@
 package se.core;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,37 +16,27 @@ package se.core;
 
 public class Indicator {
     // fields
-    private int num;
-    private String name;
-
-    // constructor
-    public Indicator(int num, String name) {
-        this.num = num;
-        this.name = name;
-    }
+    private final JLabel INDICATOR;
     
-    // getters
-    public int getNum() {
-        return num;
-    }    
-    
-    public String getName() {
-        return name;
-    }
-    
-    // setters
-    public void setNum(int num) {
-        this.num = num;
+    public Indicator() {
+        this.INDICATOR = new JLabel();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Indicator(int x, int y, String image) {
+        this.INDICATOR = new JLabel();
+        this.INDICATOR.setSize(100,100);
+        this.INDICATOR.setLocation(x, y);
+        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource(image));
+        this.INDICATOR.setIcon(icon);
     }
 
-    // toString
+    public JLabel getIndicator() {
+        return INDICATOR;
+    }
+
     @Override
     public String toString() {
-        return "{" + "num=" + num + ", name=" + name + '}';
+        return "Indicator{" + getIndicator() + '}';
     }
     
 }
