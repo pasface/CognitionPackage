@@ -1,6 +1,8 @@
 package se.core;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class Room {
     // fields
     private int id;
+    private final JLabel ROOM;
     private ArrayList<Indicator> indicators;
     private Target target;
     
@@ -24,9 +27,12 @@ public class Room {
         this.indicators = indicators;
         this.target = target;
         this.id = id;
-        //labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("office.jpg")));
-        //labelIcon.setSize(30, 30);
-        //labelIcon.setText("purple");
+        this.ROOM = new JLabel();
+        this.ROOM.setName("Room " + id);
+        this.ROOM.setSize(100,100);
+        this.ROOM.setLocation(1, 1);
+        //ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("office.png"));
+        //this.ROOM.setIcon(icon);
     }
     
     // getters

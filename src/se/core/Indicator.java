@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author nikki
  */
 
-public class Indicator {
+public class Indicator extends JLabel {
     // fields
     private final JLabel INDICATOR;
     

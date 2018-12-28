@@ -8,18 +8,19 @@ package test.img;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import se.core.Game;
+import se.core.Target;
 /**
  *
  * @author nikki
  */
 public class GameTest {
     private static final JFrame FRAME = new JFrame("Cognition Package");
-    private static final JPanel PANEL = new JPanel();
     private static final JLabel ROOMLABEL = new JLabel();
     private static final JLabel INDICATORLABEL = new JLabel();
     private static String S;
@@ -38,11 +39,12 @@ public class GameTest {
     
     public static void main(String[] args) {
         FRAME.setSize(1920,1100);
-        
-        PANEL.setSize(new Dimension(400,400));
-        PANEL.setBorder(BorderFactory.createTitledBorder("name of panel"));
-        PANEL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        PANEL.setBackground(Color.darkGray);
+        JPanel panelA = new JPanel();
+        panelA.setSize(new Dimension(400,400));
+        panelA.setLocation(500,500);
+        panelA.setBorder(BorderFactory.createTitledBorder("Room: "));
+        panelA.setLayout(new BoxLayout(panelA, BoxLayout.PAGE_AXIS));
+        panelA.setBackground(Color.lightGray);
         
         ROOMLABEL.setSize(340,170);
         ROOMLABEL.setLocation(30, 30);
@@ -52,14 +54,14 @@ public class GameTest {
         INDICATORLABEL.setLocation(35, 35);
         INDICATORLABEL.setIcon(icon(2));
         
-        //Target target = new Target(10,10);
+        Target target = new Target(300,300);
         //FRAME.add(target.getTARGET());
         FRAME.add(INDICATORLABEL);
         FRAME.add(ROOMLABEL);
+        panelA.add(target);
+        FRAME.add(panelA);
         
-        FRAME.add(PANEL);
-        
-        //FRAME.show();        
+        FRAME.show();        
         
         Game g = new Game(6,1);
         //System.out.println(g.toString());
