@@ -55,7 +55,7 @@ public class Game {
 
     // methods
     // method to create and populate a room array
-    private Room[] roomArrayGenerator(int totalRooms) {
+    private Room[] roomArrayGenerator(int totalRooms) throws NullPointerException{
         // create a roomArray array
         setRoomArray(totalRooms);
         // create variable for roomArray number
@@ -69,29 +69,17 @@ public class Game {
             // (if no target built, 50% chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((b == false && randInt == 1) || (currentRoom == totalRooms - 1 && b == false)) {
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(1), targetList().get(1), currentRoom + 1);
+                Target target = new Target(30,30);
+                roomArray[currentRoom] = new Room(modifiedIndicatorList(1), target, currentRoom + 1);
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
-                roomArray[currentRoom] = new Room(modifiedIndicatorList(0), targetList().get(0), currentRoom + 1);
+                roomArray[currentRoom] = new Room(modifiedIndicatorList(0), new Target(), currentRoom + 1);
                 currentRoom++;
             }
         }
         return roomArray;
-    }
-
-    // ArrayList that stores all possible targets
-    public ArrayList<Target> targetList() {
-        ArrayList<Target> targets = new ArrayList();
-        // create target objects (1 empty/1 full)
-        Target t0 = new Target(0, "Empty room.");
-        Target t1 = new Target(1, "Target present.");
-        // add target objects to target list
-        targets.add(t0);
-        targets.add(t1);
-        // return target list
-        return targets;
     }
 
     // ArrayList that stores all possible Indicators

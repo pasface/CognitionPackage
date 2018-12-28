@@ -1,5 +1,8 @@
 package se.core;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,36 +16,25 @@ package se.core;
 
 public class Target{
     // fields
-    private int num;
-    private String name;
-    
-    // constructor
-    public Target(int num, String name) {
-        this.num = num;
-        this.name = name;
+    private static JLabel TARGET = new JLabel();
+
+    public Target() {
     }
 
-    // getters
-    public int getNum() {
-        return num;
+    public Target(int x, int y) {
+        TARGET.setSize(100,100);
+        TARGET.setLocation(x, y);
+        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("target.png"));
+        TARGET.setIcon(icon);
+    }
+
+    public JLabel getTARGET() {
+        return TARGET;
     }
     
-    public String getName() {
-        return name;
-    }
-    
-    // setters
-    public void setNum(int num) {
-        this.num = num;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    // toString
     @Override
     public String toString() {
-        return "{" + "num=" + num + ", name=" + name + '}';
+        return "Target{" + TARGET.toString() + '}';
     }
+    
 }
