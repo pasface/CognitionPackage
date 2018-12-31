@@ -1,6 +1,8 @@
 package se.core;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,24 +22,28 @@ import javax.swing.JPanel;
 public class Room {
     // fields
     private int id;
-    private final JLabel ROOM;
+    private final JLabel roomFace;
+    private final JPanel roomPanel = new JPanel();
     private ArrayList<Indicator> indicators;
     private Target target;
     
     // constructor
-    public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel p) {
+    public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
         this.indicators = indicators;
         this.target = target;
         this.id = id;
         ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource("office.jpg"));
-        this.ROOM = new JLabel();
-        this.ROOM.setName("Room " + id);
-        this.ROOM.setSize(100, 100);
-        this.ROOM.setLocation(1, 1);
-        this.ROOM.setIcon(icon);
-        p.add(ROOM);
+        this.roomFace = new JLabel();
+        this.roomFace.setName("Room " + id);
+        this.roomFace.setSize(100, 100);
+        this.roomFace.setLocation(1, 1);
+        this.roomFace.setIcon(icon);
+        this.roomFace.setBorder(BorderFactory.createTitledBorder("purple"));
+        roomPanel.add(roomFace);
+        roomPanel.setBackground(Color.BLACK);
+        f.add(roomPanel);
         //ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("office.png"));
-        //this.ROOM.setIcon(icon);
+        //this.roomFace.setIcon(icon);
     }
     
     // getters

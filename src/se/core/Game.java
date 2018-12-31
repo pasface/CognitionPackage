@@ -22,10 +22,10 @@ public class Game {
     private static final SecureRandom RAND = new SecureRandom();
 
     // constructor
-    public Game(int numberOfRooms, int id, JPanel p) {
+    public Game(int numberOfRooms, int id, JFrame f) {
         // set Game id
         this.id = id;
-        this.roomArray = roomArrayGenerator(numberOfRooms, p);
+        this.roomArray = roomArrayGenerator(numberOfRooms, f);
         // generate specified number of rooms in array list
         System.out.println(roomArray.toString());
     }
@@ -46,7 +46,7 @@ public class Game {
 
     // methods
     // method to create and populate a room array
-    private ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel p){
+    private ArrayList<Room> roomArrayGenerator(int totalRooms, JFrame f){
         ArrayList<Room> r = new ArrayList();
         // create variable for roomArray number
         int currentRoom = 0;
@@ -60,14 +60,14 @@ public class Game {
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30,30);
-                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), p));
+                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), f));
                 //System.out.println("Placed target in room: " + (currentRoom+1));
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
-                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), p));
+                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), f));
                 currentRoom++;
             }
         }
