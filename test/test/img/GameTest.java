@@ -5,14 +5,10 @@
  */
 package test.img;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import se.core.Game;
-import se.core.Target;
 /**
  *
  * @author nikki
