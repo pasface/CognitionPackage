@@ -7,12 +7,12 @@ package test.img;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import se.core.Game;
+import se.core.Target;
 /**
  *
  * @author nikki
@@ -39,7 +39,7 @@ public class GameTest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(2,6));
         
-        Game g = new Game(4,1, frame);
+        Game g = new Game(6,1, frame);
         frame.show(); 
     }
 }

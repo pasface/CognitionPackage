@@ -35,13 +35,13 @@ public class Room {
         this.indicators = indicators;
         this.target = target;
         this.id = id;
-        ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource("office.jpg"));
         this.roomFace = new JLabel();
         this.roomFace.setName("Room " + id);
-        this.roomFace.setIcon(icon);
+        this.roomFace.setIcon(setIcon("office.jpg"));
         this.roomFace.setBackground(Color.red);
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
-        this.roomFace.setBounds(0, 0, 100, 100);
+        this.roomFace.setBounds(2, 2, 200, 200);
+        this.roomPanel.add(target.getTarget());
         this.roomPanel.add(this.target);
         this.roomPanel.add(roomFace);
         this.peekButton.setName("peek" + id);
@@ -51,6 +51,16 @@ public class Room {
         roomPanel.add(peekButton);
         roomPanel.add(seekButton);
         f.add(roomPanel);
+    }
+    
+    public final ImageIcon setIcon(String iconPath){
+        try {
+            ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource(iconPath));
+            return icon;
+        } catch (NullPointerException e) {
+            System.out.print(e);
+        }
+        return null;
     }
     
     // getters

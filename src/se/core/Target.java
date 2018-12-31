@@ -16,29 +16,29 @@ import javax.swing.JLabel;
 
 public class Target extends JLabel{
     // fields
-    private final JLabel TARGET;
+    private final JLabel target;
 
     public Target() {
-        this.TARGET = new JLabel();
-        this.TARGET.setName("");
+        this.target = new JLabel();
+        this.target.setName("");
     }
 
     public Target(int x, int y) {
-        this.TARGET = new JLabel();
-        this.TARGET.setName("Target");
-        this.TARGET.setSize(100,100);
-        this.TARGET.setLocation(x, y);
-        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("targetS.png"));
-        this.TARGET.setIcon(icon);
+        String iconPath = "targetS.png";
+        this.target = new JLabel();
+        this.target.setName(iconPath);
+        this.target.setLocation(x, y);
+        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource(iconPath));
+        this.target.setIcon(icon);
     }
 
-    public JLabel getTARGET() {
-        return TARGET;
+    public JLabel getTarget() {
+        return target;
     }
 
     @Override
     public String toString() {
-        return '{' + getTARGET().getName() + '}';
+        return '{' + getTarget().getName() + '}';
     }
     
 }
