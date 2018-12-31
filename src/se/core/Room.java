@@ -1,7 +1,9 @@
 package se.core;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,9 +42,10 @@ public class Room {
         this.roomFace.setIcon(setIcon("office.jpg"));
         this.roomFace.setBackground(Color.red);
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
-        this.roomFace.setBounds(2, 2, 200, 200);
         this.roomPanel.add(target.getTarget());
-        this.roomPanel.add(this.target);
+        for(Indicator indicator : indicators){
+            this.roomPanel.add(indicator.getIndicator());
+        }       
         this.roomPanel.add(roomFace);
         this.peekButton.setName("peek" + id);
         this.seekButton.setName("seek" + id);
@@ -93,6 +96,10 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
+    }
+
+    private void print(Indicator n) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
