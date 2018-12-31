@@ -20,9 +20,8 @@ import se.core.Target;
  * @author nikki
  */
 public class GameTest {
-    private static final JFrame FRAME = new JFrame("Cognition Package");
-    private static final JLabel ROOMLABEL = new JLabel();
-    private static final JLabel INDICATORLABEL = new JLabel();
+    private static final JFrame frame = new JFrame("Cognition Package");
+
     private static String S;
     
     public static Icon icon(int i){
@@ -38,32 +37,28 @@ public class GameTest {
     }
     
     public static void main(String[] args) {
-        FRAME.setSize(1920,1100);
+        frame.setSize(1920,1100);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         JPanel panelA = new JPanel();
         panelA.setSize(new Dimension(400,400));
-        panelA.setLocation(500,500);
-        panelA.setBorder(BorderFactory.createTitledBorder("Room: "));
+        panelA.setLocation(200,200);
+        panelA.setBorder(BorderFactory.createTitledBorder("Room: A"));
         panelA.setLayout(new BoxLayout(panelA, BoxLayout.PAGE_AXIS));
         panelA.setBackground(Color.lightGray);
+
+        JPanel panelB = new JPanel();
+        panelB.setSize(new Dimension(400,400));
+        panelB.setLocation(300, 300);
+        panelB.setBorder(BorderFactory.createTitledBorder("Room: B"));
+        panelB.setLayout(new BoxLayout(panelB, BoxLayout.PAGE_AXIS));
+        panelB.setBackground(Color.BLACK);
         
-        ROOMLABEL.setSize(340,170);
-        ROOMLABEL.setLocation(30, 30);
-        ROOMLABEL.setIcon(icon(1));
+        frame.add(panelA);
+        frame.add(panelB);
         
-        INDICATORLABEL.setSize(200,100);
-        INDICATORLABEL.setLocation(35, 35);
-        INDICATORLABEL.setIcon(icon(2));
-        
-        Target target = new Target(300,300);
-        //FRAME.add(target.getTARGET());
-        FRAME.add(INDICATORLABEL);
-        FRAME.add(ROOMLABEL);
-        panelA.add(target);
-        FRAME.add(panelA);
-        
-        FRAME.show();        
-        
-        Game g = new Game(6,1);
-        //System.out.println(g.toString());
+        Game g = new Game(2,1, panelA);
+        //frame.pack();
+        frame.show(); 
     }
 }

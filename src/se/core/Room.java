@@ -2,7 +2,9 @@ package se.core;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,14 +25,17 @@ public class Room {
     private Target target;
     
     // constructor
-    public Room(ArrayList<Indicator> indicators, Target target, int id) {
+    public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel p) {
         this.indicators = indicators;
         this.target = target;
         this.id = id;
+        ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource("office.jpg"));
         this.ROOM = new JLabel();
         this.ROOM.setName("Room " + id);
-        this.ROOM.setSize(100,100);
+        this.ROOM.setSize(100, 100);
         this.ROOM.setLocation(1, 1);
+        this.ROOM.setIcon(icon);
+        p.add(ROOM);
         //ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("office.png"));
         //this.ROOM.setIcon(icon);
     }
