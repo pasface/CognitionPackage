@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +27,8 @@ public class Room {
     private final JPanel roomPanel = new JPanel();
     private ArrayList<Indicator> indicators;
     private Target target;
+    private final JButton peekButton = new JButton();
+    private final JButton seekButton = new JButton();
     
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
@@ -35,15 +38,19 @@ public class Room {
         ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource("office.jpg"));
         this.roomFace = new JLabel();
         this.roomFace.setName("Room " + id);
-        this.roomFace.setSize(100, 100);
-        this.roomFace.setLocation(1, 1);
         this.roomFace.setIcon(icon);
-        this.roomFace.setBorder(BorderFactory.createTitledBorder("purple"));
-        roomPanel.add(roomFace);
-        roomPanel.setBackground(Color.BLACK);
+        this.roomFace.setBackground(Color.red);
+        this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
+        this.roomFace.setBounds(0, 0, 100, 100);
+        this.roomPanel.add(this.target);
+        this.roomPanel.add(roomFace);
+        this.peekButton.setName("peek" + id);
+        this.seekButton.setName("seek" + id);
+        this.peekButton.setText("Peek");
+        this.seekButton.setText("Search");
+        roomPanel.add(peekButton);
+        roomPanel.add(seekButton);
         f.add(roomPanel);
-        //ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource("office.png"));
-        //this.roomFace.setIcon(icon);
     }
     
     // getters

@@ -3,7 +3,6 @@ package se.core;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

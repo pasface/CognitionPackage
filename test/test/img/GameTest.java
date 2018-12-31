@@ -39,7 +39,7 @@ public class GameTest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(2,6));
         
-        Game g = new Game(6,1, frame);
+        Game g = new Game(4,1, frame);
         frame.show(); 
     }
 }
