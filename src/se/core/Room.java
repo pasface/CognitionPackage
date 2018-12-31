@@ -56,7 +56,7 @@ public class Room {
         f.add(roomPanel);
     }
     
-    public final ImageIcon setIcon(String iconPath){
+    public static final ImageIcon setIcon(String iconPath){
         try {
             ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource(iconPath));
             return icon;
