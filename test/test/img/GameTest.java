@@ -7,14 +7,13 @@ package test.img;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import se.core.Game;
-import se.core.Target;
 /**
  *
  * @author nikki
@@ -39,26 +38,30 @@ public class GameTest {
     public static void main(String[] args) {
         frame.setSize(1920,1100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(2,6));
         
         JPanel panelA = new JPanel();
-        panelA.setSize(new Dimension(400,400));
-        panelA.setLocation(200,200);
         panelA.setBorder(BorderFactory.createTitledBorder("Room: A"));
         panelA.setLayout(new BoxLayout(panelA, BoxLayout.PAGE_AXIS));
         panelA.setBackground(Color.lightGray);
 
         JPanel panelB = new JPanel();
-        panelB.setSize(new Dimension(400,400));
-        panelB.setLocation(300, 300);
         panelB.setBorder(BorderFactory.createTitledBorder("Room: B"));
         panelB.setLayout(new BoxLayout(panelB, BoxLayout.PAGE_AXIS));
         panelB.setBackground(Color.BLACK);
         
+        JPanel panelC = new JPanel();
+        panelC.setBorder(BorderFactory.createTitledBorder("Room: C"));
+        panelC.setLayout(new BoxLayout(panelC, BoxLayout.PAGE_AXIS));
+        panelC.setBackground(Color.BLACK);
+        
         frame.add(panelA);
         frame.add(panelB);
+        frame.add(panelC);
         
         Game g = new Game(2,1, panelA);
-        //frame.pack();
+        Game g2 = new Game(2, 1, panelB);
+        Game g3 = new Game(2,1, panelC);
         frame.show(); 
     }
 }
