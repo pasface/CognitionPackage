@@ -99,6 +99,9 @@ public class Room {
         this.id = id;
     }
     
+    public void setRoomFace(String path){
+        this.roomFace.setIcon(setIcon(path));
+    }
     //toString
     @Override
     public String toString() {

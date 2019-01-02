@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
+import static se.core.Room.setIcon;
 
 /**
  *
@@ -17,8 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class PeekAction extends AbstractAction {
     private static final int PEEK = 10, PEEKDURATION = 4000;
-    private String path;
-    //private ImageIcon i = new javax.swing.ImageIcon(getClass().getResource(path));
+    private static final IconFinder i = new IconFinder();
     
     public PeekAction(String shortDescription) {
         super();
@@ -29,11 +28,11 @@ public class PeekAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        System.out.println("Peeked at this: " + e);
-        //gui.getLblTotal().setText(total+"");
-        //gui.getLblPeek().setText(countPeek+"");
-        Room.setIcon("office2.jpg");
+        //change path
+        //i.setIcon();
         peekTimer();
+        
+        System.out.println("Peeked at this: " + e);
     }
     
     public void peekTimer(){
@@ -41,7 +40,7 @@ public class PeekAction extends AbstractAction {
         timer.schedule(new TimerTask() {
         @Override
         public void run() {
-
+            //change path
         }
         }, PEEKDURATION);
     }
