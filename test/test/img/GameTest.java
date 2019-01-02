@@ -36,6 +36,6 @@ public class GameTest {
         frame.setLayout(new GridLayout(2,6));
         
         Game g = new Game(6,1, frame);
-        frame.show(); 
+        frame.setVisible(true); 
     }
 }

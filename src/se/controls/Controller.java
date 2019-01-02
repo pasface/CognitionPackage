@@ -54,8 +54,8 @@ public class Controller {
     }
     
     public void peek(){
-        total+=PEEK;
-        countPeek+=1;
+        this.total+=PEEK;
+        this.countPeek+=1;
         gui.getLblTotal().setText(total+"");
         gui.getLblPeek().setText(countPeek+"");
         gui.getJlblIcon().setIcon(new javax.swing.ImageIcon(getClass().getResource("office2.jpg")));
@@ -92,6 +92,20 @@ public class Controller {
             //gui.getJlblIcon().setVisible(true);
         }
         }, PEEKDURATION);
+    }
+
+    public void setCountSearch(int countSearch) {
+        this.countSearch = countSearch;
+    }
+
+    public void setCountPeek(int countPeek) {
+        this.countPeek += countPeek;
+        System.out.println("Count Peek value: " + this.countPeek);
+    }
+
+    public void setTotal(int total) {
+        this.total += total;
+        System.out.println("Total value: " + this.total);
     }
     
     public static void main(String[] args) {

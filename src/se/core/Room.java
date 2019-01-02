@@ -1,9 +1,8 @@
 package se.core;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Iterator;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,6 +50,8 @@ public class Room {
         this.seekButton.setName("seek" + id);
         this.peekButton.setText("Peek");
         this.seekButton.setText("Search");
+        Action a = new PeekAction("Peekin");
+        this.peekButton.setAction(a);
         roomPanel.add(peekButton);
         roomPanel.add(seekButton);
         f.add(roomPanel);
