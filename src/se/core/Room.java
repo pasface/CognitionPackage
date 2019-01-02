@@ -30,7 +30,7 @@ public class Room {
     private Target target;
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
-    
+
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
         this.indicators = indicators;
@@ -48,13 +48,13 @@ public class Room {
         this.roomPanel.add(roomFace);
         this.peekButton.setName("peek" + id);
         this.searchButton.setName("seek" + id);
-        this.peekButton.setText("Peek");
-        this.searchButton.setText("Search");
         Action a = new PeekAction("Peekin");
         this.peekButton.setActionCommand("pineapple");
         this.peekButton.setAction(a);
         Action b = new SearchAction("Searchin");
         this.searchButton.setAction(b);
+        this.peekButton.setText("Peek");
+        this.searchButton.setText("Search");
         roomPanel.add(peekButton);
         roomPanel.add(searchButton);
         f.add(roomPanel);
