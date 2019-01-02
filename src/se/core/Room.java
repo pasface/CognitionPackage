@@ -23,20 +23,21 @@ import javax.swing.JPanel;
 
 public class Room {
     // fields
-    private int id;
-    private final JLabel roomFace;
+    private final JLabel roomFace= new JLabel();
     private final JPanel roomPanel = new JPanel();
-    private ArrayList<Indicator> indicators;
-    private Target target;
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
+    private ArrayList<Indicator> indicators;
+    private Target target;
+    private int id;
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
+        //initialize fields
         this.indicators = indicators;
         this.target = target;
         this.id = id;
-        this.roomFace = new JLabel();
+        //room settings
         this.roomFace.setName("Room " + id);
         this.roomFace.setIcon(setIcon("office.jpg"));
         this.roomFace.setBackground(Color.red);
@@ -46,17 +47,19 @@ public class Room {
             this.roomPanel.add(indicator.getIndicator());
         }       
         this.roomPanel.add(roomFace);
+        //peek settings
         this.peekButton.setName("peek" + id);
-        this.searchButton.setName("seek" + id);
-        Action a = new PeekAction("Peekin");
-        this.peekButton.setActionCommand("pineapple");
+        Action a = new PeekAction(peekButton.getName());
         this.peekButton.setAction(a);
-        Action b = new SearchAction("Searchin");
-        this.searchButton.setAction(b);
         this.peekButton.setText("Peek");
-        this.searchButton.setText("Search");
         roomPanel.add(peekButton);
+        //search settings
+        this.searchButton.setName("Search" + id);
+        Action b = new SearchAction(searchButton.getName());
+        this.searchButton.setAction(b);
+        this.searchButton.setText("Search");
         roomPanel.add(searchButton);
+        //add room to frame
         f.add(roomPanel);
     }
     
@@ -101,10 +104,4 @@ public class Room {
     public String toString() {
         return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
     }
-
-    private void print(Indicator n) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
 }
