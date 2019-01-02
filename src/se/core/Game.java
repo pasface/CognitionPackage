@@ -3,6 +3,7 @@ package se.core;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,16 +20,40 @@ public class Game {
     private int id;
     private final ArrayList<Room> roomArray;
     private static final SecureRandom RAND = new SecureRandom();
-
+    private static int countSearch = 0, countPeek = 0, total = 0;
+    private static final JLabel displayTotal = new JLabel();
+    private static final JLabel displaySearchCount = new JLabel();
+    private static final JLabel displayPeekCount = new JLabel();
+    
     // constructor
     public Game(int numberOfRooms, int id, JFrame f) {
         // set Game id
         this.id = id;
+        // generate rooms (total number of rooms, swing frame)
         this.roomArray = roomArrayGenerator(numberOfRooms, f);
-        // generate specified number of rooms in array list
-        System.out.println(roomArray.toString());
-    }
 
+        System.out.println(roomArray.toString());
+        
+        setDisplayTotal();
+        setDisplaySearchCount();
+        setDisplayPeekCount();
+        f.add(displayTotal);
+        f.add(displayPeekCount);
+        f.add(displaySearchCount);
+    }
+    
+    public static void setDisplayTotal(){
+        displayTotal.setText("Total: " + total);
+    }    
+    
+    public static void setDisplaySearchCount(){
+        displaySearchCount.setText("Count Search: " + countSearch);
+    }
+    
+    public static void setDisplayPeekCount(){
+        displayPeekCount.setText("Count Peek: "  + countPeek);
+    }
+    
     // getters
     public ArrayList<Room> getRoomArray() {
         return roomArray;
@@ -43,6 +68,33 @@ public class Game {
         this.id = id;
     }
 
+    public int getCountSearch() {
+        return countSearch;
+    }
+
+    public static void setCountSearch() {
+        Game.countSearch += 1;
+        setDisplaySearchCount();
+    }
+
+    public int getCountPeek() {
+        return countPeek;
+    }
+
+    public static void setCountPeek() {
+        Game.countPeek += 1;
+        setDisplayPeekCount();
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public static void setTotal(int total) {
+        Game.total += total;
+        setDisplayTotal();
+    }
+    
     // methods
     // method to create and populate a room array
     private ArrayList<Room> roomArrayGenerator(int totalRooms, JFrame f){

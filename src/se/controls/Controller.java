@@ -107,6 +107,18 @@ public class Controller {
         this.total += total;
         System.out.println("Total value: " + this.total);
     }
+
+    public int getCountSearch() {
+        return countSearch;
+    }
+
+    public int getCountPeek() {
+        return countPeek;
+    }
+
+    public int getTotal() {
+        return total;
+    }
     
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */

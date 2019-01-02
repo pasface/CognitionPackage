@@ -52,6 +52,7 @@ public class Room {
         this.seekButton.setText("Search");
         Action a = new PeekAction("Peekin");
         this.peekButton.setAction(a);
+        
         roomPanel.add(peekButton);
         roomPanel.add(seekButton);
         f.add(roomPanel);

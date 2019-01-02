@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
-import se.controls.Controller;
 
 /**
  *
@@ -17,7 +16,6 @@ import se.controls.Controller;
  */
 public class PeekAction extends AbstractAction {
     private static final int PEEK = 10, PEEKDURATION = 4000;
-    Controller c = new Controller();
     
     public PeekAction(String shortDescription) {
         super();
@@ -26,8 +24,8 @@ public class PeekAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        c.setTotal(PEEK);
-        c.setCountPeek(1);
+        Game.setTotal(PEEK);
+        Game.setCountPeek();
         System.out.println("Peeked at this: " + e);
         //gui.getLblTotal().setText(total+"");
         //gui.getLblPeek().setText(countPeek+"");
