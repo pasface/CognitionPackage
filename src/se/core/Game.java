@@ -2,8 +2,6 @@ package se.core;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -136,11 +134,11 @@ public class Game {
     public ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(1, 1, "mug.png");
-        Indicator i1 = new Indicator(2, 2, "pen.png");
-        Indicator i2 = new Indicator(3, 3, "bird.png");
-        Indicator i3 = new Indicator(4, 4, "tissue.png");
-        Indicator i4 = new Indicator(5, 5, "bowl.png");
+        Indicator i0 = new Indicator(1, 1, "images/mug.png");
+        Indicator i1 = new Indicator(2, 2, "images/pen.png");
+        Indicator i2 = new Indicator(3, 3, "images/bird.png");
+        Indicator i3 = new Indicator(4, 4, "images/tissue.png");
+        Indicator i4 = new Indicator(5, 5, "images/bowl.png");
         
         // add indicator objects to indicators list
         indicators.add(i0);

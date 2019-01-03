@@ -24,7 +24,7 @@ public class Target extends JLabel{
     }
 
     public Target(int x, int y) {
-        String iconPath = "targetS.png";
+        String iconPath = "images/targetS.png";
         this.target = new JLabel();
         this.target.setName(iconPath);
         this.target.setLocation(x, y);

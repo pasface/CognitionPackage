@@ -43,7 +43,7 @@ public class Room {
         //room settings
         this.roomFace = new JLabel();
         this.roomFace.setName("" + id);
-        this.roomFace.setIcon(IconFinder.setIconFinder("office.jpg"));
+        this.roomFace.setIcon(IconFinder.setIconFinder("images/office.jpg"));
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
         this.roomPanel.add(target.getTarget());
         for(Indicator indicator : indicators){

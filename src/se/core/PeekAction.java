@@ -17,24 +17,26 @@ import javax.swing.JButton;
  * @author nikki
  */
 public class PeekAction extends AbstractAction {
+    //fields
     private static final int PEEK = 10, PEEKDURATION = 2000;
     private ImageIcon icon;
-    private int id;
+    private JButton btn;
     
+    //constructor
     public PeekAction(String shortDescription) {
         super();
         putValue(SHORT_DESCRIPTION, shortDescription);
         
     }
     
+    //Action events
     @Override
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        icon = IconFinder.setIconFinder("office2.jpg");
-        JButton o = (JButton)e.getSource();
-        String name = o.getName();
-        System.out.println(name);
+        icon = IconFinder.setIconFinder("images/office2.jpg");
+        btn = (JButton) e.getSource();
+        String name = btn.getName();
         Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
         peekTimer(e);
         System.out.println("Peeked at this: " + e);
@@ -45,9 +47,9 @@ public class PeekAction extends AbstractAction {
         timer.schedule(new TimerTask() {
         @Override
         public void run() {
-            icon = IconFinder.setIconFinder("office.jpg");
-            JButton o = (JButton)e.getSource();
-            String name = o.getName();
+            icon = IconFinder.setIconFinder("images/office.jpg");
+            btn = (JButton) e.getSource();
+            String name = btn.getName();
             System.out.println(name);
             Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
         }

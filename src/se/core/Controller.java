@@ -1,8 +1,7 @@
-package se.controls;
+package se.core;
 
 import java.util.TimerTask;
 import java.util.Timer;
-import se.gui.GameGUI;
 
 
 /*
