@@ -24,7 +24,6 @@ public class SearchAction extends AbstractAction{
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(SEARCH);
         Game.setCountSearch();
-        
         System.out.println("Searched at this: " + e);
     }
 }

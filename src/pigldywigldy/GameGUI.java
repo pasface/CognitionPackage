@@ -1,6 +1,6 @@
-package se.core;
+package pigldywigldy;
 
-import se.core.Controller;
+import pigldywigldy.Controller;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

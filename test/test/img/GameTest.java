@@ -8,6 +8,7 @@ package test.img;
 import java.awt.GridLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import se.core.Game;
 /**
  *
@@ -15,6 +16,7 @@ import se.core.Game;
  */
 public class GameTest {
     private static final JFrame frame = new JFrame("Cognition Package");
+    private static final JMenuBar menu = new JMenuBar();
 
     private static String S;
     

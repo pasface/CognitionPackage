@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/test/test/img/GameTest.java</file>
+            <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/SearchAction.java</file>
             <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/IconFinder.java</file>
-            <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/controls/Controller.java</file>
             <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/Target.java</file>
             <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/Game.java</file>
             <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/PeekAction.java</file>
-            <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/Room.java</file>
             <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/Indicator.java</file>
+            <file>file:/C:/Users/nikki/Documents/NetBeansProjects/CognitionPackage/src/se/core/Room.java</file>
         </group>
     </open-files>
 </project-private>

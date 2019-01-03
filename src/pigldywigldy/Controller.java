@@ -1,4 +1,4 @@
-package se.core;
+package pigldywigldy;
 
 import java.util.TimerTask;
 import java.util.Timer;

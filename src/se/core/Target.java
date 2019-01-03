@@ -1,6 +1,5 @@
 package se.core;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /*
@@ -28,8 +27,7 @@ public class Target extends JLabel{
         this.target = new JLabel();
         this.target.setName(iconPath);
         this.target.setLocation(x, y);
-        ImageIcon icon = new javax.swing.ImageIcon(Target.class.getResource(iconPath));
-        this.target.setIcon(icon);
+        this.target.setIcon(IconFinder.setIconFinder(iconPath));
     }
 
     public JLabel getTarget() {
