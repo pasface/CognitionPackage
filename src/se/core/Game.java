@@ -2,6 +2,8 @@ package se.core;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -18,7 +20,7 @@ import javax.swing.JLabel;
 public class Game {
     // fields
     private int id;
-    private final ArrayList<Room> roomArray;
+    private static ArrayList<Room> roomArray;
     private static final SecureRandom RAND = new SecureRandom();
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel displayTotal = new JLabel();
@@ -30,10 +32,8 @@ public class Game {
         // set Game id
         this.id = id;
         // generate rooms (total number of rooms, swing frame)
-        this.roomArray = roomArrayGenerator(numberOfRooms, f);
+        roomArray = roomArrayGenerator(numberOfRooms, f);
 
-        System.out.println(roomArray.toString());
-        
         setDisplayTotal();
         setDisplaySearchCount();
         setDisplayPeekCount();
@@ -55,14 +55,21 @@ public class Game {
     }
     
     // getters
-    public ArrayList<Room> getRoomArray() {
+    public static ArrayList<Room> getRoomArray() {
         return roomArray;
     }
 
     public int getId() {
         return id;
     }
-
+    
+    public static Room getRoom(int num){
+        return roomArray.get(num);
+    }
+    
+    public static int getRoomId(int num){
+        return roomArray.get(num).getId();
+    }
     // setters
     public void setId(int id) {
         this.id = id;
@@ -169,7 +176,11 @@ public class Game {
             return modList;
         }
     }
-
+    
+    public void findATurtle(){
+        roomArray.indexOf(id);
+    }
+    
     @Override
     public String toString() {
         return "Game{ \n" + "id=" + id + ",\n " + roomArray.toString() +'}';

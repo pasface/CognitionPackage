@@ -9,38 +9,47 @@ import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
-import static se.core.Room.setIcon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
  * @author nikki
  */
 public class PeekAction extends AbstractAction {
-    private static final int PEEK = 10, PEEKDURATION = 4000;
-    private static final IconFinder i = new IconFinder();
+    private static final int PEEK = 10, PEEKDURATION = 2000;
+    private ImageIcon icon;
+    private int id;
     
     public PeekAction(String shortDescription) {
         super();
         putValue(SHORT_DESCRIPTION, shortDescription);
+        
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        //change path
-        //i.setIcon();
-        peekTimer();
-        
+        icon = IconFinder.setIconFinder("office2.jpg");
+        JButton o = (JButton)e.getSource();
+        String name = o.getName();
+        System.out.println(name);
+        Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
+        peekTimer(e);
         System.out.println("Peeked at this: " + e);
     }
     
-    public void peekTimer(){
+    public void peekTimer(ActionEvent e){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
         @Override
         public void run() {
-            //change path
+            icon = IconFinder.setIconFinder("office.jpg");
+            JButton o = (JButton)e.getSource();
+            String name = o.getName();
+            System.out.println(name);
+            Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
         }
         }, PEEKDURATION);
     }

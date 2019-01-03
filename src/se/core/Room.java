@@ -1,6 +1,5 @@
 package se.core;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -23,13 +22,17 @@ import javax.swing.JPanel;
 
 public class Room {
     // fields
-    private final JLabel roomFace= new JLabel();
+    private JLabel roomFace;
     private final JPanel roomPanel = new JPanel();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
     private ArrayList<Indicator> indicators;
     private Target target;
     private int id;
+
+    public Room() {
+        this.roomFace = new JLabel();
+    }
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
@@ -38,17 +41,17 @@ public class Room {
         this.target = target;
         this.id = id;
         //room settings
-        this.roomFace.setName("Room " + id);
-        this.roomFace.setIcon(setIcon("office.jpg"));
-        this.roomFace.setBackground(Color.red);
+        this.roomFace = new JLabel();
+        this.roomFace.setName("" + id);
+        this.roomFace.setIcon(IconFinder.setIconFinder("office.jpg"));
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
         this.roomPanel.add(target.getTarget());
         for(Indicator indicator : indicators){
             this.roomPanel.add(indicator.getIndicator());
-        }       
+        }
         this.roomPanel.add(roomFace);
         //peek settings
-        this.peekButton.setName("peek" + id);
+        this.peekButton.setName(""+id);
         Action a = new PeekAction(peekButton.getName());
         this.peekButton.setAction(a);
         this.peekButton.setText("Peek");
@@ -63,16 +66,6 @@ public class Room {
         f.add(roomPanel);
     }
     
-    public static final ImageIcon setIcon(String iconPath){
-        try {
-            ImageIcon icon = new javax.swing.ImageIcon(Room.class.getResource(iconPath));
-            return icon;
-        } catch (NullPointerException e) {
-            System.out.print(e);
-        }
-        return null;
-    }
-    
     // getters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
@@ -84,6 +77,10 @@ public class Room {
     
     public int getId(){
         return id;
+    }
+
+    public JLabel getRoomFace() {
+        return roomFace;
     }
     
     // setters
@@ -98,13 +95,14 @@ public class Room {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void setRoomFace(String path){
-        this.roomFace.setIcon(setIcon(path));
+
+    public void setRoomFaceIcon(ImageIcon icon) {
+        this.roomFace.setIcon(icon);
     }
+
     //toString
     @Override
     public String toString() {
-        return "Room{" + "id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
+        return "Room{" + "Rm id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
     }
 }
