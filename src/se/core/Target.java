@@ -14,29 +14,21 @@ import javax.swing.JLabel;
  */
 
 public class Target extends JLabel{
-    // fields
-    private final JLabel target;
 
     public Target() {
-        this.target = new JLabel();
-        this.target.setName("");
+        setName("");
     }
 
     public Target(int x, int y) { 
         String icon = "target";
-        this.target = new JLabel();
-        this.target.setName(icon);
-        this.target.setLocation(x, y);
-        this.target.setIcon(IconFinder.setIconFinder(icon));
-    }
-
-    public JLabel getTarget() {
-        return target;
+        setName(icon);
+        setLocation(x, y);
+        setIcon(IconFinder.setIconFinder(icon));
     }
 
     @Override
     public String toString() {
-        return '{' + getTarget().getName() + '}';
+        return '{' + getName() + '}';
     }
     
 }

@@ -14,29 +14,21 @@ import javax.swing.JLabel;
  */
 
 public class Indicator extends JLabel {
-    // fields
-    private final JLabel INDICATOR;
     
     public Indicator() {
-        this.INDICATOR = new JLabel();
-        this.INDICATOR.setName("Blank");
+        setName("");
     }
 
     public Indicator(int x, int y, String image) {
-        this.INDICATOR = new JLabel();
-        this.INDICATOR.setName(image);
-        this.INDICATOR.setSize(100,100);
-        this.INDICATOR.setLocation(x, y);
-        this.INDICATOR.setIcon(IconFinder.setIconFinder(image));
-    }
-
-    public JLabel getIndicator() {
-        return INDICATOR;
+        setName(image);
+        setSize(100,100);
+        setLocation(x, y);
+        setIcon(IconFinder.setIconFinder(image));
     }
 
     @Override
     public String toString() {
-        return '{' + getIndicator().getName() + '}';
+        return '{' + getName() + '}';
     }
     
 }

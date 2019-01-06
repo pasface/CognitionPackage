@@ -12,23 +12,14 @@ import javax.swing.ImageIcon;
  * @author nikki
  */
 public class IconFinder extends ImageIcon {
-    private static ImageIcon iconFinder;
     
-    public IconFinder(ImageIcon icon) {
-        IconFinder.iconFinder = icon;
-    }
-
     public static final ImageIcon setIconFinder(String image){
         try {
-            iconFinder = icon(image);
-            return iconFinder;
+            return icon(image);
         } catch (NullPointerException e) {
             System.out.print(e);
         }
         return null;
-    }
-    public static ImageIcon getIconFinder() {
-        return iconFinder;
     }
     
     public static ImageIcon icon(String image){
@@ -58,4 +49,5 @@ public class IconFinder extends ImageIcon {
         }
         return new javax.swing.ImageIcon(IconFinder.class.getResource(S));
     }
+    
 }

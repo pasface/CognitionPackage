@@ -5,30 +5,29 @@
  */
 package se.core;
 
-import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import se.core.IconFinder;
 
 /**
  *
  * @author Pas
  */
-class IntroScreen {
-    private static final JPanel introPanel = new JPanel();
+class IntroScreen extends JPanel {
     private static final JLabel welcomeLabel = new JLabel();
 
     public IntroScreen(JFrame frame) {
-        introPanel.setName("Welcome!");
-        introPanel.setBorder(BorderFactory.createTitledBorder(introPanel.getName()));
-        introPanel.setBackground(Color.DARK_GRAY);
+        setName("Welcome!");
+        setBorder(BorderFactory.createTitledBorder(getName()));
         welcomeLabel.setText("Welcome! This application will help to determine ...  When you're ready to start just click on File -> New");
-        welcomeLabel.setIcon(IconFinder.setIconFinder("images/office3.jpg"));
-        introPanel.add(welcomeLabel);
-        frame.add(introPanel);
-        
+        add(welcomeLabel);
+        frame.add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "IntroScreen{" + '}';
     }
     
     

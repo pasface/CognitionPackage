@@ -96,8 +96,8 @@ public class MyFrame extends javax.swing.JFrame {
 
     private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
         GameLaunch g = new GameLaunch();
-        g.setB(false);
-        g.isB();
+        g.setB(true);
+        g.launch();
     }//GEN-LAST:event_jMenuNewActionPerformed
 
     /**

@@ -45,9 +45,9 @@ public class Room {
         this.roomFace.setName("" + id);
         this.roomFace.setIcon(IconFinder.setIconFinder("default"));
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
-        this.roomPanel.add(target.getTarget());
+        this.roomPanel.add(target);
         for(Indicator indicator : indicators){
-            this.roomPanel.add(indicator.getIndicator());
+            this.roomPanel.add(indicator);
         }
         this.roomPanel.add(roomFace);
         //peek settings
