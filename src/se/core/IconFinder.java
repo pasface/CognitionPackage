@@ -13,24 +13,49 @@ import javax.swing.ImageIcon;
  */
 public class IconFinder extends ImageIcon {
     private static ImageIcon iconFinder;
-
+    
     public IconFinder(ImageIcon icon) {
         IconFinder.iconFinder = icon;
     }
-    
-    public static final ImageIcon setIconFinder(String iconPath){
+
+    public static final ImageIcon setIconFinder(String image){
         try {
-            iconFinder = new javax.swing.ImageIcon(Room.class.getResource(iconPath));
+            iconFinder = icon(image);
             return iconFinder;
         } catch (NullPointerException e) {
             System.out.print(e);
         }
         return null;
     }
-
     public static ImageIcon getIconFinder() {
         return iconFinder;
     }
     
-    
+    public static ImageIcon icon(String image){
+        String S;
+        switch (image){
+            case "default": S = "images/office.jpg";
+            break;
+            case "peek": S = "images/office2.jpg";
+            break;
+            case "search": S = "images/office3.jpg";
+            break;
+            case "indi1": S = "images/bird.png";
+            break;
+            case "indi2": S = "images/bowl.png";
+            break;
+            case "indi3": S = "images/mug.png";
+            break;
+            case "indi4": S = "images/pen.png";
+            break;
+            case "indi5": S = "images/tissue.png";
+            break;
+            case "target": S = "images/targetS.png";
+            break;
+            case "targetLarge": S = "images/target.png";
+            break;
+            default : S = "images/office.jpg";
+        }
+        return new javax.swing.ImageIcon(IconFinder.class.getResource(S));
+    }
 }

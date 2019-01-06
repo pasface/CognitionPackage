@@ -22,12 +22,12 @@ public class Target extends JLabel{
         this.target.setName("");
     }
 
-    public Target(int x, int y) {
-        String iconPath = "images/targetS.png";
+    public Target(int x, int y) { 
+        String icon = "target";
         this.target = new JLabel();
-        this.target.setName(iconPath);
+        this.target.setName(icon);
         this.target.setLocation(x, y);
-        this.target.setIcon(IconFinder.setIconFinder(iconPath));
+        this.target.setIcon(IconFinder.setIconFinder(icon));
     }
 
     public JLabel getTarget() {

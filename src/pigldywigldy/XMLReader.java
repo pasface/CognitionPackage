@@ -16,10 +16,10 @@ import java.io.Reader;
  *
  * @author nikki
  */
-public class IndicatorReader {
+public class XMLReader {
     private String xml2String;
     
-    public IndicatorReader(String file) throws Exception{
+    public XMLReader (String file) throws Exception {
         File xmlFile = new File(file);
         Reader fileReader = new FileReader(xmlFile);
         BufferedReader bufReader = new BufferedReader(fileReader);

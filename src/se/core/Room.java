@@ -43,7 +43,7 @@ public class Room {
         //room settings
         this.roomFace = new JLabel();
         this.roomFace.setName("" + id);
-        this.roomFace.setIcon(IconFinder.setIconFinder("images/office.jpg"));
+        this.roomFace.setIcon(IconFinder.setIconFinder("default"));
         this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
         this.roomPanel.add(target.getTarget());
         for(Indicator indicator : indicators){
@@ -57,7 +57,7 @@ public class Room {
         this.peekButton.setText("Peek");
         roomPanel.add(peekButton);
         //search settings
-        this.searchButton.setName("Search" + id);
+        this.searchButton.setName("" + id);
         Action b = new SearchAction(searchButton.getName());
         this.searchButton.setAction(b);
         this.searchButton.setText("Search");

@@ -34,12 +34,12 @@ public class PeekAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        icon = IconFinder.setIconFinder("images/office2.jpg");
+        icon = IconFinder.setIconFinder("peek");
         btn = (JButton) e.getSource();
         String name = btn.getName();
         Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
         peekTimer(e);
-        System.out.println("Peeked at this: " + e);
+        //System.out.println("Peeked at this: " + e);
     }
     
     public void peekTimer(ActionEvent e){
@@ -47,10 +47,10 @@ public class PeekAction extends AbstractAction {
         timer.schedule(new TimerTask() {
         @Override
         public void run() {
-            icon = IconFinder.setIconFinder("images/office.jpg");
+            icon = IconFinder.setIconFinder("default");
             btn = (JButton) e.getSource();
             String name = btn.getName();
-            System.out.println(name);
+            //System.out.println(name);
             Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
         }
         }, PEEKDURATION);

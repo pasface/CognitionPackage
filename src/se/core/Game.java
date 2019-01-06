@@ -117,7 +117,6 @@ public class Game {
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30,30);
                 r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), f));
-                //System.out.println("Placed target in room: " + (currentRoom+1));
                 currentRoom++;
                 b = true;
             } else {
@@ -134,11 +133,11 @@ public class Game {
     public ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(1, 1, "images/mug.png");
-        Indicator i1 = new Indicator(2, 2, "images/pen.png");
-        Indicator i2 = new Indicator(3, 3, "images/bird.png");
-        Indicator i3 = new Indicator(4, 4, "images/tissue.png");
-        Indicator i4 = new Indicator(5, 5, "images/bowl.png");
+        Indicator i0 = new Indicator(1, 1, "indi1");
+        Indicator i1 = new Indicator(2, 2, "indi2");
+        Indicator i2 = new Indicator(3, 3, "indi3");
+        Indicator i3 = new Indicator(4, 4, "indi4");
+        Indicator i4 = new Indicator(5, 5, "indi5");
         
         // add indicator objects to indicators list
         indicators.add(i0);
