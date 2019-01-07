@@ -65,7 +65,7 @@ public class Room {
         this.searchButton.setText("Search");
         roomPanel.add(searchButton);
         roomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK));
-        roomPanel.setSize(new Dimension(600,250));
+        //roomPanel.setSize(new Dimension(700,500));
         //add room to frame
         panel.add(roomPanel);
         

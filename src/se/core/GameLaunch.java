@@ -12,7 +12,7 @@ TO DO:  Add panels to a panel rather than frame and use removeall to get rid of 
  */
 package se.core;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,23 +32,28 @@ public class GameLaunch {
     public static void main(String[] args) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout());
-        //frame.setLayout(new BorderLayout());
         introPanel = new IntroScreen(panel);
         frame.add(panel);
         frame.add(panelb);
         frame.setVisible(true);
+        frame.setBackground(Color.yellow);
         
     }
 
     public static void launch(){
-        
+        panelb.setVisible(false);
+        frame.remove(panelb);
         if (isB()==true){
             //remove intro screen
             panel.setVisible(false);
             frame.remove(panel);
-            panelb.setVisible(false);
+            
             panelb = new JPanel();
-            panelb.setLayout(new GridLayout(2,3));
+            panelb.setBackground(Color.darkGray);
+            GridLayout roomLayout = new GridLayout(3,2);
+            roomLayout.setHgap(10);
+            roomLayout.setVgap(10);
+            panelb.setLayout(roomLayout);
             panelb.setVisible(true);
             GameId.setGameId("src/files/file.xml");
             g = new Game(6,GameId.getGameId(), panelb);

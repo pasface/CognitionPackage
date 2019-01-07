@@ -1,5 +1,7 @@
 package se.core;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -32,13 +34,15 @@ public class Game {
         this.id = id;
         // generate rooms (total number of rooms, swing frame)
         roomArray = roomArrayGenerator(numberOfRooms, panel);
-
+        JPanel feedback = new JPanel();
         setDisplayTotal();
         setDisplaySearchCount();
         setDisplayPeekCount();
-        panel.add(displayTotal);
-        panel.add(displayPeekCount);
-        panel.add(displaySearchCount);
+        feedback.add(displayTotal);
+        feedback.add(displayPeekCount);
+        feedback.add(displaySearchCount);
+        feedback.setLayout(new GridLayout());
+        panel.add(feedback);
         //append xml file with new game info
     }
     
