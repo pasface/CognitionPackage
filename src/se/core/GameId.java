@@ -10,5 +10,9 @@ package se.core;
  * @author nikki
  */
 public class GameId {
-    
+    public static void main(String[] args) {
+        String file = "src/se/core/inf.xml";
+        XMLReader x = new XMLReader(file);
+        System.out.println(x);
+    }
 }

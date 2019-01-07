@@ -29,7 +29,9 @@ public class XMLReader {
         try {
             fileReader = new FileReader(xmlFile);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            //if file doesn't exist create it
+            XMLWriter y = new XMLWriter(file);
+            System.out.println("FileNotFoundException" + ex);
         }
         StringBuilder sb = null;
         try (BufferedReader bufReader = new BufferedReader(fileReader)) {
@@ -40,7 +42,7 @@ public class XMLReader {
                 line=bufReader.readLine();
             }
         } catch (IOException ex) {
-            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("IOException.");
         }
         xml2String = sb.toString();
     }

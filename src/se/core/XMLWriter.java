@@ -5,14 +5,21 @@
  */
 package se.core;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author nikki
  */
 public class XMLWriter {
     public XMLWriter (String file) {
-        
-        
-        
-    }
+         try{    
+           FileWriter fw = new FileWriter(file);    
+           fw.write("Welcome to javaTpoint.");    
+           fw.close();    
+          } catch(IOException e){
+              System.out.println("IOException." + e);
+          }    
+     } 
 }
