@@ -1,6 +1,5 @@
 package se.core;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,35 +14,45 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author nikki
  */
 public class XMLReader {
+
     private String xml2String;
-    
-    public XMLReader (String file) {
+
+    public XMLReader(String file) {
         File xmlFile = new File(file);
+        //if file doesn't exist create it
+        if (!xmlFile.exists()) {
+            XMLWriter y = new XMLWriter(file);
+            System.out.println("Created new file.");
+        }
         Reader fileReader = null;
         try {
             fileReader = new FileReader(xmlFile);
         } catch (FileNotFoundException ex) {
-            //if file doesn't exist create it
-            XMLWriter y = new XMLWriter(file);
-            System.out.println("FileNotFoundException" + ex);
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         StringBuilder sb = null;
-        try (BufferedReader bufReader = new BufferedReader(fileReader)) {
-            sb = new StringBuilder();
-            String line = bufReader.readLine();
-            while(line !=null){
-                sb.append(line).append("\n");
-                line=bufReader.readLine();
-            }
+        BufferedReader bufReader = new BufferedReader(fileReader);
+        sb = new StringBuilder();
+        String line = null;
+        try {
+            line = bufReader.readLine();
         } catch (IOException ex) {
-            System.out.print("IOException.");
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
+        while (line != null) {
+            sb.append(line).append("\n");
+            try {
+                line = bufReader.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
         xml2String = sb.toString();
     }
 

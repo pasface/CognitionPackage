@@ -14,12 +14,13 @@ import java.io.IOException;
  */
 public class XMLWriter {
     public XMLWriter (String file) {
+        String s = "Game string goes here.";
          try{    
-           FileWriter fw = new FileWriter(file);    
-           fw.write("Welcome to javaTpoint.");    
-           fw.close();    
+             try (FileWriter fw = new FileWriter(file)) {
+                 fw.write(s);
+             }    
           } catch(IOException e){
-              System.out.println("IOException." + e);
+              System.out.println("IOException." );
           }    
      } 
 }

@@ -11,8 +11,8 @@ package se.core;
  */
 public class GameId {
     public static void main(String[] args) {
-        String file = "src/se/core/inf.xml";
+        String file = "src/se/core/indi.xml";
         XMLReader x = new XMLReader(file);
-        System.out.println(x);
+        System.out.println("Printing out value of file: "+x);
     }
 }
