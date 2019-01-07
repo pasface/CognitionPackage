@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indicators>
+    <indicator id="1">
+        <num>101</num>
+        <name>I:Red</name>
+    </indicator>
+    <indicator id="2">
+        <num>102</num>
+        <name>I:Blue</name>
+    </indicator>
+    <indicator id="3">
+        <num>103</num>
+        <name>I:Purple</name>
+    </indicator>
+    <indicator id="4">
+        <num>104</num>
+        <name>I:Green</name>
+    </indicator>
+    <indicator id="5">
+        <num>105</num>
+        <name>I:Orange</name>
+    </indicator>
+</indicators>
