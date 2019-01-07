@@ -38,6 +38,7 @@ public class Game {
         f.add(displayTotal);
         f.add(displayPeekCount);
         f.add(displaySearchCount);
+        //append xml file with new game info
     }
     
     public static void setDisplayTotal(){

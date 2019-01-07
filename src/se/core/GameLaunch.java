@@ -38,7 +38,6 @@ public class GameLaunch {
         if (isB()==true){
             //introPanel.setVisible(false);
             frame.remove(introPanel);
-            System.out.println("REMOVE: " + introPanel.toString());
             GameId.setGameId("src/files/file.xml");
             g = new Game(6,GameId.getGameId(), frame);
             System.out.println(g.toString());

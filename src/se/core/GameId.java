@@ -22,7 +22,7 @@ public class GameId {
         XMLReader x = new XMLReader(file);
         Scanner scanner = new Scanner(x.toString());
         scanner.useDelimiter("<game id=\"|\\\">");
-        gameId = Integer.parseInt(scanner.next());
+        gameId = (Integer.parseInt(scanner.next())) + 1;
     }
     
 }
