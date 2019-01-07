@@ -8,6 +8,7 @@ TO DO:  Fix graphics.
         Change layout of rooms.
         Rework organization.
         Continue xml stuff.
+        Document everything.
         
  */
 package se.core;
