@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,18 +27,18 @@ public class Game {
     private static final JLabel displayPeekCount = new JLabel();
     
     // constructor
-    public Game(int numberOfRooms, int id, JFrame f) {
+    public Game(int numberOfRooms, int id, JPanel panel) {
         // set Game id
         this.id = id;
         // generate rooms (total number of rooms, swing frame)
-        roomArray = roomArrayGenerator(numberOfRooms, f);
+        roomArray = roomArrayGenerator(numberOfRooms, panel);
 
         setDisplayTotal();
         setDisplaySearchCount();
         setDisplayPeekCount();
-        f.add(displayTotal);
-        f.add(displayPeekCount);
-        f.add(displaySearchCount);
+        panel.add(displayTotal);
+        panel.add(displayPeekCount);
+        panel.add(displaySearchCount);
         //append xml file with new game info
     }
     
@@ -103,7 +104,7 @@ public class Game {
     
     // methods
     // method to create and populate a room array
-    private ArrayList<Room> roomArrayGenerator(int totalRooms, JFrame f){
+    private ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel){
         ArrayList<Room> r = new ArrayList();
         // create variable for roomArray number
         int currentRoom = 0;
@@ -117,13 +118,13 @@ public class Game {
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30,30);
-                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), f));
+                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), panel));
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
-                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), f));
+                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
                 currentRoom++;
             }
         }

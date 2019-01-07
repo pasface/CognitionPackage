@@ -12,8 +12,10 @@ TO DO:  Add panels to a panel rather than frame and use removeall to get rid of 
  */
 package se.core;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import pigldywigldy.MyFrame;
 /**
  *
@@ -21,14 +23,19 @@ import pigldywigldy.MyFrame;
  */
 public class GameLaunch {
     private static final JFrame frame = new MyFrame();
+    private static final JPanel panel = new JPanel();
+    private static JPanel panelb = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
     private static Game g;
 
     public static void main(String[] args) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(2,6));
-        introPanel = new IntroScreen(frame);
+        frame.setLayout(new GridLayout());
+        //frame.setLayout(new BorderLayout());
+        introPanel = new IntroScreen(panel);
+        frame.add(panel);
+        frame.add(panelb);
         frame.setVisible(true);
         
     }
@@ -36,11 +43,17 @@ public class GameLaunch {
     public static void launch(){
         
         if (isB()==true){
-            //introPanel.setVisible(false);
-            frame.remove(introPanel);
+            //remove intro screen
+            panel.setVisible(false);
+            frame.remove(panel);
+            panelb.setVisible(false);
+            panelb = new JPanel();
+            panelb.setLayout(new GridLayout(2,3));
+            panelb.setVisible(true);
             GameId.setGameId("src/files/file.xml");
-            g = new Game(6,GameId.getGameId(), frame);
+            g = new Game(6,GameId.getGameId(), panelb);
             System.out.println(g.toString());
+            frame.add(panelb);
             frame.validate();
             setB(false);
         } else {

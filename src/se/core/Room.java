@@ -1,5 +1,7 @@
 package se.core;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -35,7 +37,7 @@ public class Room {
     }
 
     // constructor
-    public Room(ArrayList<Indicator> indicators, Target target, int id, JFrame f) {
+    public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         //initialize fields
         this.indicators = indicators;
         this.target = target;
@@ -62,8 +64,11 @@ public class Room {
         this.searchButton.setAction(b);
         this.searchButton.setText("Search");
         roomPanel.add(searchButton);
+        roomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        roomPanel.setSize(new Dimension(600,250));
         //add room to frame
-        f.add(roomPanel);
+        panel.add(roomPanel);
+        
     }
     
     // getters
