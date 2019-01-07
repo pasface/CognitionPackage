@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pigldywigldy;
+package se.core;
 
 import se.core.GameLaunch;
 /**
@@ -45,7 +45,6 @@ public class MyFrame extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 1940, 1100));
         setMinimumSize(new java.awt.Dimension(1940, 1100));
         setName("Cognition Package"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1940, 1100));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenuFile.setText("File");
