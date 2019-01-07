@@ -36,21 +36,27 @@ public class XMLReader {
             Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         StringBuilder sb = null;
-        BufferedReader bufReader = new BufferedReader(fileReader);
+        BufferedReader reader = new BufferedReader(fileReader);
         sb = new StringBuilder();
         String line = null;
+
         try {
-            line = bufReader.readLine();
+            reader.readLine();
         } catch (IOException ex) {
             Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        while (line != null) {
-            sb.append(line).append("\n");
-            try {
-                line = bufReader.readLine();
-            } catch (IOException ex) {
-                Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+                try {
+                    line = reader.readLine();
+                } catch (IOException ex) {
+                    System.out.println("choked on line 52");
+                }
             }
+        } catch (IOException ex) {
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         xml2String = sb.toString();

@@ -5,14 +5,24 @@
  */
 package se.core;
 
+import java.util.Scanner;
+
 /**
  *
  * @author nikki
  */
 public class GameId {
-    public static void main(String[] args) {
-        String file = "src/se/core/indi.xml";
-        XMLReader x = new XMLReader(file);
-        System.out.println("Printing out value of file: "+x);
+    public static int gameId;
+
+    public static int getGameId() {
+        return gameId;
     }
+
+    public static void setGameId(String file) {
+        XMLReader x = new XMLReader(file);
+        Scanner scanner = new Scanner(x.toString());
+        scanner.useDelimiter("<game id=\"|\\\">");
+        gameId = Integer.parseInt(scanner.next());
+    }
+    
 }
