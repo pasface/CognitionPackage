@@ -65,6 +65,11 @@ public class MyFrame extends javax.swing.JFrame {
 
         jMenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuExit.setText("Exit");
+        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExitActionPerformed(evt);
+            }
+        });
         jMenuFile.add(jMenuExit);
 
         jMenuBar1.add(jMenuFile);
@@ -99,6 +104,10 @@ public class MyFrame extends javax.swing.JFrame {
         g.setB(true);
         g.launch();
     }//GEN-LAST:event_jMenuNewActionPerformed
+
+    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuExitActionPerformed
 
     /**
      * @param args the command line arguments

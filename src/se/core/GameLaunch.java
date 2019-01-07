@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
-
-
-TO DO: Add panels to a panel rather than frame and use removeall to get rid of old stuff.
-
-
+TO DO:  Add panels to a panel rather than frame and use removeall to get rid of old stuff.
+        Fix the layout: https://docs.oracle.com/javase/8/javafx/layout-tutorial/builtin_layouts.htm#JFXLY102
+        Fix graphics.
+        Rework organization.
+        Figure out how I wanna handle configs.
+        
  */
 package se.core;
 
@@ -40,14 +41,15 @@ public class GameLaunch {
             System.out.println("REMOVE: " + introPanel.toString());
             g = new Game(6,1, frame);
             System.out.println(g.toString());
-            frame.revalidate();
+            frame.validate();
+            setB(false);
         } else {
             //introPanel.setVisible(true);
-            frame.revalidate();
+            frame.validate();
         }
     }
     
-    public void setB(boolean b) {
+    public static void setB(boolean b) {
         GameLaunch.b = b;
     }
 
