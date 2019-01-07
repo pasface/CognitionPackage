@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
-TO DO:  Add panels to a panel rather than frame and use removeall to get rid of old stuff.
-        Fix the layout: https://docs.oracle.com/javase/8/javafx/layout-tutorial/builtin_layouts.htm#JFXLY102
-        Fix graphics.
+TO DO:  Fix graphics.
+        Set order of visibility.
+        Change layout of rooms.
         Rework organization.
-        Figure out how I wanna handle configs.
+        Continue xml stuff.
         
  */
 package se.core;
