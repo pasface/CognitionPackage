@@ -33,8 +33,7 @@ public class Room {
     private Target target;
     private int roomId;
     //needs JLayeredPane
-    private JLayeredPane dinglehopper = new JLayeredPane();
-    private final JPanel roomPanel = new JPanel();
+    private JLayeredPane roomPane = new JLayeredPane();
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -46,31 +45,31 @@ public class Room {
         this.roomId = id;
         
         //room settings
-        roomPanel.add(target);
+        roomPane.add(target);
         for(Indicator indicator : indicators){
-            roomPanel.add(indicator);
+            roomPane.add(indicator);
         }
-        roomPanel.add(roomFace);
+        roomPane.add(roomFace);
         
         //peek settings
-        peekButton.setName(""+id);
+        peekButton.setName("" + id);
         Action a = new PeekAction(peekButton.getName());
         peekButton.setAction(a);
         peekButton.setText("Peek");
-        roomPanel.add(peekButton);
+        roomPane.add(peekButton);
         //search settings
         searchButton.setName("" + id);
         Action b = new SearchAction(searchButton.getName());
         searchButton.setAction(b);
         searchButton.setText("Search");
-        roomPanel.add(searchButton);
-        roomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK));
-        roomPanel.setLayout(new GridBagLayout());
+        roomPane.add(searchButton);
+        roomPane.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        roomPane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         //roomPanel.setSize(new Dimension(700,500));
         //add room to frame
-        panel.add(roomPanel);
+        panel.add(roomPane);
     }
     
     // getters
