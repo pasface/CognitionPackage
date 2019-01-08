@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /*
@@ -23,46 +24,45 @@ import javax.swing.JPanel;
  */
 
 public class Room {
+
     // fields
-    private JLabel roomFace;
-    private final JPanel roomPanel = new JPanel();
+    private final EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
     private ArrayList<Indicator> indicators;
     private Target target;
-    private int id;
-
-    public Room() {
-        this.roomFace = new JLabel();
-    }
+    private int roomId;
+    //needs JLayeredPane
+    private JLayeredPane dinglehopper = new JLayeredPane();
+    private final JPanel roomPanel = new JPanel();
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
+        roomFace.setName("" + id);
+        
         //initialize fields
         this.indicators = indicators;
         this.target = target;
-        this.id = id;
+        this.roomId = id;
+        
         //room settings
-        this.roomFace = new JLabel();
-        this.roomFace.setName("" + id);
-        this.roomFace.setIcon(IconFinder.setIconFinder("default"));
-        this.roomFace.setBorder(BorderFactory.createTitledBorder(roomFace.getName()));
-        this.roomPanel.add(target);
+        roomPanel.add(target);
         for(Indicator indicator : indicators){
-            this.roomPanel.add(indicator);
+            roomPanel.add(indicator);
         }
-        this.roomPanel.add(roomFace);
+        roomPanel.add(roomFace);
+        
         //peek settings
-        this.peekButton.setName(""+id);
+        peekButton.setName(""+id);
         Action a = new PeekAction(peekButton.getName());
-        this.peekButton.setAction(a);
-        this.peekButton.setText("Peek");
+        peekButton.setAction(a);
+        peekButton.setText("Peek");
         roomPanel.add(peekButton);
         //search settings
-        this.searchButton.setName("" + id);
+        searchButton.setName("" + id);
         Action b = new SearchAction(searchButton.getName());
-        this.searchButton.setAction(b);
-        this.searchButton.setText("Search");
+        searchButton.setAction(b);
+        searchButton.setText("Search");
         roomPanel.add(searchButton);
         roomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK));
         roomPanel.setLayout(new GridBagLayout());
@@ -71,7 +71,6 @@ public class Room {
         //roomPanel.setSize(new Dimension(700,500));
         //add room to frame
         panel.add(roomPanel);
-        
     }
     
     // getters
@@ -83,8 +82,8 @@ public class Room {
         return target;
     }
     
-    public int getId(){
-        return id;
+    public int getRoomId(){
+        return roomId;
     }
 
     public JLabel getRoomFace() {
@@ -100,17 +99,17 @@ public class Room {
         this.target = target;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoomId(int id) {
+        roomId = id;
     }
 
     public void setRoomFaceIcon(ImageIcon icon) {
-        this.roomFace.setIcon(icon);
+        roomFace.setIcon(icon);
     }
 
     //toString
     @Override
     public String toString() {
-        return "Room{" + "Rm id=" + id + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
+        return "Room{" + "Rm id=" + roomId + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
     }
 }

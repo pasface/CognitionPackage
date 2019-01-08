@@ -70,7 +70,7 @@ public class Game {
     }
     
     public static int getRoomId(int num){
-        return roomArray.get(num).getId();
+        return roomArray.get(num).getRoomId();
     }
     // setters
     public void setId(int id) {
