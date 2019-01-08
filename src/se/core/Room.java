@@ -1,9 +1,9 @@
 package se.core;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -30,8 +30,8 @@ public class Room {
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
-    private ArrayList<Indicator> indicators;  //extends JLabel
-    private Target target;  //extends JLabel
+    private ArrayList<Indicator> indicators;
+    private Target target;
     private int roomId;
     private final JLayeredPane roomPane = new JLayeredPane();
 
@@ -57,19 +57,32 @@ public class Room {
         searchButton.setText("Search");
         
         roomPane.setBorder(BorderFactory.createLineBorder(Color.PINK));
-        //roomPane.setLayout(new GridBagLayout());
+        roomPane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        roomPane.setSize(new Dimension(700,500));
-        
+                                //roomPanel.setSize(new Dimension(700,500));
         //add room to components to layered pane
-        roomPane.add(target);  // <-----------------
+        
+        //This is the origin of the first label added.
+        Point origin = new Point(10, 20);
+        
+        //This is the offset for computing the origin for the next label.
+        int offset = 5;
+        
+        //BOUNDS
+        roomFace.setBounds(origin.x, origin.y, 140,140);  // <---------- roomface
+        target.setBounds(origin.x, origin.y, 140,140);  // <---------- target
+        roomPane.setComponentZOrder(roomFace, 1);
+
+        roomPane.add(target);
         for(Indicator indicator : indicators){
-            roomPane.add(indicator);  // <----------
+            roomPane.add(indicator);
+            indicator.setBounds(origin.x, origin.y, 140,140);  // <---------- indicator
         }
-        roomPane.add(roomFace);  // <---------------
-        roomPane.add(peekButton);  // <-------------
-        roomPane.add(searchButton);  // <-----------
+        
+        roomPane.add(roomFace);
+        roomPane.add(peekButton);  // <---------- peekbutton
+        roomPane.add(searchButton);  // <----------searchbutton
         panel.add(roomPane);
     }
     

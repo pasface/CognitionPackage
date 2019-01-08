@@ -134,7 +134,7 @@ public class Game {
     }
 
     // ArrayList that stores all possible Indicators
-    private ArrayList<Indicator> indicatorList() {
+    public ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
         Indicator i0 = new Indicator(1, 1, "indi1");
@@ -154,7 +154,7 @@ public class Game {
     }
 
     // ArrayList that stores indicators for each room
-    private ArrayList<Indicator> modifiedIndicatorList(int i) {
+    public ArrayList<Indicator> modifiedIndicatorList(int i) {
         ArrayList<Indicator> modList = new ArrayList();
         int randInt;
         if (i == 0) {
