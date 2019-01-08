@@ -1,10 +1,8 @@
 package se.core;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

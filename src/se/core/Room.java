@@ -1,13 +1,13 @@
 package se.core;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -65,6 +65,9 @@ public class Room {
         this.searchButton.setText("Search");
         roomPanel.add(searchButton);
         roomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        roomPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
         //roomPanel.setSize(new Dimension(700,500));
         //add room to frame
         panel.add(roomPanel);
