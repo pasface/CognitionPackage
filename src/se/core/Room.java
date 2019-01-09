@@ -39,7 +39,7 @@ public class Room {
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         roomFace.setName("" + id);
-        //panel.setLayout(new BoxLayout(roomPane, BoxLayout.PAGE_AXIS));
+
         //initialize fields
         this.indicators = indicators;
         this.target = target;
@@ -58,41 +58,48 @@ public class Room {
         searchButton.setText("Search");
         
         //layered pane settingss
-        roomPane.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
 
-        //This is the origin of the componenet.
-        Point origin = new Point(5, 5);
+        //label placement vars
+        int originPoint = 5;
+        Point origin = new Point(originPoint, originPoint);
+        int offset = 40;
+        int roomFaceHeight = 278;
+        int roomFaceWidth = 622;
         
-        //This is the offset for computing the origin for the next label.
-        int offset = 90;
         int buttonOffset = 90;
         int buttonWidth = 80;
         int buttonHeight = 30;
+        Point buttonOrigin = new Point(roomFaceWidth-(buttonWidth*2)-originPoint, roomFaceHeight+10);
         
         //set bounds of components
-        peekButton.setBounds(origin.x, origin.y, buttonWidth,buttonHeight);
-        searchButton.setBounds((origin.x + buttonOffset), origin.y, buttonWidth,buttonHeight);
-        roomFace.setBounds(origin.x, (origin.y+40), 622, 288);
+        peekButton.setBounds(buttonOrigin.x, buttonOrigin.y, buttonWidth, buttonHeight);
+        searchButton.setBounds((buttonOrigin.x + buttonOffset), buttonOrigin.y, buttonWidth, buttonHeight);
+        roomFace.setBounds(origin.x, (origin.y), roomFaceWidth, roomFaceHeight);
         target.setBounds((origin.x + offset), (origin.y + offset), 140,140);
         
         // add to pane
-        roomPane.add(target);
-//        for(Indicator indicator : indicators){
-//            roomPane.add(indicator);
-//            indicator.setBounds(origin.x, origin.y, 140,140);
-//        }
         roomPane.add(roomFace);
         roomPane.add(peekButton);
         roomPane.add(searchButton);
-        
+        roomPane.add(target);
+
         //set level on pane
         roomPane.setComponentZOrder(peekButton, 0);
         roomPane.setComponentZOrder(searchButton, 1);
-        roomPane.setComponentZOrder(roomFace, 3);
-        roomPane.setComponentZOrder(target, 2);
+        roomPane.setComponentZOrder(roomFace, 2);
+        roomPane.setComponentZOrder(target, 3);
+        int paneLevel=4;
+        
+        for(Indicator indicator : indicators){
+            roomPane.add(indicator);
+            roomPane.setComponentZOrder(indicator, paneLevel);
+            indicator.setBounds(origin.x, origin.y, 140,140);
+            paneLevel++;
+        }        
         
         panel.add(roomPane);
     }
