@@ -42,7 +42,7 @@ public class MyFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cognition Package");
-        setBounds(new java.awt.Rectangle(0, 0, 1940, 1100));
+        setBounds(new java.awt.Rectangle(0, 0, 1920, 1080));
         setMinimumSize(new java.awt.Dimension(1940, 1100));
         setName("Cognition Package"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

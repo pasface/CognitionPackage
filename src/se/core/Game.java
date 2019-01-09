@@ -137,11 +137,11 @@ public class Game {
     public ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(1, 1, "indi1");
-        Indicator i1 = new Indicator(2, 2, "indi2");
-        Indicator i2 = new Indicator(3, 3, "indi3");
-        Indicator i3 = new Indicator(4, 4, "indi4");
-        Indicator i4 = new Indicator(5, 5, "indi5");
+        Indicator i0 = new Indicator(0, 0, "indi1");
+        Indicator i1 = new Indicator(0, 0, "indi2");
+        Indicator i2 = new Indicator(0, 0, "indi3");
+        Indicator i3 = new Indicator(0, 0, "indi4");
+        Indicator i4 = new Indicator(0, 0, "indi5");
         
         // add indicator objects to indicators list
         indicators.add(i0);

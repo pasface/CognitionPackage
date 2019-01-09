@@ -5,7 +5,6 @@
 
 TO DO:  Fix graphics.
         Set order of visibility.
-        Change layout of rooms.
         Rework organization.
         Continue xml stuff.
         Document everything.
@@ -13,7 +12,6 @@ TO DO:  Fix graphics.
  */
 package se.core;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,43 +20,40 @@ import javax.swing.JPanel;
  * @author nikki
  */
 public class GameLaunch {
+    
     private static final JFrame frame = new MyFrame();
-    private static final JPanel panel = new JPanel();
-    private static JPanel panelb = new JPanel();
+    private static JPanel gamePanel = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
-    private static Game g;
 
     public static void main(String[] args) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout());
-        introPanel = new IntroScreen(panel);
-        frame.add(panel);
-        frame.add(panelb);
+        introPanel = new IntroScreen(new JPanel());
+        frame.add(introPanel);
+        frame.add(gamePanel);
         frame.setVisible(true);
-        frame.setBackground(Color.yellow);
-        
     }
 
     public static void launch(){
-        panelb.setVisible(false);
-        frame.remove(panelb);
+        gamePanel.setVisible(false);
+        frame.remove(gamePanel);
         if (isB()==true){
             //remove intro screen
-            panel.setVisible(false);
-            frame.remove(panel);
+            introPanel.setVisible(false);
+            frame.remove(introPanel);
             
-            panelb = new JPanel();
-            panelb.setBackground(Color.darkGray);
-            GridLayout roomLayout = new GridLayout(3,2);
-            roomLayout.setHgap(10);
-            roomLayout.setVgap(10);
-            panelb.setLayout(roomLayout);
-            panelb.setVisible(true);
+            gamePanel = new JPanel();
+            //panelb.setBackground(Color.darkGray);
+            GridLayout roomLayout = new GridLayout(3, 2);
+            roomLayout.setHgap(7);
+            roomLayout.setVgap(7);
+            gamePanel.setLayout(roomLayout);
+            gamePanel.setVisible(true);
             GameId.setGameId("src/files/file.xml");
-            g = new Game(6,GameId.getGameId(), panelb);
+            Game g = new Game(6, GameId.getGameId(), gamePanel);
             System.out.println(g.toString());
-            frame.add(panelb);
+            frame.add(gamePanel);
             frame.validate();
             setB(false);
         } else {
