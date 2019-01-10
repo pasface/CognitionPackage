@@ -18,7 +18,6 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author nikki
@@ -99,9 +98,9 @@ public class Room {
             roomPane.add(indicator);
             roomPane.setComponentZOrder(indicator, paneLevel);
             paneLevel++;
-            int indiOffset = 20;
-            System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + getIndicatorId());
-            indicator.setBounds((origin.x + indiOffset), origin.y, xy, xy);
+            int indiOffset = xy * indicator.getInId();
+            System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
+            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
 
         //roomPane.setMinimumSize(new Dimension(1,1));
@@ -168,12 +167,6 @@ public class Room {
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30, 30);
                 indicatorList = modifiedIndicatorList(1);
-                int currentPosition = 0;
-                for (Object indi: indicatorList) {
-                    currentPosition++;
-                    setIndicatorId(currentPosition);
-                    
-                }
                 r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
                 currentRoom++;
                 b = true;
@@ -181,12 +174,6 @@ public class Room {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
                 indicatorList = modifiedIndicatorList(0);
-                int currentPosition = 0;
-                for (Object indi: indicatorList) {
-                    currentPosition++;
-                    setIndicatorId(currentPosition);
-                    
-                }
                 r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
                 currentRoom++;
             }
@@ -226,7 +213,11 @@ public class Room {
                 // randomly add indicator to empty roomArray
                 randInt = RAND.nextInt(indicatorList().size());
                 modList.add(indicatorList().get(randInt));
-
+                int currentPosition = 0;
+                for (Indicator indi : modList) {
+                    currentPosition++;
+                    indi.setInId(currentPosition); 
+                }
             }
             return modList;
         } else {
@@ -237,6 +228,11 @@ public class Room {
             // randomly add indicator from list of options
             randInt = RAND.nextInt(indicatorList().size());
             modList.add(indicatorList().get(randInt));
+            int currentPosition = 0;
+            for (Indicator indi : modList) {
+                currentPosition++;
+                indi.setInId(currentPosition);
+            }
             return modList;
         }
     }

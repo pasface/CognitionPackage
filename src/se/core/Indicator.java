@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  */
 
 public class Indicator extends JLabel {
-    private static int inid;
+    private int inid;
     
     public Indicator() {
         setName("");
@@ -28,11 +28,11 @@ public class Indicator extends JLabel {
         setIcon(IconFinder.setIconFinder(name));
     }
 
-    public static int getInId() {
+    public int getInId() {
         return inid;
     }
 
-    public static void setInId(int id) {
+    public void setInId(int id) {
         inid = id;
     }
 
