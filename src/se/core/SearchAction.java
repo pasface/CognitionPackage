@@ -14,18 +14,19 @@ import javax.swing.JButton;
  *
  * @author nikki
  */
-public class SearchAction extends AbstractAction{
+public class SearchAction extends AbstractAction {
+
     //
     private static final int SEARCH = 100;
     private ImageIcon icon;
     private JButton btn;
-    
+
     //
     public SearchAction(String shortDescription) {
         super();
         putValue(SHORT_DESCRIPTION, shortDescription);
     }
-    
+
     //
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -34,7 +35,13 @@ public class SearchAction extends AbstractAction{
         icon = IconFinder.setIconFinder("search");
         btn = (JButton) e.getSource();
         String name = btn.getName();
-        Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
+        Game.getRoom(Integer.parseInt(name) - 1).setRoomFaceIcon(icon);
         //System.out.println("Searched at this: " + e);
+        int i = Game.getRoom(Integer.parseInt(name) - 1).getTarget().getTargetId();
+        if (i == 1) {
+            Game.getRoom(Integer.parseInt(name) - 1).setRoomPaneLevel(1);
+            System.out.println(Game.getRoom(Integer.parseInt(name) - 1).getRoomPaneLevel());
+            //layeredPane.moveToFront(dukeLabel);
+        }
     }
 }

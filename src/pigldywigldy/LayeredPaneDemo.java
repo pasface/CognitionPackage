@@ -37,7 +37,7 @@ public class LayeredPaneDemo extends JPanel
     private static final int YFUDGE = 57;
 
     public LayeredPaneDemo()    {
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));                        //<<<<<<<<<<<<<<<<<<<
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         //Create and load the duke icon.
         final ImageIcon icon = createImageIcon("images/dukeWaveRed.gif");

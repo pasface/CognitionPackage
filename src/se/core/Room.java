@@ -33,7 +33,8 @@ public class Room {
     private static int indicatorId;
     private Target target;
     private int roomId;
-    private final JLayeredPane roomPane = new JLayeredPane();
+    private int roomPaneLevel;
+    private JLayeredPane roomPane = new JLayeredPane();
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -80,28 +81,24 @@ public class Room {
         roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
         target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
 
-        // add to pane
-        roomPane.add(peekButton);
-        roomPane.add(searchButton);
-        //roomPane.add(roomFace);
-        //roomPane.add(target);
-
         //set level on pane
         roomPane.setComponentZOrder(peekButton, 0);
         roomPane.setComponentZOrder(searchButton, 1);
-        //roomPane.setComponentZOrder(roomFace, 2);
-        //roomPane.setComponentZOrder(target, 3);
-        int paneLevel = 2;
-
+        roomPane.setComponentZOrder(roomFace, 2);
+        roomPane.setComponentZOrder(target, 3);
+        int indiPaneLevel = 4;
         for (Indicator indicator : indicators) {
             int xy = 140;
             roomPane.add(indicator);
-            roomPane.setComponentZOrder(indicator, paneLevel);
-            paneLevel++;
+            roomPane.setComponentZOrder(indicator, indiPaneLevel);
+            indiPaneLevel++;
             int indiOffset = xy * indicator.getInId();
-            System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
+            //System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
+
+            roomPane.moveToFront(target);
+            roomPane.moveToBack(roomFace);
 
         //roomPane.setMinimumSize(new Dimension(1,1));
         panel.add(roomPane);
@@ -128,6 +125,10 @@ public class Room {
         return indicatorId;
     }
 
+    public int getRoomPaneLevel() {
+        return roomPaneLevel;
+    }
+
     // setters
     public void setIndicator(ArrayList<Indicator> indicators) {
         this.indicators = indicators;
@@ -145,6 +146,12 @@ public class Room {
         roomFace.setIcon(icon);
     }
 
+    public void setRoomPaneLevel(int roomPaneLevel) {
+        this.roomPaneLevel = roomPaneLevel;
+    }
+
+
+    
     public static void setIndicatorId(int indicatorId) {
         Room.indicatorId = indicatorId;
     }

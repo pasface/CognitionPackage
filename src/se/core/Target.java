@@ -14,9 +14,12 @@ import javax.swing.JLabel;
  */
 
 public class Target extends JLabel{
-
+    
+    private int targetId;
+    
     public Target() {
         setName("");
+        this.targetId = 0;
     }
 
     public Target(int x, int y) { 
@@ -24,6 +27,15 @@ public class Target extends JLabel{
         setName(icon);
         setLocation(x, y);
         setIcon(IconFinder.setIconFinder(icon));
+        this.targetId = 1;
+    }
+
+    public int getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
     }
 
     @Override

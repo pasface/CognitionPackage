@@ -17,18 +17,19 @@ import javax.swing.JButton;
  * @author nikki
  */
 public class PeekAction extends AbstractAction {
+
     //fields
     private static final int PEEK = 10, PEEKDURATION = 2000;
     private ImageIcon icon;
     private JButton btn;
-    
+
     //constructor
     public PeekAction(String shortDescription) {
         super();
         putValue(SHORT_DESCRIPTION, shortDescription);
-        
+
     }
-    
+
     //Action events
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -37,22 +38,24 @@ public class PeekAction extends AbstractAction {
         icon = IconFinder.setIconFinder("peek");
         btn = (JButton) e.getSource();
         String name = btn.getName();
-        Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
+        Game.getRoom(Integer.parseInt(name) - 1).setRoomFaceIcon(icon);
+
         peekTimer(e);
-        //System.out.println("Peeked at this: " + e);
+
     }
-    
-    public void peekTimer(ActionEvent e){
+
+    public void peekTimer(ActionEvent e) {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-        @Override
-        public void run() {
-            icon = IconFinder.setIconFinder("default");
-            btn = (JButton) e.getSource();
-            String name = btn.getName();
-            //System.out.println(name);
-            Game.getRoom(Integer.parseInt(name)-1).setRoomFaceIcon(icon);
-        }
+            @Override
+            public void run() {
+                icon = IconFinder.setIconFinder("default");
+                btn = (JButton) e.getSource();
+                String name = btn.getName();
+                //System.out.println(name);
+                Game.getRoom(Integer.parseInt(name) - 1).setRoomFaceIcon(icon);
+
+            }
         }, PEEKDURATION);
     }
 }
