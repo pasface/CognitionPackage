@@ -82,25 +82,26 @@ public class Room {
         target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
 
         //set level on pane
-        roomPane.setComponentZOrder(peekButton, 0);
-        roomPane.setComponentZOrder(searchButton, 1);
-        roomPane.setComponentZOrder(roomFace, 2);
-        roomPane.setComponentZOrder(target, 3);
-        int indiPaneLevel = 4;
+        //roomPane.setComponentZOrder(peekButton, 0);
+        //roomPane.setComponentZOrder(searchButton, 1);
+        //roomPane.setComponentZOrder(roomFace, 2);
+        //roomPane.setComponentZOrder(target, 3);
+        //int indiPaneLevel = 4;
         for (Indicator indicator : indicators) {
             int xy = 140;
             roomPane.add(indicator);
-            roomPane.setComponentZOrder(indicator, indiPaneLevel);
-            indiPaneLevel++;
+            //roomPane.setComponentZOrder(indicator, indiPaneLevel);
+            //indiPaneLevel++;
             int indiOffset = xy * indicator.getInId();
             //System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
-
-        System.out.println(labelList(target, roomFace, indicators).toString());
-        //make component array and swap labels?
-            roomPane.moveToFront(target);
-            roomPane.moveToBack(roomFace);
+        int position=0;
+        ArrayList<JLabel> list = labelList(target, roomFace, indicators);
+        for(JLabel item : list){
+            roomPane.setComponentZOrder(item, position);
+            position++;
+        }
 
         //roomPane.setMinimumSize(new Dimension(1,1));
         panel.add(roomPane);
