@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game id="005">
+    <rooms>
+        <room id="1">
+            <target>
+            </target>
+            <indicators>
+                <indicator>
+                    <name>indi1</name>
+                    <size>100,100</size>
+                    <location>30,30</location>
+                </indicator>
+            </indicators>
+        </room>
+        <room id="2">
+            <target>
+            </target>
+            <indicators>
+                <indicator>
+                    <name>indi5</name>
+                    <size>100,100</size>
+                    <location>30,30</location>
+                </indicator>
+            </indicators>
+        </room>
+        <room id="3">
+            <target>
+            </target>
+            <indicators>
+                <indicator>
+                    <name>indi3</name>
+                    <size>100,100</size>
+                    <location>30,30</location>
+                </indicator>
+            </indicators>
+        </room>
+        <room id="4">
+            <target>
+            </target>
+            <indicators>
+            </indicators>
+        </room>
+        <room id="5">
+            <target>
+            </target>
+            <indicators>
+            </indicators>
+        </room>
+        <room id="6">
+            <target>
+                <name>target</name>
+                <location>30,30</location>
+            </target>
+            <indicators>
+                <indicator>
+                    <name>indi4</name>
+                    <size>100,100</size>
+                    <location>30,30</location>
+                </indicator>
+                <indicator>
+                    <name>indi2</name>
+                    <size>100,100</size>
+                    <location>30,30</location>
+                </indicator>
+            </indicators>
+        </room>
+    </rooms>
+</game>

@@ -17,12 +17,12 @@ import javax.swing.JPanel;
 class IntroScreen extends JPanel {
     private static final JLabel welcomeLabel = new JLabel();
 
-    public IntroScreen(JFrame frame) {
+    public IntroScreen(JPanel panel) {
         setName("Welcome!");
         setBorder(BorderFactory.createTitledBorder(getName()));
         welcomeLabel.setText("Welcome! This application will help to determine ...  When you're ready to start just click on File -> New");
         add(welcomeLabel);
-        frame.add(this);
+        panel.add(this);
     }
 
     @Override

@@ -3,44 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
-TO DO:  Add panels to a panel rather than frame and use removeall to get rid of old stuff.
-        Fix the layout: https://docs.oracle.com/javase/8/javafx/layout-tutorial/builtin_layouts.htm#JFXLY102
-        Fix graphics.
+TO DO:  Fix graphics.
+        Set order of visibility.
         Rework organization.
-        Figure out how I wanna handle configs.
+        Continue xml stuff.
+        Document everything.
         
  */
 package se.core;
 
 import java.awt.GridLayout;
 import javax.swing.JFrame;
-import pigldywigldy.MyFrame;
+import javax.swing.JPanel;
 /**
  *
  * @author nikki
  */
 public class GameLaunch {
+    
     private static final JFrame frame = new MyFrame();
+    private static JPanel gamePanel = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
-    private static Game g;
 
     public static void main(String[] args) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(2,6));
-        introPanel = new IntroScreen(frame);
+        frame.setLayout(new GridLayout());
+        introPanel = new IntroScreen(new JPanel());
+        frame.add(introPanel);
+        frame.add(gamePanel);
         frame.setVisible(true);
-        
     }
 
     public static void launch(){
-        
+        gamePanel.setVisible(false);
+        frame.remove(gamePanel);
         if (isB()==true){
-            //introPanel.setVisible(false);
+            //remove intro screen
+            introPanel.setVisible(false);
             frame.remove(introPanel);
-            System.out.println("REMOVE: " + introPanel.toString());
-            g = new Game(6,1, frame);
+            
+            gamePanel = new JPanel();
+            //panelb.setBackground(Color.darkGray);
+            GridLayout roomLayout = new GridLayout(3, 2);
+            roomLayout.setHgap(7);
+            roomLayout.setVgap(7);
+            gamePanel.setLayout(roomLayout);
+            gamePanel.setVisible(true);
+            GameId.setGameId("src/files/file.xml");
+            Game g = new Game(6, GameId.getGameId(), gamePanel);
             System.out.println(g.toString());
+            frame.add(gamePanel);
             frame.validate();
             setB(false);
         } else {
