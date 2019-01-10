@@ -21,4 +21,9 @@ public class EmptyRoom extends JLabel {
         
     }
 
+    @Override
+    public String toString() {
+        return "EmptyRoom{" + '}';
+    }
+
 }

@@ -97,6 +97,8 @@ public class Room {
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
 
+        System.out.println(labelList(target, roomFace, indicators).toString());
+        //make component array and swap labels?
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
 
@@ -104,6 +106,16 @@ public class Room {
         panel.add(roomPane);
     }
 
+    public static ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+        ArrayList list = new ArrayList();
+        list.add(target);
+        list.add(roomFace);
+        for (Indicator indicator : indicators){
+            list.add(indicator);
+        }
+        return list;
+    }
+    
     // getters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
