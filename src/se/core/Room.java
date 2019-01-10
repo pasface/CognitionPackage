@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Point;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,7 +23,6 @@ import javax.swing.JPanel;
  *
  * @author nikki
  */
-
 public class Room {
 
     // fields
@@ -31,6 +31,7 @@ public class Room {
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
     private ArrayList<Indicator> indicators;
+    private static int indicatorId;
     private Target target;
     private int roomId;
     private final JLayeredPane roomPane = new JLayeredPane();
@@ -49,37 +50,37 @@ public class Room {
         Action a = new PeekAction(peekButton.getName());
         peekButton.setAction(a);
         peekButton.setText("Peek");
-        
+
         //search settings
         searchButton.setName("" + id);
         Action b = new SearchAction(searchButton.getName());
         searchButton.setAction(b);
         searchButton.setText("Search");
-        
+
         //layered pane settingss
         roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
-        
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
 
         //label placement vars
         int originPoint = 10;
-        Point origin = new Point(originPoint, originPoint*2);
+        Point origin = new Point(originPoint, originPoint * 2);
         int offset = 40;
         int roomFaceHeight = 268;
         int roomFaceWidth = 612;
-        
+
         int buttonWidth = 80;
         int buttonHeight = 30;
-        int buttonOffset = buttonWidth+10;
-        Point buttonOrigin = new Point(roomFaceWidth-(buttonWidth*2), roomFaceHeight+originPoint);
-        
+        int buttonOffset = buttonWidth + 10;
+        Point buttonOrigin = new Point(roomFaceWidth - (buttonWidth * 2), roomFaceHeight + originPoint);
+
         //set bounds of components
-        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint*2), buttonWidth, buttonHeight);
-        searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint*2), buttonWidth, buttonHeight);
+        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
+        searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
         roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
         target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
-        
+
         // add to pane
         roomPane.add(peekButton);
         roomPane.add(searchButton);
@@ -91,36 +92,43 @@ public class Room {
         roomPane.setComponentZOrder(searchButton, 1);
         //roomPane.setComponentZOrder(roomFace, 2);
         //roomPane.setComponentZOrder(target, 3);
-        int paneLevel=2;
-        
-        for(Indicator indicator : indicators){
+        int paneLevel = 2;
+
+        for (Indicator indicator : indicators) {
             int xy = 140;
             roomPane.add(indicator);
             roomPane.setComponentZOrder(indicator, paneLevel);
-            indicator.setBounds(origin.x, origin.y, xy, xy);
             paneLevel++;
-        }        
+            int indiOffset = 20;
+            System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + getIndicatorId());
+            indicator.setBounds((origin.x + indiOffset), origin.y, xy, xy);
+        }
+
         //roomPane.setMinimumSize(new Dimension(1,1));
         panel.add(roomPane);
     }
-    
+
     // getters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
     }
-    
+
     public Target getTarget() {
         return target;
     }
-    
-    public int getRoomId(){
+
+    public int getRoomId() {
         return roomId;
     }
 
     public JLabel getRoomFace() {
         return roomFace;
     }
-    
+
+    public static int getIndicatorId() {
+        return indicatorId;
+    }
+
     // setters
     public void setIndicator(ArrayList<Indicator> indicators) {
         this.indicators = indicators;
@@ -137,9 +145,14 @@ public class Room {
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
     }
+
+    public static void setIndicatorId(int indicatorId) {
+        Room.indicatorId = indicatorId;
+    }
+
     // methods
     // method to create and populate a room array
-    public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel){
+    public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
         ArrayList<Room> r = new ArrayList();
         // create variable for roomArray number
         int currentRoom = 0;
@@ -148,17 +161,32 @@ public class Room {
         // while loop to randomize target location
         while (currentRoom < totalRooms) {
             int randInt = RAND.nextInt(3);
+            ArrayList indicatorList;
             // randomly place a target into a roomArray 
             // (if no target built, 50% chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
-                Target t1 = new Target(30,30);
-                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), panel));
+                Target t1 = new Target(30, 30);
+                indicatorList = modifiedIndicatorList(1);
+                int currentPosition = 0;
+                for (Object indi: indicatorList) {
+                    currentPosition++;
+                    setIndicatorId(currentPosition);
+                    
+                }
+                r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
                 currentRoom++;
                 b = true;
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
+                indicatorList = modifiedIndicatorList(0);
+                int currentPosition = 0;
+                for (Object indi: indicatorList) {
+                    currentPosition++;
+                    setIndicatorId(currentPosition);
+                    
+                }
                 r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
                 currentRoom++;
             }
@@ -170,12 +198,12 @@ public class Room {
     private static ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(0, 0, "indi1");
-        Indicator i1 = new Indicator(0, 0, "indi2");
-        Indicator i2 = new Indicator(0, 0, "indi3");
-        Indicator i3 = new Indicator(0, 0, "indi4");
-        Indicator i4 = new Indicator(0, 0, "indi5");
-        
+        Indicator i0 = new Indicator(0, 0, "1");
+        Indicator i1 = new Indicator(0, 0, "2");
+        Indicator i2 = new Indicator(0, 0, "3");
+        Indicator i3 = new Indicator(0, 0, "4");
+        Indicator i4 = new Indicator(0, 0, "5");
+
         // add indicator objects to indicators list
         indicators.add(i0);
         indicators.add(i1);
@@ -190,6 +218,7 @@ public class Room {
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
         ArrayList<Indicator> modList = new ArrayList();
         int randInt;
+
         if (i == 0) {
             // used when target is not present
             boolean b = true;
@@ -197,6 +226,7 @@ public class Room {
                 // randomly add indicator to empty roomArray
                 randInt = RAND.nextInt(indicatorList().size());
                 modList.add(indicatorList().get(randInt));
+
             }
             return modList;
         } else {
@@ -210,6 +240,7 @@ public class Room {
             return modList;
         }
     }
+
     //toString
     @Override
     public String toString() {

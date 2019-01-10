@@ -14,16 +14,26 @@ import javax.swing.JLabel;
  */
 
 public class Indicator extends JLabel {
+    private static int inid;
     
     public Indicator() {
         setName("");
     }
 
-    public Indicator(int x, int y, String image) {
-        setName(image);
+    public Indicator(int x, int y, String name) {
+        inid = getInId();
+        setName(""+name);
         setSize(100,100);
         setLocation(x, y);
-        setIcon(IconFinder.setIconFinder(image));
+        setIcon(IconFinder.setIconFinder(name));
+    }
+
+    public static int getInId() {
+        return inid;
+    }
+
+    public static void setInId(int id) {
+        inid = id;
     }
 
     @Override
