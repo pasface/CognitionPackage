@@ -1,19 +1,16 @@
 package se.core;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Point;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import java.awt.Dimension;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,6 +26,7 @@ import java.awt.Dimension;
 public class Room {
 
     // fields
+    private static final SecureRandom RAND = new SecureRandom();
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
@@ -92,14 +90,14 @@ public class Room {
         roomPane.setComponentZOrder(peekButton, 0);
         roomPane.setComponentZOrder(searchButton, 1);
         //roomPane.setComponentZOrder(roomFace, 2);
-        //roomPane.setComponentZOrder(target, 2);
+        //roomPane.setComponentZOrder(target, 3);
         int paneLevel=2;
         
         for(Indicator indicator : indicators){
             int xy = 140;
             roomPane.add(indicator);
             roomPane.setComponentZOrder(indicator, paneLevel);
-            indicator.setBounds(origin.x + xy, origin.y, xy, xy);
+            indicator.setBounds(origin.x, origin.y, xy, xy);
             paneLevel++;
         }        
         //roomPane.setMinimumSize(new Dimension(1,1));
@@ -139,7 +137,79 @@ public class Room {
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
     }
+    // methods
+    // method to create and populate a room array
+    public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel){
+        ArrayList<Room> r = new ArrayList();
+        // create variable for roomArray number
+        int currentRoom = 0;
+        // create a bool to check if target exists
+        boolean b = false;
+        // while loop to randomize target location
+        while (currentRoom < totalRooms) {
+            int randInt = RAND.nextInt(3);
+            // randomly place a target into a roomArray 
+            // (if no target built, 50% chancee to build a target in current roomArray
+            //  OR if on last roomArray w/o target, build target in last roomArray)
+            if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
+                Target t1 = new Target(30,30);
+                r.add(new Room(modifiedIndicatorList(1), t1, (currentRoom + 1), panel));
+                currentRoom++;
+                b = true;
+            } else {
+                // enter empty target in current roomArray
+                Target t0 = new Target();
+                r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
+                currentRoom++;
+            }
+        }
+        return r;
+    }
 
+    // ArrayList that stores all possible Indicators
+    private static ArrayList<Indicator> indicatorList() {
+        ArrayList<Indicator> indicators = new ArrayList();
+        // create indicator objects (location x, location y, imagename)
+        Indicator i0 = new Indicator(0, 0, "indi1");
+        Indicator i1 = new Indicator(0, 0, "indi2");
+        Indicator i2 = new Indicator(0, 0, "indi3");
+        Indicator i3 = new Indicator(0, 0, "indi4");
+        Indicator i4 = new Indicator(0, 0, "indi5");
+        
+        // add indicator objects to indicators list
+        indicators.add(i0);
+        indicators.add(i1);
+        indicators.add(i2);
+        indicators.add(i3);
+        indicators.add(i4);
+        // return indicator list
+        return indicators;
+    }
+
+    // ArrayList that stores indicators for each room
+    private static ArrayList<Indicator> modifiedIndicatorList(int i) {
+        ArrayList<Indicator> modList = new ArrayList();
+        int randInt;
+        if (i == 0) {
+            // used when target is not present
+            boolean b = true;
+            if (b == RAND.nextBoolean()) {
+                // randomly add indicator to empty roomArray
+                randInt = RAND.nextInt(indicatorList().size());
+                modList.add(indicatorList().get(randInt));
+            }
+            return modList;
+        } else {
+            // used when target is present
+            // randomly add indicator from list of options
+            randInt = RAND.nextInt(indicatorList().size());
+            modList.add(indicatorList().get(randInt));
+            // randomly add indicator from list of options
+            randInt = RAND.nextInt(indicatorList().size());
+            modList.add(indicatorList().get(randInt));
+            return modList;
+        }
+    }
     //toString
     @Override
     public String toString() {
