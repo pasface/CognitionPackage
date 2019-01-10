@@ -96,6 +96,7 @@ public class Room {
             //System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
+        
         int position=0;
         ArrayList<JLabel> list = labelList(target, roomFace, indicators);
         for(JLabel item : list){
