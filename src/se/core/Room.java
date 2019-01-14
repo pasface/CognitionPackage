@@ -1,13 +1,10 @@
 package se.core;
 
-import java.awt.GridBagConstraints;
 import java.awt.Point;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -25,14 +22,13 @@ public final class Room {
 
     // fields
     private static final SecureRandom RAND = new SecureRandom();
+    private final PeekButton peekButton;
+    private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
-    private final JButton peekButton = new JButton();
-    private final JButton searchButton = new JButton();
     private final JLayeredPane roomPane = new JLayeredPane();
-    private ArrayList<Indicator> indicators;
-    private static int indicatorId;
-    private Target target;
-    private int roomId;
+    private final ArrayList<Indicator> indicators;
+    private final Target target;
+    private final int roomId;
     private static String state = "";
 
     // constructor
@@ -43,96 +39,19 @@ public final class Room {
         this.indicators = indicators;
         this.target = target;
         this.roomId = id;
-        Room.state = "default";
 
         //peek settings
-        peekButton.setName("" + id);
-        Action a = new PeekAction(peekButton.getName());
-        peekButton.setAction(a);
-        peekButton.setText("Peek");
+        peekButton = new PeekButton(id);
 
         //search settings
-        searchButton.setName("" + id);
-        Action b = new SearchAction(searchButton.getName());
-        searchButton.setAction(b);
-        searchButton.setText("Search");
+        searchButton = new SearchButton(id);
 
         //layered pane settingss
         roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-
-        //label placement vars
-        int originPoint = 10;
-        Point origin = new Point(originPoint, originPoint * 2);
-        int offset = 40;
-        int roomFaceHeight = 268;
-        int roomFaceWidth = 612;
-
-        int buttonWidth = 80;
-        int buttonHeight = 30;
-        int buttonOffset = buttonWidth + 10;
-        Point buttonOrigin = new Point(roomFaceWidth - (buttonWidth * 2), roomFaceHeight + originPoint);
-
-        //set bounds of components
-        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-        searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-        roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
-        target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
-
-//        //set level on pane
-//        roomPane.setComponentZOrder(peekButton, 0);
-//        roomPane.setComponentZOrder(searchButton, 1);
-//
-//        for (Indicator indicator : indicators) {
-//            int xy = 140;
-//            int indiOffset = xy * indicator.getInId();
-//            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
-//        }
-
-        setOrder(target, roomFace, indicators);
-        //roomPane.setMinimumSize(new Dimension(1,1));
+        //set level on pane
+        this.setOrder(target, roomFace, indicators);
         panel.add(roomPane);
-    }
-
-    public void setOrder(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        int position = 0;
-        ArrayList<JLabel> list = labelList(target, roomFace, indicators);
-        for (JLabel item : list) {
-            roomPane.setComponentZOrder(item, position);
-            position++;
-        }
-        String s = "search";
-        String p = "peek";
-        if (s.equals(getState())) { // search state
-            System.out.println("search state entered.");
-            roomPane.moveToFront(target);
-            roomPane.moveToBack(roomFace);
-            for (Indicator indicator : indicators) {
-                roomPane.moveToBack(indicator);
-            }
-        } else if (p.equals(getState())) { // peek state
-            System.out.println("peek state entered.");
-            for (Indicator indicator : indicators) {
-                roomPane.moveToFront(indicator);
-            }
-            roomPane.moveToBack(roomFace);
-            roomPane.moveToBack(target);
-        } else {  // default state
-            System.out.println("default state entered.");
-            roomPane.moveToFront(roomFace);
-        }
-    }
-
-    public ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        ArrayList list = new ArrayList();
-        list.add(roomFace);
-        list.add(target);
-        for (Indicator indicator : indicators) {
-            list.add(indicator);
-        }
-        return list;
     }
 
     // getters
@@ -152,40 +71,15 @@ public final class Room {
         return roomFace;
     }
 
-    public static int getIndicatorId() {
-        return indicatorId;
-    }
-
-    public static String getState() {
-        return state;
-    }
-
     // setters
-    public void setIndicator(ArrayList<Indicator> indicators) {
-        this.indicators = indicators;
-    }
-
-    public void setTarget(Target target) {
-        this.target = target;
-    }
-
-    public void setRoomId(int id) {
-        roomId = id;
-    }
-
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
-    }
-
-    public static void setIndicatorId(int indicatorId) {
-        Room.indicatorId = indicatorId;
     }
 
     public void setState(String state) {
         Room.state = state;
     }
 
-    // methods
     // method to create and populate a room array
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
         ArrayList<Room> r = new ArrayList();
@@ -237,7 +131,7 @@ public final class Room {
         return indicators;
     }
 
-    // ArrayList that stores indicators for each room
+    // ArrayList that builds and stores indicators for each room
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
         ArrayList<Indicator> modList = new ArrayList();
         int randInt;
@@ -270,6 +164,71 @@ public final class Room {
                 indi.setInId(currentPosition);
             }
             return modList;
+        }
+    }
+
+    public ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+        ArrayList list = new ArrayList();
+        list.add(roomFace);
+        list.add(target);
+        for (Indicator indicator : indicators) {
+            list.add(indicator);
+        }
+        return list;
+    }
+
+    public void setOrder(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+        //function vars
+        int order = 0;
+        String s = "search";
+        String p = "peek";
+
+        //components placement vars
+        int originPoint = 10;
+        Point origin = new Point(originPoint, originPoint * 2);
+        int offset = 40;
+        int roomFaceHeight = 268;
+        int roomFaceWidth = 612;
+
+        int buttonWidth = 80;
+        int buttonHeight = 30;
+        int buttonOffset = buttonWidth + 10;
+        Point buttonOrigin = new Point(roomFaceWidth - (buttonWidth * 2), roomFaceHeight + originPoint);
+
+        //set bounds of components
+        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
+        searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
+        roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
+        target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
+        for (Indicator indicator : indicators) {
+            int xy = 140;
+            int indiOffset = xy * indicator.getInId();
+            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
+        }
+
+        //set component order
+        roomPane.setComponentZOrder(peekButton, 0);
+        roomPane.setComponentZOrder(searchButton, 1);
+        ArrayList<JLabel> list = labelList(target, roomFace, indicators);
+        for (JLabel item : list) {
+            roomPane.setComponentZOrder(item, order);
+            order++;
+        }
+
+        if (s.equals(Room.state)) { // search state
+            roomPane.moveToFront(target);
+            roomPane.moveToBack(roomFace);
+            for (Indicator indicator : indicators) {
+                roomPane.moveToBack(indicator);
+            }
+        } else if (p.equals(Room.state)) { // peek state
+            for (Indicator indicator : indicators) {
+                roomPane.moveToFront(indicator);
+            }
+            roomPane.moveToBack(roomFace);
+            roomPane.moveToBack(target);
+        } else {  // default state
+            roomPane.moveToFront(roomFace);
         }
     }
 

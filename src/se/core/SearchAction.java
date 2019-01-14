@@ -27,7 +27,7 @@ public class SearchAction extends AbstractAction {
     //
     public SearchAction(String shortDescription) {
         super();
-        putValue(SHORT_DESCRIPTION, shortDescription);
+        super.putValue(SHORT_DESCRIPTION, shortDescription);
     }
 
     //
@@ -40,7 +40,6 @@ public class SearchAction extends AbstractAction {
         String name = btn.getName();
         Room r = Game.getRoom(Integer.parseInt(name) - 1);
         r.setRoomFaceIcon(icon);
-        //System.out.println("Searched at this: " + e);
         int i = r.getTarget().getTargetId();
         if (i == 1) {
             r.setState(stateName);

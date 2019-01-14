@@ -42,9 +42,7 @@ public class GameLaunch {
             //remove intro screen
             introPanel.setVisible(false);
             frame.remove(introPanel);
-            
             gamePanel = new JPanel();
-            //panelb.setBackground(Color.darkGray);
             GridLayout roomLayout = new GridLayout(3, 2);
             roomLayout.setHgap(7);
             roomLayout.setVgap(7);
@@ -57,7 +55,6 @@ public class GameLaunch {
             frame.validate();
             setB(false);
         } else {
-            //introPanel.setVisible(true);
             frame.validate();
         }
     }

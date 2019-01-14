@@ -28,8 +28,7 @@ public class PeekAction extends AbstractAction {
     //constructor
     public PeekAction(String shortDescription) {
         super();
-        putValue(SHORT_DESCRIPTION, shortDescription);
-
+        super.putValue(SHORT_DESCRIPTION, shortDescription);
     }
 
     //Action events
@@ -37,16 +36,7 @@ public class PeekAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        icon = IconFinder.setIconFinder("peek");
-        btn = (JButton) e.getSource();
-        String name = btn.getName();
-        Room r = Game.getRoom(Integer.parseInt(name) - 1);
-        r.setRoomFaceIcon(icon);
-        r.setState("peek");
-        Target target = r.getTarget();
-        JLabel roomface = r.getRoomFace();
-        ArrayList<Indicator> indicator = r.getIndicator();
-        r.setOrder(target, roomface, indicator);
+        getbits("peek", e);
         peekTimer(e);
     }
 
@@ -55,18 +45,21 @@ public class PeekAction extends AbstractAction {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                icon = IconFinder.setIconFinder("default");
-                btn = (JButton) e.getSource();
-                String name = btn.getName();
-                //System.out.println(name);
-                Room r = Game.getRoom(Integer.parseInt(name) - 1);
-                r.setRoomFaceIcon(icon);
-                r.setState("default");
-                Target target = r.getTarget();
-                JLabel roomface = r.getRoomFace();
-                ArrayList<Indicator> indicator = r.getIndicator();
-                r.setOrder(target, roomface, indicator);
+                getbits("default", e);
             }
         }, PEEKDURATION);
+    }
+
+    public void getbits(String s, ActionEvent e) {
+        btn = (JButton) e.getSource();
+        String name = btn.getName();
+        Room r = Game.getRoom(Integer.parseInt(name) - 1);
+        icon = IconFinder.setIconFinder(s);
+        r.setRoomFaceIcon(icon);
+        r.setState(s);
+        Target target = r.getTarget();
+        JLabel roomface = r.getRoomFace();
+        ArrayList<Indicator> indicator = r.getIndicator();
+        r.setOrder(target, roomface, indicator);
     }
 }
