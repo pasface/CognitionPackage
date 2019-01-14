@@ -189,7 +189,7 @@ public final class Room {
         int offset = 40;
         int roomFaceHeight = 268;
         int roomFaceWidth = 612;
-
+        int xy = 140;
         int buttonWidth = 80;
         int buttonHeight = 30;
         int buttonOffset = buttonWidth + 10;
@@ -199,9 +199,9 @@ public final class Room {
         peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
         searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
         roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
-        target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
+        target.setBounds((origin.x + offset), (origin.y + offset), xy, xy);
         for (Indicator indicator : indicators) {
-            int xy = 140;
+            
             int indiOffset = xy * indicator.getInId();
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }

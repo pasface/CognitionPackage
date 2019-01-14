@@ -25,7 +25,6 @@ public final class Target extends JLabel{
     public Target(int x, int y) { 
         String icon = "target";
         super.setName(icon);
-        super.setLocation(x, y);
         super.setIcon(IconFinder.setIconFinder(icon));
         this.targetId = 1;
     }
