@@ -13,20 +13,20 @@ import javax.swing.JLabel;
  * @author nikki
  */
 
-public class Target extends JLabel{
+public final class Target extends JLabel{
     
     private int targetId;
     
     public Target() {
-        setName("");
+        super.setName("");
         this.targetId = 0;
     }
 
     public Target(int x, int y) { 
         String icon = "target";
-        setName(icon);
-        setLocation(x, y);
-        setIcon(IconFinder.setIconFinder(icon));
+        super.setName(icon);
+        super.setLocation(x, y);
+        super.setIcon(IconFinder.setIconFinder(icon));
         this.targetId = 1;
     }
 

@@ -13,19 +13,19 @@ import javax.swing.JLabel;
  * @author nikki
  */
 
-public class Indicator extends JLabel {
+public final class Indicator extends JLabel {
     private int inid;
     
     public Indicator() {
-        setName("");
+        super.setName("");
     }
 
     public Indicator(int x, int y, String name) {
-        inid = getInId();
-        setName(""+name);
-        setSize(100,100);
-        setLocation(x, y);
-        setIcon(IconFinder.setIconFinder(name));
+        inid = this.getInId();
+        super.setName(""+name);
+        super.setSize(100,100);
+        super.setLocation(x, y);
+        super.setIcon(IconFinder.setIconFinder(name));
     }
 
     public int getInId() {

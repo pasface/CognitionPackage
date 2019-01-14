@@ -26,7 +26,7 @@ public class Room {
 
     // fields
     private static final SecureRandom RAND = new SecureRandom();
-    private final EmptyRoom roomFace = new EmptyRoom();
+    private EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
     private JLayeredPane roomPane = new JLayeredPane();
@@ -35,8 +35,7 @@ public class Room {
     private Target target;
     private int roomId;
     private int roomPaneLevel;
-    private static String state;
-    
+    private static String state = "";
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -100,33 +99,43 @@ public class Room {
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
 
+        setOrder(target, roomFace, indicators);
+        //roomPane.setMinimumSize(new Dimension(1,1));
+        panel.add(roomPane);
+    }
+
+    public void setOrder(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
         int position = 0;
         ArrayList<JLabel> list = labelList(target, roomFace, indicators);
         for (JLabel item : list) {
             roomPane.setComponentZOrder(item, position);
             position++;
         }
-        //roomPane.setMinimumSize(new Dimension(1,1));
-        panel.add(roomPane);
-    }
-
-    public static ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        ArrayList list = new ArrayList();
         String s = "search";
         String p = "peek";
         if (s.equals(getState())) { // search state
-            //list.add(roomFace);
             System.out.println("search state entered.");
-            list.add(target);
-        } else if (p.equals(getState())){ // peek state
-            //list.add(roomFace);
+            roomPane.moveToFront(target);
+            roomPane.moveToBack(roomFace);
+        } else if (p.equals(getState())) { // peek state
             System.out.println("peek state entered.");
             for (Indicator indicator : indicators) {
-                list.add(indicator);
+                roomPane.moveToFront(indicator);
             }
+            roomPane.moveToBack(target);
+            roomPane.moveToBack(roomFace);
         } else {  // default state
             System.out.println("default state entered.");
-            list.add(roomFace);
+            roomPane.moveToFront(roomFace);
+        }
+    }
+
+    public ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+        ArrayList list = new ArrayList();
+        list.add(roomFace);
+        list.add(target);
+        for (Indicator indicator : indicators) {
+            list.add(indicator);
         }
         return list;
     }
@@ -144,7 +153,7 @@ public class Room {
         return roomId;
     }
 
-    public JLabel getRoomFace() {
+    public EmptyRoom getRoomFace() {
         return roomFace;
     }
 
