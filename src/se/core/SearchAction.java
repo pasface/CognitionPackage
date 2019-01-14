@@ -41,7 +41,9 @@ public class SearchAction extends AbstractAction {
         if (i == 1) {
             Game.getRoom(Integer.parseInt(name) - 1).setRoomPaneLevel(1);
             System.out.println(Game.getRoom(Integer.parseInt(name) - 1).getRoomPaneLevel());
-            //layeredPane.moveToFront(dukeLabel);
+            Target target = Game.getRoom(Integer.parseInt(name) - 1).getTarget();
+            //labelList(, JLabel roomFace, ArrayList<Indicator> indicators);
+            Game.getRoom(Integer.parseInt(name) - 1).setState("search");
         }
     }
 }

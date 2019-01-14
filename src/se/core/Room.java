@@ -29,12 +29,14 @@ public class Room {
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
+    private JLayeredPane roomPane = new JLayeredPane();
     private ArrayList<Indicator> indicators;
     private static int indicatorId;
     private Target target;
     private int roomId;
     private int roomPaneLevel;
-    private JLayeredPane roomPane = new JLayeredPane();
+    private static String state;
+    
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -44,6 +46,7 @@ public class Room {
         this.indicators = indicators;
         this.target = target;
         this.roomId = id;
+        Room.state = "default";
 
         //peek settings
         peekButton.setName("" + id);
@@ -82,42 +85,52 @@ public class Room {
         target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
 
         //set level on pane
-        //roomPane.setComponentZOrder(peekButton, 0);
-        //roomPane.setComponentZOrder(searchButton, 1);
+        roomPane.setComponentZOrder(peekButton, 0);
+        roomPane.setComponentZOrder(searchButton, 1);
         //roomPane.setComponentZOrder(roomFace, 2);
         //roomPane.setComponentZOrder(target, 3);
         //int indiPaneLevel = 4;
         for (Indicator indicator : indicators) {
             int xy = 140;
-            roomPane.add(indicator);
+            //roomPane.add(indicator);
             //roomPane.setComponentZOrder(indicator, indiPaneLevel);
             //indiPaneLevel++;
             int indiOffset = xy * indicator.getInId();
             //System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
             indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
         }
-        
-        int position=0;
+
+        int position = 0;
         ArrayList<JLabel> list = labelList(target, roomFace, indicators);
-        for(JLabel item : list){
+        for (JLabel item : list) {
             roomPane.setComponentZOrder(item, position);
             position++;
         }
-
         //roomPane.setMinimumSize(new Dimension(1,1));
         panel.add(roomPane);
     }
 
     public static ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
         ArrayList list = new ArrayList();
-        list.add(target);
-        list.add(roomFace);
-        for (Indicator indicator : indicators){
-            list.add(indicator);
+        String s = "search";
+        String p = "peek";
+        if (s.equals(getState())) { // search state
+            //list.add(roomFace);
+            System.out.println("search state entered.");
+            list.add(target);
+        } else if (p.equals(getState())){ // peek state
+            //list.add(roomFace);
+            System.out.println("peek state entered.");
+            for (Indicator indicator : indicators) {
+                list.add(indicator);
+            }
+        } else {  // default state
+            System.out.println("default state entered.");
+            list.add(roomFace);
         }
         return list;
     }
-    
+
     // getters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
@@ -143,6 +156,10 @@ public class Room {
         return roomPaneLevel;
     }
 
+    public static String getState() {
+        return state;
+    }
+
     // setters
     public void setIndicator(ArrayList<Indicator> indicators) {
         this.indicators = indicators;
@@ -164,10 +181,12 @@ public class Room {
         this.roomPaneLevel = roomPaneLevel;
     }
 
-
-    
     public static void setIndicatorId(int indicatorId) {
         Room.indicatorId = indicatorId;
+    }
+
+    public void setState(String state) {
+        Room.state = state;
     }
 
     // methods
@@ -237,7 +256,7 @@ public class Room {
                 int currentPosition = 0;
                 for (Indicator indi : modList) {
                     currentPosition++;
-                    indi.setInId(currentPosition); 
+                    indi.setInId(currentPosition);
                 }
             }
             return modList;
