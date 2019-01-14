@@ -44,7 +44,6 @@ public class SearchAction extends AbstractAction {
         int i = r.getTarget().getTargetId();
         if (i == 1) {
             r.setState(stateName);
-            r.setRoomPaneLevel(1);
             Target target = r.getTarget();
             JLabel roomface = r.getRoomFace();
             ArrayList<Indicator> indicator = r.getIndicator();

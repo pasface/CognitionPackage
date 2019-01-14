@@ -34,7 +34,6 @@ public class Room {
     private static int indicatorId;
     private Target target;
     private int roomId;
-    private int roomPaneLevel;
     private static String state = "";
 
     // constructor
@@ -117,6 +116,9 @@ public class Room {
             System.out.println("search state entered.");
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
+            for (Indicator indicator : indicators) {
+                roomPane.moveToBack(indicator);
+            }
         } else if (p.equals(getState())) { // peek state
             System.out.println("peek state entered.");
             for (Indicator indicator : indicators) {
@@ -161,10 +163,6 @@ public class Room {
         return indicatorId;
     }
 
-    public int getRoomPaneLevel() {
-        return roomPaneLevel;
-    }
-
     public static String getState() {
         return state;
     }
@@ -184,10 +182,6 @@ public class Room {
 
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
-    }
-
-    public void setRoomPaneLevel(int roomPaneLevel) {
-        this.roomPaneLevel = roomPaneLevel;
     }
 
     public static void setIndicatorId(int indicatorId) {
