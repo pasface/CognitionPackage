@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Point;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,14 +21,14 @@ import javax.swing.JPanel;
  *
  * @author nikki
  */
-public class Room {
+public final class Room {
 
     // fields
     private static final SecureRandom RAND = new SecureRandom();
-    private EmptyRoom roomFace = new EmptyRoom();
+    private final EmptyRoom roomFace = new EmptyRoom();
     private final JButton peekButton = new JButton();
     private final JButton searchButton = new JButton();
-    private JLayeredPane roomPane = new JLayeredPane();
+    private final JLayeredPane roomPane = new JLayeredPane();
     private ArrayList<Indicator> indicators;
     private static int indicatorId;
     private Target target;
@@ -82,21 +81,15 @@ public class Room {
         roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
         target.setBounds((origin.x + offset), (origin.y + offset), 140, 140);
 
-        //set level on pane
-        roomPane.setComponentZOrder(peekButton, 0);
-        roomPane.setComponentZOrder(searchButton, 1);
-        //roomPane.setComponentZOrder(roomFace, 2);
-        //roomPane.setComponentZOrder(target, 3);
-        //int indiPaneLevel = 4;
-        for (Indicator indicator : indicators) {
-            int xy = 140;
-            //roomPane.add(indicator);
-            //roomPane.setComponentZOrder(indicator, indiPaneLevel);
-            //indiPaneLevel++;
-            int indiOffset = xy * indicator.getInId();
-            //System.out.println("Room: " + id + " Indi Name: " + indicator.getName() + " Indi Id: " + indicator.getInId());
-            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
-        }
+//        //set level on pane
+//        roomPane.setComponentZOrder(peekButton, 0);
+//        roomPane.setComponentZOrder(searchButton, 1);
+//
+//        for (Indicator indicator : indicators) {
+//            int xy = 140;
+//            int indiOffset = xy * indicator.getInId();
+//            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
+//        }
 
         setOrder(target, roomFace, indicators);
         //roomPane.setMinimumSize(new Dimension(1,1));
@@ -124,8 +117,8 @@ public class Room {
             for (Indicator indicator : indicators) {
                 roomPane.moveToFront(indicator);
             }
-            roomPane.moveToBack(target);
             roomPane.moveToBack(roomFace);
+            roomPane.moveToBack(target);
         } else {  // default state
             System.out.println("default state entered.");
             roomPane.moveToFront(roomFace);
