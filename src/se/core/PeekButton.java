@@ -5,7 +5,6 @@
  */
 package se.core;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 
 /**
@@ -17,7 +16,7 @@ public class PeekButton extends JButton {
     public PeekButton(int id) {
         //peek settings
         super.setName("" + id);
-        Action a = new PeekAction(super.getName());
+        PeekAction a = new PeekAction(super.getName());
         super.setAction(a);
         super.setText("Peek");
     }

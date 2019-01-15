@@ -75,6 +75,10 @@ public final class Room {
         return peekButton;
     }
 
+    public SearchButton getSearchButton() {
+        return searchButton;
+    }
+
     // setters
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,7 +37,7 @@ public class PeekAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(PEEK);
         Game.setCountPeek();
-        getbits("peek", e);
+        resetLabels("peek", e);
         peekTimer(e);
     }
 
@@ -45,12 +46,23 @@ public class PeekAction extends AbstractAction {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                getbits("default", e);
+                resetLabels("default", e);
+                
+                
+                Room r = Game.getRoom(Integer.parseInt(btn.getName()) - 1);
+                r.getSearchButton();
+                if(r == null){
+                    //timer.cancel();
+                    System.out.println();
+                } else {
+                    System.out.println();
+                }
+                
             }
         }, PEEKDURATION);
     }
 
-    public void getbits(String s, ActionEvent e) {
+    public void resetLabels(String s, ActionEvent e) {
         btn = (JButton) e.getSource();
         String name = btn.getName();
         Room r = Game.getRoom(Integer.parseInt(name) - 1);
@@ -62,4 +74,5 @@ public class PeekAction extends AbstractAction {
         ArrayList<Indicator> indicator = r.getIndicator();
         r.setOrder(target, roomface, indicator);
     }
+    
 }

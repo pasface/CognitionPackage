@@ -8,10 +8,12 @@ package se.core;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
+import javax.swing.Timer;
+import java.lang.reflect.Method;
 /**
  *
  * @author nikki
