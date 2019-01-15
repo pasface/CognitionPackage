@@ -71,6 +71,10 @@ public final class Room {
         return roomFace;
     }
 
+    public PeekButton getPeekButton() {
+        return peekButton;
+    }
+
     // setters
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);

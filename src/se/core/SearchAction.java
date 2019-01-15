@@ -41,6 +41,7 @@ public class SearchAction extends AbstractAction {
         Room r = Game.getRoom(Integer.parseInt(name) - 1);
         r.setRoomFaceIcon(icon);
         int i = r.getTarget().getTargetId();
+        r.getPeekButton().setVisible(false);
         if (i == 1) {
             r.setState(stateName);
             Target target = r.getTarget();
