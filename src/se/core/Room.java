@@ -48,9 +48,10 @@ public final class Room {
 
         //layered pane settingss
         roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
-
+        this.placeComponents();
         //set level on pane
-        this.setOrder(target, roomFace, indicators);
+        this.orderComponents(target, roomFace, indicators);
+
         panel.add(roomPane);
     }
 
@@ -185,34 +186,46 @@ public final class Room {
         return list;
     }
 
-    public void setOrder(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        //function vars
-        int order = 0;
-        String s = "search";
-        String p = "peek";
+    public void changeState() {
+        String search = "search";
+        String peek = "peek";
+        if (search.equals(Room.state)) { // search state
+            roomPane.moveToFront(target);
+            roomPane.moveToBack(roomFace);
+            for (Indicator indicator : indicators) {
+                roomPane.moveToBack(indicator);
+            }
+        } else if (peek.equals(Room.state)) { // peek state
+            for (Indicator indicator : indicators) {
+                roomPane.moveToFront(indicator);
+            }
+            roomPane.moveToBack(roomFace);
+            roomPane.moveToBack(target);
+        } else {  // default state
+            roomPane.moveToFront(roomFace);
+        }
+    }
 
-        //components placement vars
-        int originPoint = 10;
-        Point origin = new Point(originPoint, originPoint * 2);
-        int offset = 40;
-        int roomFaceHeight = 268;
-        int roomFaceWidth = 612;
-        int xy = 140;
-        int buttonWidth = 80;
-        int buttonHeight = 30;
-        int buttonOffset = buttonWidth + 10;
-        Point buttonOrigin = new Point(roomFaceWidth - (buttonWidth * 2), roomFaceHeight + originPoint);
+    public void placeComponents() {
+        Settings s = new Settings();
+
+        Point originP = new Point(s.origin, s.origin * 2);
+        Point buttonOrigin = new Point(s.rfW - (s.btnW * 2), s.rfH + s.origin);
 
         //set bounds of components
-        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-        searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-        roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
-        target.setBounds((origin.x + offset), (origin.y + offset), xy, xy);
+        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + s.origin * 2), s.btnW, s.btnH);
+        searchButton.setBounds((buttonOrigin.x + s.btnW + 10), (buttonOrigin.y + s.origin * 2), s.btnW, s.btnH);
+        roomFace.setBounds(originP.x, originP.y, s.rfW, s.rfH);
+        target.setBounds((originP.x + s.offset), (originP.y + s.offset), s.itemHW, s.itemHW);
         for (Indicator indicator : indicators) {
-            
-            int indiOffset = xy * indicator.getInId();
-            indicator.setBounds((origin.x + indiOffset), (origin.y + 60), xy, xy);
+            int indiOffset = s.itemHW * indicator.getInId();
+            indicator.setBounds((originP.x + indiOffset), (originP.y + 60), s.itemHW, s.itemHW);
         }
+    }
+
+    public void orderComponents(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+        //function vars
+        int order = 0;
 
         //set component order
         roomPane.setComponentZOrder(peekButton, 0);
@@ -222,22 +235,7 @@ public final class Room {
             roomPane.setComponentZOrder(item, order);
             order++;
         }
-
-        if (s.equals(Room.state)) { // search state
-            roomPane.moveToFront(target);
-            roomPane.moveToBack(roomFace);
-            for (Indicator indicator : indicators) {
-                roomPane.moveToBack(indicator);
-            }
-        } else if (p.equals(Room.state)) { // peek state
-            for (Indicator indicator : indicators) {
-                roomPane.moveToFront(indicator);
-            }
-            roomPane.moveToBack(roomFace);
-            roomPane.moveToBack(target);
-        } else {  // default state
-            roomPane.moveToFront(roomFace);
-        }
+        changeState();
     }
 
     //toString

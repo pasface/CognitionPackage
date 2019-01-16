@@ -13,36 +13,69 @@ import java.awt.Point;
  */
 public class Settings extends Point {
 
-    //room dimensions
-    private final int roomFaceHeight = 268;
-    private final int roomFaceWidth = 612;
-    
-    //item dimensions
-    private final int itemXY = 140;
-    
-    //button dimensions
-    private final int buttonWidth = 80;
-    private final int buttonHeight = 30;
-    
-    //origins
-    private final int origin = 10;
-    
-    //points
-    private final Point originPoint = new Point(origin, origin * 2);
-    private final Point buttonOrigin = new Point(roomFaceWidth - (buttonWidth * 2), roomFaceHeight + origin);
-    
-    //offsets
-    private final int offset = 40;
-    private final int buttonOffset = buttonWidth + 10;
-    
-    
-    
-    private int peekY = (buttonOrigin.y + origin * 2);
-    
+    //component placement vars
+    int rfH = 268;
+    int rfW = 612;
+    int itemHW = 140;
+    int btnW = 85;
+    int btnH = 30;
+    int origin = 10;
+    int offset = 40;
 
-//    peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-//    searchButton.setBounds((buttonOrigin.x + buttonOffset), (buttonOrigin.y + originPoint * 2), buttonWidth, buttonHeight);
-//    roomFace.setBounds(origin.x, origin.y, roomFaceWidth, roomFaceHeight);
-//    target.setBounds((origin.x + offset), (origin.y + offset), xy, xy);
+    public int getRfH() {
+        return rfH;
+    }
+
+    public void setRfH(int rfH) {
+        this.rfH = rfH;
+    }
+
+    public int getRfW() {
+        return rfW;
+    }
+
+    public void setRfW(int rfW) {
+        this.rfW = rfW;
+    }
+
+    public int getItemHW() {
+        return itemHW;
+    }
+
+    public void setItemHW(int itemHW) {
+        this.itemHW = itemHW;
+    }
+
+    public int getBtnW() {
+        return btnW;
+    }
+
+    public void setBtnW(int btnW) {
+        this.btnW = btnW;
+    }
+
+    public int getBtnH() {
+        return btnH;
+    }
+
+    public void setBtnH(int btnH) {
+        this.btnH = btnH;
+    }
+
+    public int getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(int origin) {
+        this.origin = origin;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
 
 }
