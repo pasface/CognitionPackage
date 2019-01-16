@@ -15,7 +15,7 @@ public class Settings extends Point {
 
     //component placement vars
     int rfH = 268;
-    int rfW = 612;
+    int rfW = 580;
     int itemHW = 140;
     int btnW = 85;
     int btnH = 30;

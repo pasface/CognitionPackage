@@ -33,7 +33,7 @@ public final class Room {
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
-        roomFace.setName("" + id);
+        this.roomFace.setName("" + id);
 
         //initialize fields
         this.indicators = indicators;
@@ -41,21 +41,23 @@ public final class Room {
         this.roomId = id;
 
         //peek settings
-        peekButton = new PeekButton(id);
+        this.peekButton = new PeekButton(id);
 
         //search settings
-        searchButton = new SearchButton(id);
+        this.searchButton = new SearchButton(id);
 
-        //layered pane settingss
-        roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
+        //layered pane settings
+        this.roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
+        
         this.placeComponents();
+        
         //set level on pane
-        this.orderComponents(target, roomFace, indicators);
+        this.orderComponents(target, this.roomFace, indicators);
 
-        panel.add(roomPane);
+        panel.add(this.roomPane);
     }
 
-    // getters
+    // getters and setters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
     }
@@ -80,7 +82,6 @@ public final class Room {
         return searchButton;
     }
 
-    // setters
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
     }
@@ -140,7 +141,7 @@ public final class Room {
         return indicators;
     }
 
-    // ArrayList that builds and stores indicators for each room
+    // ArrayList that builds and stores indicators for a room
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
         ArrayList<Indicator> modList = new ArrayList();
         int randInt;
@@ -176,6 +177,7 @@ public final class Room {
         }
     }
 
+    //ArrayList for room labels
     public ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
         ArrayList list = new ArrayList();
         list.add(roomFace);
@@ -186,6 +188,7 @@ public final class Room {
         return list;
     }
 
+    //change the state of the room based on mouse click
     public void changeState() {
         String search = "search";
         String peek = "peek";
@@ -206,6 +209,7 @@ public final class Room {
         }
     }
 
+    //place component levels on teh 
     public void placeComponents() {
         Settings s = new Settings();
 
