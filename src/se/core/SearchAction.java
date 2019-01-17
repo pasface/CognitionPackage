@@ -39,9 +39,11 @@ public class SearchAction extends AbstractAction {
         btn = (JButton) e.getSource();
         String name = btn.getName();
         Room r = Game.getRoom(Integer.parseInt(name) - 1);
+        
         //cancel peek timer
         PeekAction p = r.getPeekButton().a;
         p.timer.cancel();
+        
         r.setState(stateName);
         Target target = r.getTarget();
         JLabel roomface = r.getRoomFace();

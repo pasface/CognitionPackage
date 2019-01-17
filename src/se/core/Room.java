@@ -48,9 +48,9 @@ public final class Room {
 
         //layered pane settings
         this.roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
-        
+
         this.placeComponents();
-        
+
         //set level on pane
         this.orderComponents(target, this.roomFace, indicators);
 
@@ -190,21 +190,24 @@ public final class Room {
 
     //change the state of the room based on mouse click
     private void changeState() {
-        String search = "search";
-        String peek = "peek";
-        if (search.equals(Room.state)) { // search state
+        if ("search".equals(Room.state)) {   // search state
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
             for (Indicator indicator : indicators) {
                 roomPane.moveToBack(indicator);
             }
-        } else if (peek.equals(Room.state)) { // peek state
+            Room.state = "";
+            if ("target".equals(target.getName())) {
+                System.out.println("Found: " + target.getName());
+            }
+
+        } else if ("peek".equals(Room.state)) {     // peek state
             for (Indicator indicator : indicators) {
                 roomPane.moveToFront(indicator);
             }
             roomPane.moveToBack(roomFace);
             roomPane.moveToBack(target);
-        } else {  // default state
+        } else {                                    // default state
             roomPane.moveToFront(roomFace);
         }
     }
