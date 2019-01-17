@@ -178,7 +178,7 @@ public final class Room {
     }
 
     //ArrayList for room labels
-    public ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
+    private ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
         ArrayList list = new ArrayList();
         list.add(roomFace);
         list.add(target);
@@ -189,7 +189,7 @@ public final class Room {
     }
 
     //change the state of the room based on mouse click
-    public void changeState() {
+    private void changeState() {
         String search = "search";
         String peek = "peek";
         if (search.equals(Room.state)) { // search state
@@ -210,8 +210,8 @@ public final class Room {
     }
 
     //place component levels on teh 
-    public void placeComponents() {
-        Settings s = new Settings();
+    private void placeComponents() {
+        ComponentSettings s = new ComponentSettings();
 
         Point originP = new Point(s.getOrigin(), s.getOrigin() * 2);
         Point buttonOrigin = new Point(s.getRfW() - (s.getBtnW() * 2), s.getRfH() + s.getOrigin());

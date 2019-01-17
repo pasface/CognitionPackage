@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  * @author nikki
  */
-public class Settings extends Point {
+public class ComponentSettings extends Point {
 
     //component placement vars
     private int rfH = 268;
@@ -78,4 +78,9 @@ public class Settings extends Point {
         this.offset = offset;
     }
 
+    
+    //add resize code here
+    public void resize(int x, int y){
+        
+    }
 }
