@@ -14,13 +14,13 @@ import java.awt.Point;
 public class Settings extends Point {
 
     //component placement vars
-    int rfH = 268;
-    int rfW = 580;
-    int itemHW = 140;
-    int btnW = 85;
-    int btnH = 30;
-    int origin = 10;
-    int offset = 40;
+    private int rfH = 268;
+    private int rfW = 580;
+    private int itemHW = 140;
+    private int btnW = 85;
+    private int btnH = 30;
+    private int origin = 10;
+    private int offset = 40;
 
     public int getRfH() {
         return rfH;

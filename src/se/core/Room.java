@@ -213,17 +213,17 @@ public final class Room {
     public void placeComponents() {
         Settings s = new Settings();
 
-        Point originP = new Point(s.origin, s.origin * 2);
-        Point buttonOrigin = new Point(s.rfW - (s.btnW * 2), s.rfH + s.origin);
+        Point originP = new Point(s.getOrigin(), s.getOrigin() * 2);
+        Point buttonOrigin = new Point(s.getRfW() - (s.getBtnW() * 2), s.getRfH() + s.getOrigin());
 
         //set bounds of components
-        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + s.origin * 2), s.btnW, s.btnH);
-        searchButton.setBounds((buttonOrigin.x + s.btnW + 10), (buttonOrigin.y + s.origin * 2), s.btnW, s.btnH);
-        roomFace.setBounds(originP.x, originP.y, s.rfW, s.rfH);
-        target.setBounds((originP.x + s.offset), (originP.y + s.offset), s.itemHW, s.itemHW);
+        peekButton.setBounds(buttonOrigin.x, (buttonOrigin.y + s.getOrigin() * 2), s.getBtnW(), s.getBtnH());
+        searchButton.setBounds((buttonOrigin.x + s.getBtnW() + 10), (buttonOrigin.y + s.getOrigin() * 2), s.getBtnW(), s.getBtnH());
+        roomFace.setBounds(originP.x, originP.y, s.getRfW(), s.getRfH());
+        target.setBounds((originP.x + s.getOffset()), (originP.y + s.getOffset()), s.getItemHW(), s.getItemHW());
         for (Indicator indicator : indicators) {
-            int indiOffset = s.itemHW * indicator.getInId();
-            indicator.setBounds((originP.x + indiOffset), (originP.y + 60), s.itemHW, s.itemHW);
+            int indiOffset = s.getItemHW() * indicator.getInId();
+            indicator.setBounds((originP.x + indiOffset), (originP.y + 60), s.getItemHW(), s.getItemHW());
         }
     }
 
