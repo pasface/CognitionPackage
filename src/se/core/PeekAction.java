@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 public class PeekAction extends AbstractAction implements ActionListener {
 
     //fields
-    private static final int PEEK = 10, PEEKDURATION = 2000;
+    private static final int PEEK = new ComponentSettings().getPEEKS(), PEEKDURATION = 2000;
     private ImageIcon icon;
     private JButton btn;
     public Timer timer = new Timer();

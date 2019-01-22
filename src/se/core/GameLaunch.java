@@ -21,28 +21,27 @@ import javax.swing.JPanel;
  */
 public class GameLaunch {
     
-    private static final JFrame frame = new MyFrame();
+    private static final JFrame FRAME = new MyFrame();
     private static JPanel gamePanel = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
 
     public static void main(String[] args) {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout());
+        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FRAME.setLayout(new GridLayout());
         introPanel = new IntroScreen(new JPanel());
-        frame.add(introPanel);
-        frame.add(gamePanel);
-        frame.setVisible(true);
+        FRAME.add(introPanel);
+        FRAME.add(gamePanel);
+        FRAME.setVisible(true);
     }
 
     public static void launch(){
         gamePanel.setVisible(false);
-        frame.remove(gamePanel);
-        if (isB()==true){
+        FRAME.remove(gamePanel);
+        if (isBool()==true){
             ComponentSettings cs = new ComponentSettings();
             //remove intro screen
-            introPanel.setVisible(false);
-            frame.remove(introPanel);
+            FRAME.remove(introPanel);
             gamePanel = new JPanel();
             GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
             roomLayout.setHgap(cs.getGap());
@@ -52,19 +51,19 @@ public class GameLaunch {
             GameId.setGameId("src/files/file.xml");
             Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
             System.out.println(g.toString());
-            frame.add(gamePanel);
-            frame.validate();
-            setB(false);
+            FRAME.add(gamePanel);
+            FRAME.validate();
+            setBool(false);
         } else {
-            frame.validate();
+            FRAME.validate();
         }
     }
     
-    public static void setB(boolean b) {
+    public static void setBool(boolean b) {
         GameLaunch.b = b;
     }
 
-    public static boolean isB() {
+    public static boolean isBool() {
         return b;
     }
     

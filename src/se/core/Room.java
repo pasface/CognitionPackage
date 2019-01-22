@@ -5,7 +5,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -59,7 +58,7 @@ public final class Room {
         panel.add(this.roomPane);
     }
 
-    // getters and setters
+    // getters
     public ArrayList<Indicator> getIndicator() {
         return indicators;
     }
@@ -88,7 +87,8 @@ public final class Room {
     public SearchButton getSearchButton() {
         return searchButton;
     }
-
+    
+    //setters
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
     }
@@ -106,7 +106,7 @@ public final class Room {
         boolean b = false;
         // while loop to randomize target location
         while (currentRoom < totalRooms) {
-            int randInt = RAND.nextInt(3);
+            int randInt = RAND.nextInt(2);
             ArrayList indicatorList;
             // randomly place a target into a roomArray 
             // (if no target built, 50% chancee to build a target in current roomArray
@@ -204,12 +204,6 @@ public final class Room {
                 roomPane.moveToBack(indicator);
             }
             Room.state = "";
-            if ("target".equals(target.getName())) {
-                System.out.println("Found: " + target.getName());
-                //remove buttons
-
-            }
-
         } else if ("peek".equals(Room.state)) {     // peek state
             for (Indicator indicator : indicators) {
                 roomPane.moveToFront(indicator);

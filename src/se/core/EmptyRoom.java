@@ -14,10 +14,10 @@ import javax.swing.JLabel;
  */
 public class EmptyRoom extends JLabel {
 
-    //build empty room and set default icon
+    //build empty room and set default icon&name
     public EmptyRoom() {
         super.setIcon(IconFinder.setIconFinder("default"));
-        super.setBorder(BorderFactory.createTitledBorder(this.getName()));
+        super.setBorder(BorderFactory.createTitledBorder(super.getName()));
     }
 
     @Override

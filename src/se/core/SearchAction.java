@@ -18,19 +18,19 @@ import javax.swing.JLabel;
  */
 public class SearchAction extends AbstractAction {
 
-    //
-    private static final int SEARCH = 100;
+    //fields
+    private static final int SEARCH = new ComponentSettings().getSEARCH();
     private ImageIcon icon;
     private JButton btn;
     private final String stateName = "search";
 
-    //
+    //constructor
     public SearchAction(String shortDescription) {
         super();
         super.putValue(SHORT_DESCRIPTION, shortDescription);
     }
 
-    //
+    //button action
     @Override
     public void actionPerformed(ActionEvent e) {
         Game.setTotal(SEARCH);
@@ -41,9 +41,8 @@ public class SearchAction extends AbstractAction {
         Room r = Game.getRoom(Integer.parseInt(name) - 1);
         
         //cancel peek timer
-        PeekAction p = r.getPeekButton().a;
+        PeekAction p = r.getPeekButton().getA();
         p.timer.cancel();
-        
         r.setState(stateName);
         Target target = r.getTarget();
         JLabel roomface = r.getRoomFace();
