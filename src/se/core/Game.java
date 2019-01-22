@@ -23,12 +23,12 @@ public class Game {
     private static final JLabel displayTotal = new JLabel();
     private static final JLabel displaySearchCount = new JLabel();
     private static final JLabel displayPeekCount = new JLabel();
-    
+
     // constructor
     public Game(int numberOfRooms, int id, JPanel panel) {
         // set Game id
         this.id = id;
-        // generate rooms (total number of rooms, swing frame)
+        // generate rooms
         roomArray = Room.roomArrayGenerator(numberOfRooms, panel);
         JPanel feedback = new JPanel();
         setDisplayTotal();
@@ -39,21 +39,20 @@ public class Game {
         feedback.add(displaySearchCount);
         feedback.setLayout(new GridLayout());
         panel.add(feedback);
-        //append xml file with new game info
     }
-    
+
     public static void setDisplayTotal(){
         displayTotal.setText("Total: " + total);
-    }    
-    
+    }
+
     public static void setDisplaySearchCount(){
         displaySearchCount.setText("Count Search: " + countSearch);
     }
-    
+
     public static void setDisplayPeekCount(){
         displayPeekCount.setText("Count Peek: "  + countPeek);
     }
-    
+
     // getters
     public static ArrayList<Room> getRoomArray() {
         return roomArray;
@@ -62,14 +61,15 @@ public class Game {
     public int getId() {
         return id;
     }
-    
+
     public static Room getRoom(int num){
         return roomArray.get(num);
     }
-    
+
     public static int getRoomId(int num){
         return roomArray.get(num).getRoomId();
     }
+
     // setters
     public void setId(int id) {
         this.id = id;
@@ -101,12 +101,10 @@ public class Game {
         Game.total += total;
         setDisplayTotal();
     }
-    
 
-    
     @Override
     public String toString() {
         return "Game{ \n" + "id=" + id + ",\n " + roomArray.toString() +'}';
     }
-    
+
 }
