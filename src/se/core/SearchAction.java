@@ -52,7 +52,9 @@ public class SearchAction extends AbstractAction {
         r.setRoomFaceIcon(icon);
         int i = r.getTarget().getTargetId();
         r.getPeekButton().setVisible(false);
+        r.getSearchButton().setVisible(false);
         if (i == 1) {
+            
             System.out.println("target found.");
         }
     }

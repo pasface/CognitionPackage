@@ -39,17 +39,18 @@ public class GameLaunch {
         gamePanel.setVisible(false);
         frame.remove(gamePanel);
         if (isB()==true){
+            ComponentSettings cs = new ComponentSettings();
             //remove intro screen
             introPanel.setVisible(false);
             frame.remove(introPanel);
             gamePanel = new JPanel();
-            GridLayout roomLayout = new GridLayout(3, 2);
-            roomLayout.setHgap(7);
-            roomLayout.setVgap(7);
+            GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+            roomLayout.setHgap(cs.getGap());
+            roomLayout.setVgap(cs.getGap());
             gamePanel.setLayout(roomLayout);
             gamePanel.setVisible(true);
             GameId.setGameId("src/files/file.xml");
-            Game g = new Game(6, GameId.getGameId(), gamePanel);
+            Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
             System.out.println(g.toString());
             frame.add(gamePanel);
             frame.validate();

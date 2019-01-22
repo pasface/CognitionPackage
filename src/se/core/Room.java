@@ -78,6 +78,11 @@ public final class Room {
         return peekButton;
     }
 
+    public PeekButton getPeekButtonById(int id) {
+        
+        return peekButton;
+    }
+
     public SearchButton getSearchButton() {
         return searchButton;
     }
@@ -190,7 +195,7 @@ public final class Room {
 
     //change the state of the room based on mouse click
     private void changeState() {
-        if ("search".equals(Room.state)) {   // search state
+        if ("search".equals(Room.state)) {          // search state
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
             for (Indicator indicator : indicators) {
@@ -199,6 +204,8 @@ public final class Room {
             Room.state = "";
             if ("target".equals(target.getName())) {
                 System.out.println("Found: " + target.getName());
+                //remove buttons
+
             }
 
         } else if ("peek".equals(Room.state)) {     // peek state
@@ -207,6 +214,7 @@ public final class Room {
             }
             roomPane.moveToBack(roomFace);
             roomPane.moveToBack(target);
+            Room.state = "";
         } else {                                    // default state
             roomPane.moveToFront(roomFace);
         }
