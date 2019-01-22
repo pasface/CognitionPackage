@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -27,6 +28,7 @@ public final class Room {
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
     private final ArrayList<Indicator> indicators;
+    
     private final Target target;
     private final int roomId;
     private static String state = "";
@@ -45,7 +47,7 @@ public final class Room {
 
         //search settings
         this.searchButton = new SearchButton(id);
-
+        
         //layered pane settings
         this.roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
 

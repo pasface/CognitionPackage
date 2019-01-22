@@ -54,7 +54,11 @@ public class SearchAction extends AbstractAction {
         r.getPeekButton().setVisible(false);
         r.getSearchButton().setVisible(false);
         if (i == 1) {
-            
+            for (int x=0; x<Game.getPeek_buttons().size(); x++){
+                Game.getPeek_buttons().get(x).setVisible(false);
+                Game.getSearch_buttons().get(x).setVisible(false);
+            }
+
             System.out.println("target found.");
         }
     }
