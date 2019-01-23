@@ -5,6 +5,7 @@
  */
 package se.core;
 
+import se.stuff.XMLReader;
 import java.util.Scanner;
 
 /**
