@@ -252,6 +252,6 @@ public final class Room {
     //toString
     @Override
     public String toString() {
-        return "Room{" + "Rm id=" + roomId + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
+        return "Room{" + "Room Id = " + roomId + ",  Target = " + target.toString() + ",  Indicators = " + indicators.toString() + "    \n";
     }
 }

@@ -83,7 +83,6 @@ public class Game {
         Game.displayTotal();
         Game.displaySearchCount();
         Game.displayPeekCount();
-
     }
 
     public static void displayTotal() {
