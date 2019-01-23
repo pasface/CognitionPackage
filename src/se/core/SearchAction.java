@@ -33,8 +33,8 @@ public class SearchAction extends AbstractAction {
     //button action
     @Override
     public void actionPerformed(ActionEvent e) {
-        Game.setTotal(SEARCH);
-        Game.setCountSearch();
+        Game.incrementTotal(SEARCH);
+        Game.incrementCountSearch();
         icon = IconFinder.setIconFinder(stateName);
         btn = (JButton) e.getSource();
         String name = btn.getName();

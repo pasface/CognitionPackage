@@ -50,6 +50,7 @@ public class GameLaunch {
             gamePanel.setVisible(true);
             GameId.setGameId("src/files/file.xml");
             Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
+            Game.resetCounts();
             System.out.println(g.toString());
             FRAME.add(gamePanel);
             FRAME.validate();

@@ -37,8 +37,8 @@ public class PeekAction extends AbstractAction implements ActionListener {
     //Action events
     @Override
     public void actionPerformed(ActionEvent e) {
-        Game.setTotal(PEEK);
-        Game.setCountPeek();
+        Game.incrementTotal(PEEK);
+        Game.incrementCountPeek();
         resetLabels("peek", e);
         int dingus = Integer.parseInt(btn.getName()) -1;
         //if searchbtn clicked cancel timer

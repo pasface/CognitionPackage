@@ -39,9 +39,9 @@ public class Game {
         }
 
         JPanel feedback = new JPanel();
-        setDisplayTotal();
-        setDisplaySearchCount();
-        setDisplayPeekCount();
+        displayTotal();
+        displaySearchCount();
+        displayPeekCount();
         feedback.add(DISPLAY_TOTAL);
         feedback.add(DISPLAY_PEEK_COUNT);
         feedback.add(DISPLAY_SEARCH_COUNT);
@@ -63,31 +63,54 @@ public class Game {
     }
 
     // setters
-    public static void setCountSearch() {
-        Game.countSearch += 1;
-        setDisplaySearchCount();
+    public static void setCountSearch(int countSearch) {
+        Game.countSearch = countSearch;
     }
 
-    public static void setDisplayTotal() {
-        DISPLAY_TOTAL.setText("Total: " + total);
-    }
-
-    public static void setDisplaySearchCount() {
-        DISPLAY_SEARCH_COUNT.setText("Count Search: " + countSearch);
-    }
-
-    public static void setDisplayPeekCount() {
-        DISPLAY_PEEK_COUNT.setText("Count Peek: " + countPeek);
-    }
-
-    public static void setCountPeek() {
-        Game.countPeek += 1;
-        setDisplayPeekCount();
+    public static void setCountPeek(int countPeek) {
+        Game.countPeek = countPeek;
     }
 
     public static void setTotal(int total) {
+        Game.total = total;
+    }
+
+    //class methods
+    public static void resetCounts() {
+        Game.total = 0;
+        Game.countPeek = 0;
+        Game.countSearch = 0;
+        Game.displayTotal();
+        Game.displaySearchCount();
+        Game.displayPeekCount();
+
+    }
+
+    public static void displayTotal() {
+        DISPLAY_TOTAL.setText("Total: " + total);
+    }
+
+    public static void displaySearchCount() {
+        DISPLAY_SEARCH_COUNT.setText("Count Search: " + countSearch);
+    }
+
+    public static void displayPeekCount() {
+        DISPLAY_PEEK_COUNT.setText("Count Peek: " + countPeek);
+    }
+
+    public static void incrementCountPeek() {
+        Game.countPeek += 1;
+        displayPeekCount();
+    }
+
+    public static void incrementCountSearch() {
+        Game.countSearch += 1;
+        displaySearchCount();
+    }
+
+    public static void incrementTotal(int total) {
         Game.total += total;
-        setDisplayTotal();
+        displayTotal();
     }
 
     @Override
