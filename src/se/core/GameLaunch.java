@@ -12,19 +12,30 @@ TO DO:  Fix graphics.
  */
 package se.core;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 /**
  *
  * @author nikki
  */
 public class GameLaunch {
-    
+
     private static final JFrame FRAME = new MyFrame();
     private static JPanel gamePanel = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
+    private static final String ROOM_XML = "./room-jaxb.xml";
 
     public static void main(String[] args) {
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,12 +44,13 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
+
     }
 
-    public static void launch(){
+    public static void launch() throws JAXBException, IOException {
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
-        if (isBool()==true){
+        if (isBool() == true) {
             ComponentSettings cs = new ComponentSettings();
             //remove intro screen
             FRAME.remove(introPanel);
@@ -55,11 +67,23 @@ public class GameLaunch {
             FRAME.add(gamePanel);
             FRAME.validate();
             setBool(false);
+
+            // create JAXB context and instantiate marshaller
+            JAXBContext context = JAXBContext.newInstance(Room.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            // Write to System.out
+            m.marshal(gamePanel, System.out);
+
+            // Write to File
+            m.marshal(gamePanel, new File(ROOM_XML));
+
         } else {
             FRAME.validate();
         }
     }
-    
+
     public static void setBool(boolean b) {
         GameLaunch.b = b;
     }
@@ -67,5 +91,5 @@ public class GameLaunch {
     public static boolean isBool() {
         return b;
     }
-    
+
 }

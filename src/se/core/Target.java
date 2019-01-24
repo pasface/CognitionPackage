@@ -13,6 +13,9 @@ import javax.swing.JLabel;
  * @author nikki
  */
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "target")
 public final class Target extends JLabel{
     
     private int targetId;
@@ -25,7 +28,7 @@ public final class Target extends JLabel{
     public Target(int x, int y) { 
         String icon = "target";
         super.setName(icon);
-        super.setIcon(IconFinder.setIconFinder(icon));
+        //super.setIcon(IconFinder.setIconFinder(icon));
         this.targetId = 1;
     }
 

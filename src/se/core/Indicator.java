@@ -12,7 +12,9 @@ import javax.swing.JLabel;
  *
  * @author nikki
  */
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "indicator")
 public final class Indicator extends JLabel {
     private int inid;
     

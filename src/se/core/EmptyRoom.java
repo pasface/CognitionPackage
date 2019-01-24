@@ -7,11 +7,13 @@ package se.core;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author nikki
  */
+@XmlRootElement(namespace = "room")
 public class EmptyRoom extends JLabel {
 
     //build empty room and set default icon&name

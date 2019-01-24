@@ -8,6 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,20 +23,32 @@ import javax.swing.JPanel;
  * @author nikki
  */
 public final class Room {
-
+    // XmLElementWrapper generates a wrapper element around XML representation
+    //  @XmlElementWrapper(name = "rooms")
+    //@XmlType(propOrder = { "roomFace", "target", "indicator" })
     // fields
     private static final SecureRandom RAND = new SecureRandom();
     private final PeekButton peekButton;
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
+
     private final ArrayList<Indicator> indicators;
-    
+    // XmlElement sets the name of the entities
+    @XmlElement(name = "target")
     private final Target target;
     private final int roomId;
     private static String state = "";
 
     // constructor
+    public Room() {
+        this.peekButton = getPeekButton();
+        this.searchButton = getSearchButton();
+        this.indicators = new ArrayList<>();
+        this.target = new Target();
+        this.roomId = getRoomId();
+    }
+
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
 
@@ -46,7 +62,7 @@ public final class Room {
 
         //search settings
         this.searchButton = new SearchButton(id);
-        
+
         //layered pane settings
         this.roomPane.setBorder(BorderFactory.createTitledBorder("Room " + id));
 
@@ -80,14 +96,14 @@ public final class Room {
     }
 
     public PeekButton getPeekButtonById(int id) {
-        
+
         return peekButton;
     }
 
     public SearchButton getSearchButton() {
         return searchButton;
     }
-    
+
     //setters
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
@@ -113,6 +129,7 @@ public final class Room {
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target(30, 30);
+                t1.setIcon(IconFinder.setIconFinder("target"));
                 indicatorList = modifiedIndicatorList(1);
                 r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
                 currentRoom++;
@@ -120,7 +137,6 @@ public final class Room {
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
-                indicatorList = modifiedIndicatorList(0);
                 r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
                 currentRoom++;
             }
