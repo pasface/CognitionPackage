@@ -5,6 +5,10 @@
  */
 package se.core;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.bind.JAXBException;
 import se.core.GameLaunch;
 /**
  *
@@ -109,9 +113,15 @@ public class MyFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
-        GameLaunch g = new GameLaunch();
-        g.setBool(true);
-        g.launch();
+        try {
+            GameLaunch g = new GameLaunch();
+            g.setBool(true);
+            g.launch();
+        } catch (JAXBException ex) {
+            System.out.println("JAXB e");
+        } catch (IOException ex) {
+            System.out.println("IO e");
+        }
     }//GEN-LAST:event_jMenuNewActionPerformed
 
     private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed

@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 public final class Room {
     // XmLElementWrapper generates a wrapper element around XML representation
-    //  @XmlElementWrapper(name = "rooms")
-    //@XmlType(propOrder = { "roomFace", "target", "indicator" })
+    // @XmlElementWrapper(name = "rooms")
+    // @XmlType(propOrder = { "roomFace", "target", "indicator" })
     // fields
     private static final SecureRandom RAND = new SecureRandom();
     private final PeekButton peekButton;
@@ -128,7 +128,7 @@ public final class Room {
             // (if no target built, 50% chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
-                Target t1 = new Target(30, 30);
+                Target t1 = new Target("target");
                 t1.setIcon(IconFinder.setIconFinder("target"));
                 indicatorList = modifiedIndicatorList(1);
                 r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
@@ -148,11 +148,11 @@ public final class Room {
     private static ArrayList<Indicator> indicatorList() {
         ArrayList<Indicator> indicators = new ArrayList();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(0, 0, "1");
-        Indicator i1 = new Indicator(0, 0, "2");
-        Indicator i2 = new Indicator(0, 0, "3");
-        Indicator i3 = new Indicator(0, 0, "4");
-        Indicator i4 = new Indicator(0, 0, "5");
+        Indicator i0 = new Indicator("1");
+        Indicator i1 = new Indicator("2");
+        Indicator i2 = new Indicator("3");
+        Indicator i3 = new Indicator("4");
+        Indicator i4 = new Indicator("5");
 
         // add indicator objects to indicators list
         indicators.add(i0);

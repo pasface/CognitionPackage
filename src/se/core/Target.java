@@ -1,7 +1,8 @@
 package se.core;
 
 import javax.swing.JLabel;
-
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,23 +13,18 @@ import javax.swing.JLabel;
  *
  * @author nikki
  */
+@XmlRootElement(name = "Target")
+public final class Target extends JLabel {
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "target")
-public final class Target extends JLabel{
-    
     private int targetId;
-    
+
     public Target() {
         super.setName("");
         this.targetId = 0;
     }
 
-    public Target(int x, int y) { 
-        String icon = "target";
-        super.setName(icon);
-        //super.setIcon(IconFinder.setIconFinder(icon));
+    public Target(String name) {
+        super.setName(name);
         this.targetId = 1;
     }
 
@@ -36,6 +32,7 @@ public final class Target extends JLabel{
         return targetId;
     }
 
+    @XmlElement(name = "Target_ID")
     public void setTargetId(int targetId) {
         this.targetId = targetId;
     }
@@ -44,5 +41,5 @@ public final class Target extends JLabel{
     public String toString() {
         return '{' + getName() + '}';
     }
-    
+
 }

@@ -1,7 +1,7 @@
 package se.core;
 
 import javax.swing.JLabel;
-
+import javax.xml.bind.annotation.XmlRootElement;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,21 +12,14 @@ import javax.swing.JLabel;
  *
  * @author nikki
  */
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "indicator")
+//@XmlRootElement(name = "indicator")
 public final class Indicator extends JLabel {
-    private int inid;
-    
-    public Indicator() {
-        super.setName("");
-    }
 
-    public Indicator(int x, int y, String name) {
-        inid = this.getInId();
-        super.setName(""+name);
-        super.setSize(100,100);
-        super.setLocation(x, y);
+    private int inid;
+
+    public Indicator(String name) {
+        super.setName(name);
+        super.setSize(100, 100);
         super.setIcon(IconFinder.setIconFinder(name));
     }
 
@@ -42,5 +35,5 @@ public final class Indicator extends JLabel {
     public String toString() {
         return '{' + getName() + '}';
     }
-    
+
 }

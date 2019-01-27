@@ -69,15 +69,15 @@ public class GameLaunch {
             setBool(false);
 
             // create JAXB context and instantiate marshaller
-            JAXBContext context = JAXBContext.newInstance(Room.class);
+            JAXBContext context = JAXBContext.newInstance(Target.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             // Write to System.out
-            m.marshal(gamePanel, System.out);
+            m.marshal(g, System.out);
 
             // Write to File
-            m.marshal(gamePanel, new File(ROOM_XML));
+            //m.marshal(g, new File(ROOM_XML));
 
         } else {
             FRAME.validate();
