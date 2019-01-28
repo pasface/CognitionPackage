@@ -69,7 +69,7 @@ public class GameLaunch {
             setBool(false);
 
             // create JAXB context and instantiate marshaller
-            JAXBContext context = JAXBContext.newInstance(Target.class);
+            JAXBContext context = JAXBContext.newInstance(Game.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 

@@ -22,24 +22,27 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
+//@XmlRootElement(name = "Room")
+//@XmlType(propOrder = { "roomName"})
 public final class Room {
-    // XmLElementWrapper generates a wrapper element around XML representation
-    // @XmlElementWrapper(name = "rooms")
-    // @XmlType(propOrder = { "roomFace", "target", "indicator" })
+    // XmLElem@XmlType(propOrder = { "roomFace", "target"})entWrapper generates a wrapper element around XML representation
+    //@XmlElementWrapper(name = "roomList")
+    
     // fields
     private static final SecureRandom RAND = new SecureRandom();
     private final PeekButton peekButton;
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
-
     private final ArrayList<Indicator> indicators;
-    // XmlElement sets the name of the entities
-    @XmlElement(name = "target")
     private final Target target;
     private final int roomId;
     private static String state = "";
-
+    
+    // XmlElement sets the name of the entities
+    //@XmlElement(name = "roomName")
+    private String roomName = roomFace.getName();
+    
     // constructor
     public Room() {
         this.peekButton = getPeekButton();

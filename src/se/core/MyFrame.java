@@ -118,7 +118,7 @@ public class MyFrame extends javax.swing.JFrame {
             g.setBool(true);
             g.launch();
         } catch (JAXBException ex) {
-            System.out.println("JAXB e");
+            System.out.println(ex);
         } catch (IOException ex) {
             System.out.println("IO e");
         }
