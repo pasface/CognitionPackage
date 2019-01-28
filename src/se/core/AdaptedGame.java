@@ -17,11 +17,11 @@ class AdaptedGame {
     private String targetName;
     
     @XmlAttribute
-    public String getName() {
+    public String getRoomName() {
         return roomName;
     }
 
-    public void setName(String name) {
+    public void setRoomName(String name) {
         this.roomName = name;
     }
 

@@ -5,6 +5,7 @@
  */
 package se.core;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
@@ -21,9 +22,10 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
     }
 
     @Override
-    public AdaptedGame marshal(Game v) throws Exception {
+    public AdaptedGame marshal(Game game) throws Exception {
         AdaptedGame adaptedGame = new AdaptedGame();
-        adaptedGame.setName(adaptedGame.getName());
+        Room r = Game.getRoom(Integer.parseInt(game.getClass().getName()) - 1);
+        adaptedGame.setRoomName(game.getClass().getName());
         return adaptedGame;
     }
 

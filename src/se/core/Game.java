@@ -32,7 +32,7 @@ public class Game {
     private static final ArrayList<PeekButton> PEEK_BUTTONS = new ArrayList();
     private static final ArrayList<SearchButton> SEARCH_BUTTONS = new ArrayList();
 
-    // constructor
+    // constructors
     public Game(){}
     
     public Game(int numberOfRooms, int id, JPanel panel) {
