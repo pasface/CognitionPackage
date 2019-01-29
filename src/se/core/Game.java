@@ -22,8 +22,8 @@ public class Game {
 
     // fields
     private int id;
-    //@XmlElementWrapper(name = "roomList")
-    @XmlElement
+    //@XmlElementWrapper(name = "roomListName")
+    //private static ArrayList<String> roomListName;
     private static ArrayList<Room> roomList;
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel DISPLAY_TOTAL = new JLabel();
@@ -45,6 +45,7 @@ public class Game {
             Game.PEEK_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getPeekButton());
             Game.SEARCH_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getSearchButton());
         }
+        
         //feedback settings
         JPanel feedback = new JPanel();
         displayTotal();

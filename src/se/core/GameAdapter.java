@@ -5,7 +5,6 @@
  */
 package se.core;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

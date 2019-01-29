@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author nikki
  */
 //@XmlRootElement(name = "Room")
-//@XmlType(propOrder = { "roomName"})
+@XmlType(propOrder = { "roomName"})
 public final class Room {
     // XmLElem@XmlType(propOrder = { "roomFace", "target"})entWrapper generates a wrapper element around XML representation
     //@XmlElementWrapper(name = "roomList")
@@ -40,7 +40,7 @@ public final class Room {
     private static String state = "";
     
     // XmlElement sets the name of the entities
-    //@XmlElement(name = "roomName")
+    @XmlElement(name = "roomName")
     private String roomName = roomFace.getName();
     
     // constructor
