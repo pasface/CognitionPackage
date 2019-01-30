@@ -121,6 +121,8 @@ public class MyFrame extends javax.swing.JFrame {
             System.out.println(ex);
         } catch (IOException ex) {
             System.out.println("IO e");
+        } catch (Exception ex) {
+            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuNewActionPerformed
 

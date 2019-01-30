@@ -10,6 +10,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -38,19 +39,11 @@ public final class Room {
     private static String state = "";
     @XmlElement(name = "target")
     private String targetName;
-    @XmlElement(name = "indicator")
-    private String indicatorName;
+    //@XmlElementWrapper(name = "indicators")
+    //@XmlElement(name = "indi")
+    private ArrayList<String> indicatorName;
 
     // constructor
-    public Room() {
-        this.peekButton = getPeekButton();
-        this.searchButton = getSearchButton();
-        this.indicators = new ArrayList<>();
-        this.target = new Target();
-        this.roomId = getRoomId();
-        this.targetName = target.getName();
-    }
-
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
 
@@ -59,9 +52,11 @@ public final class Room {
         this.target = target;
         this.roomId = id;
         this.targetName = target.getName();
-        for(Indicator indi : indicators){
-            this.indicatorName = indi.getName();
-        }
+        //this.indicatorName.add("dinglehopper");
+        //for(Indicator indi : indicators){
+            
+          //  this.indicatorName.add(indi.getName());
+       // }
 
         //peek settings
         this.peekButton = new PeekButton(id);
@@ -121,7 +116,7 @@ public final class Room {
 
     // method to create and populate a room array
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
-        ArrayList<Room> r = new ArrayList();
+        ArrayList<Room> r = new ArrayList<Room>();
         // create variable for roomArray number
         int currentRoom = 0;
         // create a bool to check if target exists
@@ -129,7 +124,7 @@ public final class Room {
         // while loop to randomize target location
         while (currentRoom < totalRooms) {
             int randInt = RAND.nextInt(2);
-            ArrayList indicatorList;
+            ArrayList<Indicator> indicatorList;
             // randomly place a target into a roomArray 
             // (if no target built, 50% chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
@@ -152,7 +147,7 @@ public final class Room {
 
     // ArrayList that stores all possible Indicators
     private static ArrayList<Indicator> indicatorList() {
-        ArrayList<Indicator> indicators = new ArrayList();
+        ArrayList<Indicator> indicators = new ArrayList<Indicator>();
         // create indicator objects (location x, location y, imagename)
         Indicator i0 = new Indicator("1");
         Indicator i1 = new Indicator("2");
@@ -172,7 +167,7 @@ public final class Room {
 
     // ArrayList that builds and stores indicators for a room
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
-        ArrayList<Indicator> modList = new ArrayList();
+        ArrayList<Indicator> modList = new ArrayList<Indicator>();
         int randInt;
 
         if (i == 0) {
@@ -208,7 +203,7 @@ public final class Room {
 
     //ArrayList for room labels
     private ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        ArrayList list = new ArrayList();
+        ArrayList<JLabel> list = new ArrayList<JLabel>();
         list.add(roomFace);
         list.add(target);
         for (Indicator indicator : indicators) {
