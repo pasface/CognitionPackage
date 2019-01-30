@@ -48,7 +48,7 @@ public final class Room {
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
         this.target = new Target();
-        this.roomId = 5;
+        this.roomId = 0;
         this.targetName = "";
     }
     

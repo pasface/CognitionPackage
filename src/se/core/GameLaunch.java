@@ -66,6 +66,8 @@ public class GameLaunch {
 //                    }
 //                });
 //        System.out.println(game.toString());
+        
+        
     }
 
     public static void launch() throws JAXBException, IOException, Exception {

@@ -7,23 +7,21 @@
             </indicatorList>
         </room>
         <room roomId="2">
-            <indicatorList>
-                <indicatorName>4</indicatorName>
-            </indicatorList>
-        </room>
-        <room roomId="3">
             <indicatorList/>
         </room>
-        <room roomId="4">
+        <room roomId="3">
             <target>target</target>
             <indicatorList>
+                <indicatorName>1</indicatorName>
                 <indicatorName>4</indicatorName>
-                <indicatorName>5</indicatorName>
             </indicatorList>
+        </room>
+        <room roomId="4">
+            <indicatorList/>
         </room>
         <room roomId="5">
             <indicatorList>
-                <indicatorName>1</indicatorName>
+                <indicatorName>5</indicatorName>
             </indicatorList>
         </room>
         <room roomId="6">
