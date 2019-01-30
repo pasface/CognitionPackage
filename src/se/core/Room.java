@@ -49,7 +49,7 @@ public final class Room {
         this.indicators = new ArrayList<>();
         this.target = new Target();
         this.roomId = 0;
-        this.targetName = "";
+        this.targetName = "empty";
     }
     
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {

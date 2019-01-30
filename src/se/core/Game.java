@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Game {
 
     // fields
+    @XmlAttribute(name = "gameId")
     private int id;
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
@@ -33,7 +35,8 @@ public class Game {
     private static final ArrayList<SearchButton> SEARCH_BUTTONS =  new ArrayList<>();
 
     // constructors
-    public Game(){}
+    public Game(){
+    }
     
     public Game(int numberOfRooms, int id, JPanel panel) {
         // set Game id

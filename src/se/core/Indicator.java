@@ -1,7 +1,8 @@
 package se.core;
 
 import javax.swing.JLabel;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author nikki
  */
-//@XmlRootElement(name = "indicator")
+@XmlType(name = "indicator")
 public final class Indicator extends JLabel {
-
+    @XmlAttribute(name = "indicatorId")
     private int inid;
 
     public Indicator(String name) {

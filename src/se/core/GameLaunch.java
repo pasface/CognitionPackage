@@ -11,6 +11,7 @@
  */
 package se.core;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -30,13 +31,13 @@ import javax.xml.transform.stream.StreamSource;
  * @author nikki
  */
 public class GameLaunch {
-
+    
     private static final JFrame FRAME = new MyFrame();
     private static JPanel gamePanel = new JPanel();
     private static boolean b = false;
     private static IntroScreen introPanel;
     private static final String ROOM_XML = "./room-jaxb.xml";
-
+    
     public static void main(String[] args) throws JAXBException {
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FRAME.setLayout(new GridLayout());
@@ -46,14 +47,23 @@ public class GameLaunch {
         FRAME.setVisible(true);
         readFile();
     }
-
+    
     public static void readFile() throws JAXBException {
-        StreamSource source = new StreamSource(ROOM_XML);
-        Unmarshaller u = JAXBContext.newInstance(Game.class).createUnmarshaller();
-        JAXBElement<Game> jaxbObject = u.unmarshal(source, Game.class);
-        Game message = jaxbObject.getValue();
-        System.out.print(message.toString()); // list is empty
+        //getting the xml file to read
+        File file = new File(ROOM_XML);
+        //creating the JAXB context
+        JAXBContext jContext = JAXBContext.newInstance(Game.class);
+        //creating the unmarshall object
+        Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+        //calling the unmarshall method
+        Game g = (Game) unmarshallerObj.unmarshal(file);
+        System.out.print(g.toString());
 
+//        StreamSource source = new StreamSource(ROOM_XML);
+//        Unmarshaller u = JAXBContext.newInstance(Game.class).createUnmarshaller();
+//        JAXBElement<Game> jaxbObject = u.unmarshal(source, Game.class);
+//        Game message = jaxbObject.getValue();
+//        System.out.print(message.toString()); // list is empty
 //        File file = new File(ROOM_XML);
 //        JAXBContext jaxbContext = JAXBContext.newInstance(Game.class);
 //        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -66,10 +76,8 @@ public class GameLaunch {
 //                    }
 //                });
 //        System.out.println(game.toString());
-        
-        
     }
-
+    
     public static void launch() throws JAXBException, IOException, Exception {
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
@@ -105,13 +113,13 @@ public class GameLaunch {
             FRAME.validate();
         }
     }
-
+    
     public static void setBool(boolean b) {
         GameLaunch.b = b;
     }
-
+    
     public static boolean isBool() {
         return b;
     }
-
+    
 }

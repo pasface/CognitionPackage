@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<game>
+<game gameId="6">
     <roomList>
         <room roomId="1">
             <indicatorList>
-                <indicatorName>3</indicatorName>
+                <indicatorName>1</indicatorName>
             </indicatorList>
         </room>
         <room roomId="2">
@@ -12,16 +12,18 @@
         <room roomId="3">
             <target>target</target>
             <indicatorList>
-                <indicatorName>1</indicatorName>
-                <indicatorName>4</indicatorName>
+                <indicatorName>5</indicatorName>
+                <indicatorName>3</indicatorName>
             </indicatorList>
         </room>
         <room roomId="4">
-            <indicatorList/>
+            <indicatorList>
+                <indicatorName>1</indicatorName>
+            </indicatorList>
         </room>
         <room roomId="5">
             <indicatorList>
-                <indicatorName>5</indicatorName>
+                <indicatorName>3</indicatorName>
             </indicatorList>
         </room>
         <room roomId="6">
