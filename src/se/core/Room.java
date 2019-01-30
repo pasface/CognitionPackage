@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /*
@@ -39,7 +38,7 @@ public final class Room {
     private static String state = "";
     @XmlElement(name = "target")
     private final String targetName;
-    @XmlElementWrapper(name = "indicatorName")
+    @XmlElementWrapper(name = "indicatorList")
     @XmlElement(name = "indicatorName")
     private final ArrayList<String> indicatorName = new ArrayList<>();
 

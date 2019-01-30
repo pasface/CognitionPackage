@@ -16,6 +16,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.awt.GridLayout;
+import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -71,7 +72,7 @@ public class GameLaunch {
             m.marshal(g, System.out);
 
             // Write to File
-            //m.marshal(g, new File(ROOM_XML));
+            m.marshal(g, new File(ROOM_XML));
         } else {
             FRAME.validate();
         }
