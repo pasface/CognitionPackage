@@ -38,8 +38,7 @@ public class SearchAction extends AbstractAction {
         icon = IconFinder.setIconFinder(stateName);
         btn = (JButton) e.getSource();
         String name = btn.getName();
-        Game game = new Game();
-        Room r = game.getRoom(Integer.parseInt(name) - 1);
+        Room r = Game.getRoom(Integer.parseInt(name) - 1);
         
         //cancel peek timer
         PeekAction p = r.getPeekButton().getA();

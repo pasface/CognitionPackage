@@ -2,6 +2,7 @@ package se.core;
 
 import javax.swing.JLabel;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +18,8 @@ import javax.xml.bind.annotation.XmlType;
 public final class Indicator extends JLabel {
     @XmlAttribute(name = "indicatorId")
     private int inid;
+    @XmlElement(name = "indiName")
+    private String name;
 
     public Indicator(String name) {
         super.setName(name);

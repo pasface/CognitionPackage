@@ -27,6 +27,7 @@ public class Game {
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
     private ArrayList<Room> roomList;
+    private static ArrayList<Room> roomListStatic;
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel DISPLAY_TOTAL = new JLabel();
     private static final JLabel DISPLAY_SEARCH_COUNT = new JLabel();
@@ -43,6 +44,7 @@ public class Game {
         this.id = id;
         // generate rooms
         roomList = Room.roomArrayGenerator(numberOfRooms, panel);
+        roomListStatic = roomList;
         //add peek/search buttons
         for (int btnNum = 0; btnNum < numberOfRooms; btnNum++) {
             Game.PEEK_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getPeekButton());
@@ -62,8 +64,8 @@ public class Game {
     }
 
     // getters
-    public Room getRoom(int num) {
-        return roomList.get(num);
+    public static Room getRoom(int num) {
+        return roomListStatic.get(num);
     }
 
     public static ArrayList<PeekButton> getPeek_buttons() {
