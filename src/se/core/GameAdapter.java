@@ -2,6 +2,10 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+
+
+Reference: http://blog.bdoughan.com/2010/12/jaxb-and-immutable-objects.html
+
  */
 package se.core;
 
@@ -23,8 +27,9 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
     @Override
     public AdaptedGame marshal(Game game) throws Exception {
         AdaptedGame adaptedGame = new AdaptedGame();
-        Room r = Game.getRoom(Integer.parseInt(game.getClass().getName()) - 1);
-        adaptedGame.setRoomName(game.getClass().getName());
+        String name = ("Room " + game.getRoom(1).getRoomId());
+        adaptedGame.setRoomName(name);
+        adaptedGame.setTargetName(Game.getRoom(1).getTarget().getName());
         return adaptedGame;
     }
 

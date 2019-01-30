@@ -29,4 +29,8 @@ class AdaptedGame {
         return targetName;
     }
 
+    void setTargetName(String name) {
+        this.targetName = name;
+    }
+
 }

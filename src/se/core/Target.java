@@ -1,9 +1,6 @@
 package se.core;
 
 import javax.swing.JLabel;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +11,6 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
-//@XmlType(name = "Target")
 public final class Target extends JLabel {
 
     private int targetId;

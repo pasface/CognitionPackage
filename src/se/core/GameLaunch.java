@@ -3,24 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
-TO DO:  Fix graphics.
-        Set order of visibility.
-        Rework organization.
-        Continue xml stuff.
-        Document everything.
+ TO DO:  Fix graphics.
+ Set order of visibility.
+ Rework organization.
+ Continue xml stuff.
+ Document everything.
         
  */
 package se.core;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,7 +42,7 @@ public class GameLaunch {
 
     }
 
-    public static void launch() throws JAXBException, IOException {
+    public static void launch() throws JAXBException, IOException, Exception {
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
         if (isBool() == true) {
@@ -78,7 +73,6 @@ public class GameLaunch {
 
             // Write to File
             //m.marshal(g, new File(ROOM_XML));
-
         } else {
             FRAME.validate();
         }

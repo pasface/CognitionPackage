@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /*
@@ -22,12 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
-//@XmlRootElement(name = "Room")
-@XmlType(propOrder = { "roomName"})
+@XmlType(name = "room")
 public final class Room {
-    // XmLElem@XmlType(propOrder = { "roomFace", "target"})entWrapper generates a wrapper element around XML representation
-    //@XmlElementWrapper(name = "roomList")
-    
+
     // fields
     private static final SecureRandom RAND = new SecureRandom();
     private final PeekButton peekButton;
@@ -38,11 +33,11 @@ public final class Room {
     private final Target target;
     private final int roomId;
     private static String state = "";
-    
-    // XmlElement sets the name of the entities
-    @XmlElement(name = "roomName")
-    private String roomName = roomFace.getName();
-    
+    @XmlElement(name = "target")
+    private String targetName;
+    @XmlElement(name = "indicator")
+    private String indicatorName;
+
     // constructor
     public Room() {
         this.peekButton = getPeekButton();
@@ -50,6 +45,7 @@ public final class Room {
         this.indicators = new ArrayList<>();
         this.target = new Target();
         this.roomId = getRoomId();
+        this.targetName = "T:" + target.getName();
     }
 
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -59,6 +55,7 @@ public final class Room {
         this.indicators = indicators;
         this.target = target;
         this.roomId = id;
+        this.targetName = "T:" + target.getName();
 
         //peek settings
         this.peekButton = new PeekButton(id);
