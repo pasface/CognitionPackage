@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,7 +22,8 @@ public class Game {
 
     // fields
     private int id;
-    @XmlElementWrapper
+    @XmlElementWrapper(name = "roomList")
+    @XmlElement(name = "room")
     private static ArrayList<Room> roomList;
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel DISPLAY_TOTAL = new JLabel();

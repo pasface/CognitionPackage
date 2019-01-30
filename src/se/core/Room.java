@@ -8,7 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /*
@@ -20,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
-@XmlType(name = "room")
+@XmlType
 public final class Room {
 
     // fields
@@ -31,6 +33,7 @@ public final class Room {
     private final JLayeredPane roomPane = new JLayeredPane();
     private final ArrayList<Indicator> indicators;
     private final Target target;
+    @XmlAttribute(name="roomId")
     private final int roomId;
     private static String state = "";
     @XmlElement(name = "target")
@@ -45,7 +48,7 @@ public final class Room {
         this.indicators = new ArrayList<>();
         this.target = new Target();
         this.roomId = getRoomId();
-        this.targetName = "T:" + target.getName();
+        this.targetName = target.getName();
     }
 
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -55,7 +58,10 @@ public final class Room {
         this.indicators = indicators;
         this.target = target;
         this.roomId = id;
-        this.targetName = "T:" + target.getName();
+        this.targetName = target.getName();
+        for(Indicator indi : indicators){
+            this.indicatorName = indi.getName();
+        }
 
         //peek settings
         this.peekButton = new PeekButton(id);

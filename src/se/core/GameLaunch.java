@@ -4,7 +4,6 @@
  * and open the template in the editor.
 
  TO DO:  Fix graphics.
- Set order of visibility.
  Rework organization.
  Continue xml stuff.
  Document everything.
