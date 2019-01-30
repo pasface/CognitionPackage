@@ -43,6 +43,15 @@ public final class Room {
     private final ArrayList<String> indicatorName = new ArrayList<>();
 
     // constructor
+    public Room(){
+        this.peekButton = new PeekButton(0);
+        this.searchButton = new SearchButton(0);
+        this.indicators = new ArrayList<>();
+        this.target = new Target();
+        this.roomId = 5;
+        this.targetName = "";
+    }
+    
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
 

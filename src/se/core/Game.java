@@ -24,7 +24,7 @@ public class Game {
     private int id;
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
-    private static ArrayList<Room> roomList;
+    private ArrayList<Room> roomList;
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel DISPLAY_TOTAL = new JLabel();
     private static final JLabel DISPLAY_SEARCH_COUNT = new JLabel();
@@ -59,7 +59,7 @@ public class Game {
     }
 
     // getters
-    public static Room getRoom(int num) {
+    public Room getRoom(int num) {
         return roomList.get(num);
     }
 

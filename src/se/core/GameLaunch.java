@@ -19,6 +19,7 @@ import java.awt.GridLayout;
 import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
@@ -32,14 +33,23 @@ public class GameLaunch {
     private static IntroScreen introPanel;
     private static final String ROOM_XML = "./room-jaxb.xml";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException {
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FRAME.setLayout(new GridLayout());
         introPanel = new IntroScreen(new JPanel());
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
+        readFile();
+    }
 
+    public static void readFile() throws JAXBException {
+
+        File file = new File(ROOM_XML);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Game.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Game game = (Game) unmarshaller.unmarshal(file);
+        System.out.println(game.toString());
     }
 
     public static void launch() throws JAXBException, IOException, Exception {

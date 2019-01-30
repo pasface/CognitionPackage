@@ -29,7 +29,7 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
         AdaptedGame adaptedGame = new AdaptedGame();
         String name = ("Room " + game.getRoom(1).getRoomId());
         adaptedGame.setRoomName(name);
-        adaptedGame.setTargetName(Game.getRoom(1).getTarget().getName());
+        //adaptedGame.setTargetName(Game.getRoom(1).getTarget().getName());
         return adaptedGame;
     }
 
