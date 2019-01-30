@@ -33,7 +33,7 @@ public final class Room {
     private final JLayeredPane roomPane = new JLayeredPane();
     private final ArrayList<Indicator> indicators;
     private final Target target;
-    @XmlAttribute(name="roomId")
+    @XmlAttribute(name = "roomId")
     private final int roomId;
     private static String state = "";
     @XmlElement(name = "target")
@@ -43,7 +43,7 @@ public final class Room {
     private final ArrayList<String> indicatorName = new ArrayList<>();
 
     // constructor
-    public Room(){
+    public Room() {
         this.peekButton = new PeekButton(0);
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
@@ -51,7 +51,7 @@ public final class Room {
         this.roomId = 0;
         this.targetName = "empty";
     }
-    
+
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
 
@@ -60,7 +60,7 @@ public final class Room {
         this.target = target;
         this.roomId = id;
         this.targetName = target.getName();
-        for(Indicator indi : indicators){
+        for (Indicator indi : indicators) {
             this.indicatorName.add(indi.getName());
         }
 
@@ -120,7 +120,12 @@ public final class Room {
         Room.state = state;
     }
 
+    public void setTarget() {
+        
+    }
+
     // method to create and populate a room array
+
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
         ArrayList<Room> r = new ArrayList<Room>();
         // create variable for roomArray number
