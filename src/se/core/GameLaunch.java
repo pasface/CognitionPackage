@@ -19,7 +19,11 @@ import java.awt.GridLayout;
 import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventHandler;
+import javax.xml.transform.stream.StreamSource;
 
 /**
  *
@@ -44,12 +48,24 @@ public class GameLaunch {
     }
 
     public static void readFile() throws JAXBException {
+        StreamSource source = new StreamSource(ROOM_XML);
+        Unmarshaller u = JAXBContext.newInstance(Game.class).createUnmarshaller();
+        JAXBElement<Game> jaxbObject = u.unmarshal(source, Game.class);
+        Game message = jaxbObject.getValue();
+        System.out.print(message.toString()); // list is empty
 
-        File file = new File(ROOM_XML);
-        JAXBContext jaxbContext = JAXBContext.newInstance(Game.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        Game game = (Game) unmarshaller.unmarshal(file);
-        System.out.println(game.toString());
+//        File file = new File(ROOM_XML);
+//        JAXBContext jaxbContext = JAXBContext.newInstance(Game.class);
+//        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+//        Game game = (Game) unmarshaller.unmarshal(file);
+//        unmarshaller.setEventHandler(
+//                new ValidationEventHandler() {
+//                    public boolean handleEvent(ValidationEvent event) {
+//                        throw new RuntimeException(event.getMessage(),
+//                                event.getLinkedException());
+//                    }
+//                });
+//        System.out.println(game.toString());
     }
 
     public static void launch() throws JAXBException, IOException, Exception {
