@@ -29,8 +29,8 @@ public class Game {
     private static final JLabel DISPLAY_TOTAL = new JLabel();
     private static final JLabel DISPLAY_SEARCH_COUNT = new JLabel();
     private static final JLabel DISPLAY_PEEK_COUNT = new JLabel();
-    private static final ArrayList<PeekButton> PEEK_BUTTONS = new ArrayList<PeekButton>();
-    private static final ArrayList<SearchButton> SEARCH_BUTTONS =  new ArrayList<SearchButton>();
+    private static final ArrayList<PeekButton> PEEK_BUTTONS = new ArrayList<>();
+    private static final ArrayList<SearchButton> SEARCH_BUTTONS =  new ArrayList<>();
 
     // constructors
     public Game(){}

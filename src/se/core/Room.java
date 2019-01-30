@@ -38,10 +38,10 @@ public final class Room {
     private final int roomId;
     private static String state = "";
     @XmlElement(name = "target")
-    private String targetName;
-    //@XmlElementWrapper(name = "indicators")
-    //@XmlElement(name = "indi")
-    private ArrayList<String> indicatorName;
+    private final String targetName;
+    @XmlElementWrapper(name = "indicatorName")
+    @XmlElement(name = "indicatorName")
+    private final ArrayList<String> indicatorName = new ArrayList<>();
 
     // constructor
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -52,11 +52,9 @@ public final class Room {
         this.target = target;
         this.roomId = id;
         this.targetName = target.getName();
-        //this.indicatorName.add("dinglehopper");
-        //for(Indicator indi : indicators){
-            
-          //  this.indicatorName.add(indi.getName());
-       // }
+        for(Indicator indi : indicators){
+            this.indicatorName.add(indi.getName());
+        }
 
         //peek settings
         this.peekButton = new PeekButton(id);
@@ -147,7 +145,7 @@ public final class Room {
 
     // ArrayList that stores all possible Indicators
     private static ArrayList<Indicator> indicatorList() {
-        ArrayList<Indicator> indicators = new ArrayList<Indicator>();
+        ArrayList<Indicator> indicators = new ArrayList<>();
         // create indicator objects (location x, location y, imagename)
         Indicator i0 = new Indicator("1");
         Indicator i1 = new Indicator("2");
@@ -167,7 +165,7 @@ public final class Room {
 
     // ArrayList that builds and stores indicators for a room
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
-        ArrayList<Indicator> modList = new ArrayList<Indicator>();
+        ArrayList<Indicator> modList = new ArrayList<>();
         int randInt;
 
         if (i == 0) {
@@ -203,7 +201,7 @@ public final class Room {
 
     //ArrayList for room labels
     private ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        ArrayList<JLabel> list = new ArrayList<JLabel>();
+        ArrayList<JLabel> list = new ArrayList<>();
         list.add(roomFace);
         list.add(target);
         for (Indicator indicator : indicators) {
