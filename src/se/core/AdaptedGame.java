@@ -6,31 +6,53 @@
 package se.core;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author nikki
  */
 class AdaptedGame {
-    
-    private String roomName;
-    private String targetName;
-    
+
+    @XmlElement
+    private String target;
     @XmlAttribute
-    public String getRoomName() {
-        return roomName;
+    private int targetId;
+    @XmlElement
+    private String indicator;
+    @XmlAttribute
+    private int indicatorId;
+
+    public String getTarget() {
+        return target;
     }
 
-    public void setRoomName(String name) {
-        this.roomName = name;
+    public void setTarget(String target) {
+        this.target = target;
     }
 
-    public String getTargetName() {
-        return targetName;
+    public int getTargetId() {
+        return targetId;
     }
 
-    void setTargetName(String name) {
-        this.targetName = name;
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
+    }
+
+    public String getIndicator() {
+        return indicator;
+    }
+
+    public void setIndicator(String indicator) {
+        this.indicator = indicator;
+    }
+
+    public int getIndicatorId() {
+        return indicatorId;
+    }
+
+    public void setIndicatorId(int indicatorId) {
+        this.indicatorId = indicatorId;
     }
 
 }

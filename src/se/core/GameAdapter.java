@@ -27,9 +27,8 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
     @Override
     public AdaptedGame marshal(Game game) throws Exception {
         AdaptedGame adaptedGame = new AdaptedGame();
-        String name = ("Room " + game.getRoom(1).getRoomId());
-        adaptedGame.setRoomName(name);
-        //adaptedGame.setTargetName(Game.getRoom(1).getTarget().getName());
+        String name = ("Room " + Game.getRoom(1).getRoomId());
+        adaptedGame.setTarget(name);
         return adaptedGame;
     }
 

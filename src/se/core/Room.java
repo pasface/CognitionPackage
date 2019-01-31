@@ -32,12 +32,12 @@ public final class Room {
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
     private final ArrayList<Indicator> indicators;
-    private final Target target;
+    private static String state = "";
     @XmlAttribute(name = "roomId")
     private final int roomId;
-    private static String state = "";
     @XmlElement(name = "target")
     private final String targetName;
+    private final Target target;
     @XmlElementWrapper(name = "indicatorList")
     @XmlElement(name = "indicatorName")
     private final ArrayList<String> indicatorName = new ArrayList<>();
