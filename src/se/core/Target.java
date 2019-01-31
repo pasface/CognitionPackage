@@ -1,9 +1,13 @@
 package se.core;
 
 import javax.swing.JLabel;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,11 +18,10 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
-@XmlType
+
+@XmlJavaTypeAdapter(TargetAdapter.class)
 public final class Target extends JLabel {
-    @XmlAttribute (name = "targetId")
     private int targetId;
-    @XmlElement(name = "target")
     private String targetName;
 
     public Target() {
@@ -27,9 +30,10 @@ public final class Target extends JLabel {
     }
 
     public Target(String name) {
+        super.setIcon(IconFinder.setIconFinder(name));
         super.setName(name);
         this.targetId = 1;
-        this.targetName = "target";
+        this.targetName = name;
     }
 
     public int getTargetId() {

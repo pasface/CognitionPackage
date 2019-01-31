@@ -2,29 +2,34 @@
 <game gameId="6">
     <roomList>
         <room roomId="1">
+            <target/>
             <indicatorList/>
         </room>
         <room roomId="2">
-            <indicatorList/>
+            <target name="target"/>
+            <indicatorList>
+                <indicatorName name="5"/>
+                <indicatorName name="5"/>
+            </indicatorList>
         </room>
         <room roomId="3">
-            <target>target</target>
-            <indicatorList>
-                <indicatorName>4</indicatorName>
-                <indicatorName>3</indicatorName>
-            </indicatorList>
-        </room>
-        <room roomId="4">
+            <target/>
             <indicatorList/>
         </room>
-        <room roomId="5">
+        <room roomId="4">
+            <target/>
             <indicatorList>
-                <indicatorName>1</indicatorName>
+                <indicatorName name="1"/>
             </indicatorList>
         </room>
+        <room roomId="5">
+            <target/>
+            <indicatorList/>
+        </room>
         <room roomId="6">
+            <target/>
             <indicatorList>
-                <indicatorName>4</indicatorName>
+                <indicatorName name="2"/>
             </indicatorList>
         </room>
     </roomList>

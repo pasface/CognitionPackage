@@ -11,7 +11,9 @@ import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,23 +33,24 @@ public final class Room {
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
-    private final ArrayList<Indicator> indicators;
+
     private static String state = "";
     @XmlAttribute(name = "roomId")
     private final int roomId;
-    @XmlElement(name = "target")
     private final String targetName;
-    private final Target target;
+    @XmlElement(name = "target")
+    @XmlJavaTypeAdapter(TargetAdapter.class)
+    private Target target = new Target();
     @XmlElementWrapper(name = "indicatorList")
     @XmlElement(name = "indicatorName")
-    private final ArrayList<String> indicatorName = new ArrayList<>();
+    @XmlJavaTypeAdapter(IndicatorAdapter.class)
+    private final ArrayList<Indicator> indicators;
 
     // constructor
     public Room() {
         this.peekButton = new PeekButton(0);
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
-        this.target = new Target();
         this.roomId = 0;
         this.targetName = "empty";
     }
@@ -60,9 +63,6 @@ public final class Room {
         this.target = target;
         this.roomId = id;
         this.targetName = target.getName();
-        for (Indicator indi : indicators) {
-            this.indicatorName.add(indi.getName());
-        }
 
         //peek settings
         this.peekButton = new PeekButton(id);
@@ -121,11 +121,10 @@ public final class Room {
     }
 
     public void setTarget() {
-        
+
     }
 
     // method to create and populate a room array
-
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
         ArrayList<Room> r = new ArrayList<Room>();
         // create variable for roomArray number
@@ -141,7 +140,7 @@ public final class Room {
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target("target");
-                t1.setIcon(IconFinder.setIconFinder("target"));
+                //t1.setIcon(IconFinder.setIconFinder("target"));
                 indicatorList = modifiedIndicatorList(1);
                 r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
                 currentRoom++;
