@@ -1,9 +1,6 @@
 package se.core;
 
 import javax.swing.JLabel;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,11 +11,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author nikki
  */
-@XmlType(name = "indicator")
 public final class Indicator extends JLabel {
-    @XmlAttribute(name = "indicatorId")
-    private int inid;
-    @XmlElement(name = "indiName")
+    private int indicatorId;
     private String name;
 
     public Indicator(String name) {
@@ -27,12 +21,12 @@ public final class Indicator extends JLabel {
         super.setIcon(IconFinder.setIconFinder(name));
     }
 
-    public int getInId() {
-        return inid;
+    public int getIndicatorId() {
+        return indicatorId;
     }
 
-    public void setInId(int id) {
-        inid = id;
+    public void setIndicatorId(int id) {
+        indicatorId = id;
     }
 
     @Override

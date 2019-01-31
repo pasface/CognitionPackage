@@ -128,7 +128,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{ \n" + "id=" + id + ",\n " + roomList.toString() + '}';
+        return "{Game id=" + id + ",\n " + roomList.toString() + '}';
     }
 
 }

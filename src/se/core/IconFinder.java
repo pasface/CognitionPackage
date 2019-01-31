@@ -18,7 +18,7 @@ public class IconFinder extends ImageIcon {
         try {
             return icon(image);
         } catch (NullPointerException e) {
-            System.out.print(" null_icon ");
+            System.out.println(" null_icon ");
         }
         return null;
     }

@@ -186,7 +186,7 @@ public final class Room {
                 int currentPosition = 0;
                 for (Indicator indi : modList) {
                     currentPosition++;
-                    indi.setInId(currentPosition);
+                    indi.setIndicatorId(currentPosition);
                 }
             }
             return modList;
@@ -201,7 +201,7 @@ public final class Room {
             int currentPosition = 0;
             for (Indicator indi : modList) {
                 currentPosition++;
-                indi.setInId(currentPosition);
+                indi.setIndicatorId(currentPosition);
             }
             return modList;
         }
@@ -252,7 +252,7 @@ public final class Room {
         roomFace.setBounds(originP.x, originP.y, s.getRfW(), s.getRfH());
         target.setBounds((originP.x + s.getOffset()), (originP.y + s.getOffset()), s.getItemHW(), s.getItemHW());
         for (Indicator indicator : indicators) {
-            int indiOffset = s.getItemHW() * indicator.getInId();
+            int indiOffset = s.getItemHW() * indicator.getIndicatorId();
             indicator.setBounds((originP.x + indiOffset), (originP.y + 60), s.getItemHW(), s.getItemHW());
         }
     }
@@ -275,6 +275,6 @@ public final class Room {
     //toString
     @Override
     public String toString() {
-        return "Room{" + "Room Id = " + roomId + ",  Target = " + target.toString() + ",  Indicators = " + indicators.toString() + "    \n";
+        return "{" + "Room Id = " + roomId + ",  Target = " + target.toString() + ",  Indicators = " + indicators.toString() + "    \n";
     }
 }

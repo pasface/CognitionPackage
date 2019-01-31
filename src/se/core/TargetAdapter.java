@@ -15,14 +15,18 @@ public class TargetAdapter extends XmlAdapter<AdaptedTarget, Target> {
     
     @Override
     public Target unmarshal(AdaptedTarget adaptedTarget) throws Exception {
-        //Target.setIcon(IconFinder.setIconFinder("target"));
-        return new Target(adaptedTarget.getName());
+        Target t= new Target(adaptedTarget.getName());
+        t.setTargetId(adaptedTarget.getId());
+        t.setIcon(IconFinder.setIconFinder(adaptedTarget.getIcon()));
+        return t;
     }
     
     @Override
     public AdaptedTarget marshal(Target target) throws Exception {
         AdaptedTarget adaptedTarget = new AdaptedTarget();
         adaptedTarget.setName(target.getName());
+        adaptedTarget.setId(target.getTargetId());
+        adaptedTarget.setIcon(target.getName());
         return adaptedTarget;
     }
 }

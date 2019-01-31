@@ -10,18 +10,39 @@ package se.core;
  * @author nikki
  */
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 public class AdaptedIndicator {
 
     private String name;
+    private String icon;
+    private int id;
 
-    @XmlAttribute
+    @XmlElement
     public String getName() {
         return name;
     }
 
+    @XmlElement
+    public String getIcon() {
+        return icon;
+    }
+
+    @XmlAttribute
+    public int getId() {
+        return id;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    void setId(int id) {
+        this.id = id;
     }
 
 }

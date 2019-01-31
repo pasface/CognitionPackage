@@ -19,6 +19,8 @@ public final class Target extends JLabel {
     private int targetId;
 
     public Target() {
+        super(IconFinder.setIconFinder(""));
+        super.setName("");
         this.targetId = 0;
     }
 
