@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
 import se.core.GameLaunch;
+import static se.core.GameLaunch.unmarshallFile;
 /**
  *
  * @author Pas
@@ -36,7 +37,7 @@ public class MyFrame extends javax.swing.JFrame {
         jMenuFile = new javax.swing.JMenu();
         jMenuNew = new javax.swing.JMenuItem();
         jMenuSave = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuOpen = new javax.swing.JMenuItem();
         jMenuExit = new javax.swing.JMenuItem();
         jMenuView = new javax.swing.JMenu();
         jMenuStats = new javax.swing.JMenuItem();
@@ -67,14 +68,14 @@ public class MyFrame extends javax.swing.JFrame {
         jMenuSave.setText("Save");
         jMenuFile.add(jMenuSave);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Open");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuOpen.setText("Open");
+        jMenuOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuOpenActionPerformed(evt);
             }
         });
-        jMenuFile.add(jMenuItem1);
+        jMenuFile.add(jMenuOpen);
 
         jMenuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuExit.setText("Exit");
@@ -130,9 +131,14 @@ public class MyFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuExitActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenuOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpenActionPerformed
+        GameLaunch g = new GameLaunch();
+        try {
+            g.unmarshallFile();
+        } catch (JAXBException ex) {
+            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuOpenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -141,8 +147,8 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuExit;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenu jMenuHelp;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuNew;
+    private javax.swing.JMenuItem jMenuOpen;
     private javax.swing.JMenuItem jMenuPrefs;
     private javax.swing.JMenuItem jMenuSave;
     private javax.swing.JMenuItem jMenuStats;

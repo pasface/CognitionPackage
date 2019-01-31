@@ -42,6 +42,7 @@ public final class Target extends JLabel {
     public void setIcon(Icon icon) {
         super.setIcon(icon);
     }
+    
     @Override
     public String toString() {
         return '{' + getName() + '}';

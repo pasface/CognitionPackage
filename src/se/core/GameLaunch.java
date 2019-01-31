@@ -40,7 +40,32 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        unmarshallFile();
+    }
+
+    public static void open() throws JAXBException {
+        gamePanel.setVisible(false);
+        FRAME.remove(gamePanel);
+        if (isBool() == true) {
+            ComponentSettings cs = new ComponentSettings();
+            //remove intro screen
+            FRAME.remove(introPanel);
+            gamePanel = new JPanel();
+            GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+            roomLayout.setHgap(cs.getGap());
+            roomLayout.setVgap(cs.getGap());
+            gamePanel.setLayout(roomLayout);
+            gamePanel.setVisible(true);
+            unmarshallFile();
+            //GameId.setGameId("src/files/file.xml");
+            //Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
+            Game.resetCounts();
+            //System.out.println(g.toString());
+            FRAME.add(gamePanel);
+            FRAME.validate();
+            setBool(false);
+        } else {
+            FRAME.validate();
+        }
     }
 
     public static void unmarshallFile() throws JAXBException {
