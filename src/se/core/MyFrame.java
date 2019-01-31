@@ -118,11 +118,11 @@ public class MyFrame extends javax.swing.JFrame {
             g.setBool(true);
             g.launch();
         } catch (JAXBException ex) {
-            System.out.println(ex);
+            System.out.println("jax"+ex);
         } catch (IOException ex) {
             System.out.println("IO e");
         } catch (Exception ex) {
-            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ex" + ex);
         }
     }//GEN-LAST:event_jMenuNewActionPerformed
 

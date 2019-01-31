@@ -11,13 +11,14 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  *
  * @author nikki
  */
-public class TargetAdapter extends XmlAdapter<AdaptedTarget, Target>{
-
+public class TargetAdapter extends XmlAdapter<AdaptedTarget, Target> {
+    
     @Override
     public Target unmarshal(AdaptedTarget adaptedTarget) throws Exception {
+        //Target.setIcon(IconFinder.setIconFinder("target"));
         return new Target(adaptedTarget.getName());
     }
-
+    
     @Override
     public AdaptedTarget marshal(Target target) throws Exception {
         AdaptedTarget adaptedTarget = new AdaptedTarget();

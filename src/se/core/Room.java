@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -37,7 +36,6 @@ public final class Room {
     private static String state = "";
     @XmlAttribute(name = "roomId")
     private final int roomId;
-    private final String targetName;
     @XmlElement(name = "target")
     @XmlJavaTypeAdapter(TargetAdapter.class)
     private Target target = new Target();
@@ -52,7 +50,6 @@ public final class Room {
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
         this.roomId = 0;
-        this.targetName = "empty";
     }
 
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
@@ -62,7 +59,6 @@ public final class Room {
         this.indicators = indicators;
         this.target = target;
         this.roomId = id;
-        this.targetName = target.getName();
 
         //peek settings
         this.peekButton = new PeekButton(id);
