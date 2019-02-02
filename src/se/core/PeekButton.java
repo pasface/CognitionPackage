@@ -5,12 +5,12 @@
  */
 package se.core;
 
-import javax.swing.JButton;
-
 /**
  *
  * @author nikki
  */
+import javax.swing.JButton;
+
 public class PeekButton extends JButton {
     
     private PeekAction a = new PeekAction(getName());

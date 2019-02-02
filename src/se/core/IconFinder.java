@@ -5,12 +5,12 @@
  */
 package se.core;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author nikki
  */
+import javax.swing.ImageIcon;
+
 public class IconFinder extends ImageIcon {
     private static String S = "";
     

@@ -14,35 +14,35 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class AdaptedIndicator {
 
-    private String name;
-    private String icon;
-    private int id;
+    private String indicatorName;
+    private String indicatorIcon;
+    private int indicatorId;
 
     @XmlElement
-    public String getName() {
-        return name;
+    public String getIndicatorName() {
+        return indicatorName;
     }
 
     @XmlElement
-    public String getIcon() {
-        return icon;
+    public String getIndicatorIcon() {
+        return indicatorIcon;
     }
 
     @XmlAttribute
-    public int getId() {
-        return id;
+    public int getIndicatorId() {
+        return indicatorId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIndicatorName(String name) {
+        this.indicatorName = name;
     }
 
-    void setIcon(String icon) {
-        this.icon = icon;
+    void setIndicatorIcon(String icon) {
+        this.indicatorIcon = icon;
     }
 
-    void setId(int id) {
-        this.id = id;
+    void setIndicatorId(int id) {
+        this.indicatorId = id;
     }
 
 }

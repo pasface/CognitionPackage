@@ -5,16 +5,15 @@
  */
 package se.core;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.JAXBException;
-import se.core.GameLaunch;
-import static se.core.GameLaunch.unmarshallFile;
 /**
  *
  * @author Pas
  */
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.bind.JAXBException;
+
 public class MyFrame extends javax.swing.JFrame {
 
     /**

@@ -11,6 +11,10 @@
  */
 package se.core;
 
+/**
+ *
+ * @author nikki
+ */
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,10 +25,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.xml.bind.Unmarshaller;
 
-/**
- *
- * @author nikki
- */
 public class GameLaunch {
 
     private static final JFrame FRAME = new MyFrame();
@@ -77,7 +77,7 @@ public class GameLaunch {
         Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
-        System.out.print(g.toString());
+        System.out.print(g.getGameId());
     }
 
     public static void marshallClasses(Game g) throws JAXBException {
@@ -106,8 +106,10 @@ public class GameLaunch {
             roomLayout.setVgap(cs.getGap());
             gamePanel.setLayout(roomLayout);
             gamePanel.setVisible(true);
-            GameId.setGameId("src/files/file.xml");
-            Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
+
+            //gameId = (Integer.parseInt(scanner.next())) + 1;
+            //GameId.setGameId("src/files/file.xml");
+            Game g = new Game(cs.getNumOfGames(), 0, gamePanel);
             Game.resetCounts();
             System.out.println(g.toString());
             FRAME.add(gamePanel);

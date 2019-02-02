@@ -1,14 +1,5 @@
 package se.core;
 
-import java.awt.GridLayout;
-import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,12 +9,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author nikki
  */
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @XmlRootElement
 public class Game {
 
     // fields
-    @XmlAttribute(name = "gameId")
-    private int id;
+    @XmlAttribute()
+    private int gameIdIntended = 0;
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
     private ArrayList<Room> roomList;
@@ -33,15 +33,15 @@ public class Game {
     private static final JLabel DISPLAY_SEARCH_COUNT = new JLabel();
     private static final JLabel DISPLAY_PEEK_COUNT = new JLabel();
     private static final ArrayList<PeekButton> PEEK_BUTTONS = new ArrayList<>();
-    private static final ArrayList<SearchButton> SEARCH_BUTTONS =  new ArrayList<>();
+    private static final ArrayList<SearchButton> SEARCH_BUTTONS = new ArrayList<>();
 
     // constructors
-    public Game(){
+    public Game() {
     }
-    
+
     public Game(int numberOfRooms, int id, JPanel panel) {
         // set Game id
-        this.id = id;
+        //this.gameId = id;
         // generate rooms
         roomList = Room.roomArrayGenerator(numberOfRooms, panel);
         roomListStatic = roomList;
@@ -50,7 +50,7 @@ public class Game {
             Game.PEEK_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getPeekButton());
             Game.SEARCH_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getSearchButton());
         }
-        
+
         //feedback settings
         JPanel feedback = new JPanel();
         displayTotal();
@@ -64,6 +64,10 @@ public class Game {
     }
 
     // getters
+    public int getGameId() {
+        return gameIdIntended;
+    }
+
     public static Room getRoom(int num) {
         return roomListStatic.get(num);
     }
@@ -87,6 +91,10 @@ public class Game {
 
     public static void setTotal(int total) {
         Game.total = total;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameIdIntended = gameId;
     }
 
     //class methods
@@ -128,7 +136,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "{Game id=" + id + ",\n " + roomList.toString() + '}';
+        return "{Game id=" + this.gameIdIntended + ",\n " + roomList.toString() + '}';
     }
 
 }

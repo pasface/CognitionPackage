@@ -1,6 +1,5 @@
 package se.core;
 
-import javax.swing.JLabel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,9 +10,10 @@ import javax.swing.JLabel;
  *
  * @author nikki
  */
+import javax.swing.JLabel;
+
 public final class Indicator extends JLabel {
     private int indicatorId;
-    private String name;
 
     public Indicator(String name) {
         super.setName(name);

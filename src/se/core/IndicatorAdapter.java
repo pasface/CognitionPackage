@@ -5,28 +5,28 @@
  */
 package se.core;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
 /**
  *
  * @author nikki
  */
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
 public class IndicatorAdapter extends XmlAdapter<AdaptedIndicator, Indicator> {
 
     @Override
     public Indicator unmarshal(AdaptedIndicator adaptedIndicator) throws Exception {
-        Indicator i= new Indicator(adaptedIndicator.getName());
-        i.setIndicatorId(adaptedIndicator.getId());
-        i.setIcon(IconFinder.setIconFinder(adaptedIndicator.getIcon()));
+        Indicator i= new Indicator(adaptedIndicator.getIndicatorName());
+        i.setIndicatorId(adaptedIndicator.getIndicatorId());
+        i.setIcon(IconFinder.setIconFinder(adaptedIndicator.getIndicatorIcon()));
         return i;
     }
 
     @Override
     public AdaptedIndicator marshal(Indicator indicator) throws Exception {
         AdaptedIndicator adaptedIndicator = new AdaptedIndicator();
-        adaptedIndicator.setName(indicator.getName());
-        adaptedIndicator.setId(indicator.getIndicatorId());
-        adaptedIndicator.setIcon(indicator.getName());
+        adaptedIndicator.setIndicatorName(indicator.getName());
+        adaptedIndicator.setIndicatorId(indicator.getIndicatorId());
+        adaptedIndicator.setIndicatorIcon(indicator.getName());
         return adaptedIndicator;
     }
 

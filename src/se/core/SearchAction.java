@@ -5,6 +5,10 @@
  */
 package se.core;
 
+/**
+ *
+ * @author nikki
+ */
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
@@ -12,10 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author nikki
- */
 public class SearchAction extends AbstractAction {
 
     //fields

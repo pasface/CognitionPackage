@@ -5,14 +5,14 @@
  */
 package se.core;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 /**
  *
  * @author Pas
  */
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 class IntroScreen extends JPanel {
     private static final JLabel welcomeLabel = new JLabel();
 

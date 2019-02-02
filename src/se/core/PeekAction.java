@@ -5,21 +5,20 @@
  */
 package se.core;
 
+/**
+ *
+ * @author nikki
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author nikki
- */
 public class PeekAction extends AbstractAction implements ActionListener {
 
     //fields
@@ -40,12 +39,6 @@ public class PeekAction extends AbstractAction implements ActionListener {
         Game.incrementTotal(PEEK);
         Game.incrementCountPeek();
         resetLabels("peek", e);
-        int dingus = Integer.parseInt(btn.getName()) -1;
-        //if searchbtn clicked cancel timer
-        
-        //if (){
-
-        //}
         peekTimer(e);
     }
 

@@ -14,35 +14,35 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class AdaptedTarget {
 
-    private String name;
-    private String icon;
-    private int id;
+    private String targetName;
+    private String targetIcon;
+    private int targetId;
 
     @XmlElement
-    public String getName() {
-        return name;
+    public String getTargetName() {
+        return targetName;
     }
 
     @XmlElement
-    public String getIcon() {
-        return icon;
+    public String getTargetIcon() {
+        return targetIcon;
     }
 
     @XmlAttribute
-    public int getId() {
-        return id;
+    public int getTargetId() {
+        return targetId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTargetName(String name) {
+        this.targetName = name;
     }
 
-    void setIcon(String icon) {
-        this.icon = icon;
+    void setTargetIcon(String icon) {
+        this.targetIcon = icon;
     }
 
-    void setId(int id) {
-        this.id = id;
+    void setTargetId(int id) {
+        this.targetId = id;
     }
 
 }

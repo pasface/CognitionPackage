@@ -5,19 +5,16 @@
  */
 package se.core;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-
 /**
  *
  * @author nikki
  */
-//@XmlRootElement(namespace = "room")
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 
 public class EmptyRoom extends JLabel {
 
     //build empty room and set default icon&name
-
     public EmptyRoom() {
         super.setIcon(IconFinder.setIconFinder("default"));
         super.setBorder(BorderFactory.createTitledBorder(super.getName()));

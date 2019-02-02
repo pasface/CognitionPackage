@@ -1,5 +1,14 @@
 package se.core;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author nikki
+ */
 import java.awt.Point;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -14,15 +23,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author nikki
- */
 @XmlType
 public final class Room {
 
@@ -32,7 +32,6 @@ public final class Room {
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
-
     private static String state = "";
     @XmlAttribute(name = "roomId")
     private final int roomId;
@@ -40,7 +39,7 @@ public final class Room {
     @XmlJavaTypeAdapter(TargetAdapter.class)
     private Target target = new Target();
     @XmlElementWrapper(name = "indicatorList")
-    @XmlElement(name = "indicatorName")
+    @XmlElement(name = "indicator")
     @XmlJavaTypeAdapter(IndicatorAdapter.class)
     private final ArrayList<Indicator> indicators;
 
