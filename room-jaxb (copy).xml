@@ -12,8 +12,8 @@
                     <indicatorName>3</indicatorName>
                 </indicator>
                 <indicator indicatorId="2">
-                    <indicatorIcon>5</indicatorIcon>
-                    <indicatorName>5</indicatorName>
+                    <indicatorIcon>3</indicatorIcon>
+                    <indicatorName>3</indicatorName>
                 </indicator>
             </indicatorList>
         </room>
@@ -22,12 +22,7 @@
                 <targetIcon></targetIcon>
                 <targetName></targetName>
             </target>
-            <indicatorList>
-                <indicator indicatorId="1">
-                    <indicatorIcon>4</indicatorIcon>
-                    <indicatorName>4</indicatorName>
-                </indicator>
-            </indicatorList>
+            <indicatorList/>
         </room>
         <room roomId="3">
             <target targetId="0">
@@ -36,8 +31,8 @@
             </target>
             <indicatorList>
                 <indicator indicatorId="1">
-                    <indicatorIcon>4</indicatorIcon>
-                    <indicatorName>4</indicatorName>
+                    <indicatorIcon>1</indicatorIcon>
+                    <indicatorName>1</indicatorName>
                 </indicator>
             </indicatorList>
         </room>
@@ -68,5 +63,5 @@
             </indicatorList>
         </room>
     </roomList>
-    <gameId>6</gameId>
+    <gameId>2</gameId>
 </game>

@@ -130,11 +130,13 @@ public class MyFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuExitActionPerformed
 
     private void jMenuOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpenActionPerformed
-//        try {
-//            GameLaunch.unmarshallFile("room-jaxb.xml");
-//        } catch (JAXBException ex) {
-//            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            GameLaunch.open();
+        } catch (JAXBException ex) {
+            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuOpenActionPerformed
 
 
