@@ -23,7 +23,7 @@ public class Game {
 
     // fields
     @XmlAttribute()
-    private int gameIdIntended = 0;
+    private int gameIdIntended = 3;
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
     private ArrayList<Room> roomList;

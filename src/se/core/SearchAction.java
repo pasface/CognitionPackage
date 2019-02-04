@@ -63,6 +63,10 @@ public class SearchAction extends AbstractAction {
         int i = r.getTarget().getTargetId();
         if (i == 1) {
             for (int x=0; x<Game.getPeek_buttons().size(); x++){
+                //cancel all peek timers
+                PeekAction peek = Game.getPeek_buttons().get(x).getA();
+                peek.timer.cancel();
+                //remove all buttons
                 Game.getPeek_buttons().get(x).setVisible(false);
                 Game.getSearch_buttons().get(x).setVisible(false);
             }

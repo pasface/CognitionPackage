@@ -56,10 +56,7 @@ public class GameLaunch {
             gamePanel.setLayout(roomLayout);
             gamePanel.setVisible(true);
             unmarshallFile();
-            //GameId.setGameId("src/files/file.xml");
-            //Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
             Game.resetCounts();
-            //System.out.println(g.toString());
             FRAME.add(gamePanel);
             FRAME.validate();
             setBool(false);
@@ -94,28 +91,36 @@ public class GameLaunch {
     }
 
     public static void launch() throws JAXBException, IOException, Exception {
+        //ensure gamepanel is off so we don't create new games on top of old ones
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
+        //if launch is ready, start game
         if (isBool() == true) {
+            //reset game counters
+            Game.resetCounts();
+            
+            //set layout and gap spaces
             ComponentSettings cs = new ComponentSettings();
-            //remove intro screen
-            FRAME.remove(introPanel);
-            gamePanel = new JPanel();
             GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
             roomLayout.setHgap(cs.getGap());
             roomLayout.setVgap(cs.getGap());
+            gamePanel = new JPanel();
             gamePanel.setLayout(roomLayout);
             gamePanel.setVisible(true);
-
-            //gameId = (Integer.parseInt(scanner.next())) + 1;
-            //GameId.setGameId("src/files/file.xml");
+            
+            //create new game
             Game g = new Game(cs.getNumOfGames(), 0, gamePanel);
-            Game.resetCounts();
-            System.out.println(g.toString());
+            
+            //marshal game
+            marshallClasses(g);
+            
+            //remove intro screen and add gamePanel
+            FRAME.remove(introPanel);
             FRAME.add(gamePanel);
             FRAME.validate();
+            
             setBool(false);
-            marshallClasses(g);
+            System.out.println(g.toString());
         } else {
             FRAME.validate();
         }

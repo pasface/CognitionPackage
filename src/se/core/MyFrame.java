@@ -114,13 +114,12 @@ public class MyFrame extends javax.swing.JFrame {
 
     private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
         try {
-            GameLaunch g = new GameLaunch();
-            g.setBool(true);
-            g.launch();
+            GameLaunch.setBool(true);
+            GameLaunch.launch();
         } catch (JAXBException ex) {
-            System.out.println("jax"+ex);
+            System.out.println("jax" + ex);
         } catch (IOException ex) {
-            System.out.println("IO e");
+            System.out.println("IO e" + ex);
         } catch (Exception ex) {
             System.out.println("ex" + ex);
         }
@@ -131,9 +130,8 @@ public class MyFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuExitActionPerformed
 
     private void jMenuOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpenActionPerformed
-        GameLaunch g = new GameLaunch();
         try {
-            g.unmarshallFile();
+            GameLaunch.unmarshallFile();
         } catch (JAXBException ex) {
             Logger.getLogger(MyFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

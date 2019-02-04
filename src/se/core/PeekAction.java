@@ -53,10 +53,8 @@ public class PeekAction extends AbstractAction implements ActionListener {
 
     public void resetLabels(String s, ActionEvent e) {
         btn = (JButton) e.getSource();
-        String name = btn.getName();
-        Game game = new Game();
-        Room r = game.getRoom(Integer.parseInt(name) - 1);
         icon = IconFinder.setIconFinder(s);
+        Room r = Game.getRoom(Integer.parseInt(btn.getName()) - 1);
         r.setRoomFaceIcon(icon);
         r.setState(s);
         Target target = r.getTarget();
