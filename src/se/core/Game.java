@@ -40,8 +40,6 @@ public class Game {
     }
 
     public Game(int numberOfRooms, int id, JPanel panel) {
-        // set Game id
-        //this.gameId = id;
         // generate rooms
         roomList = Room.roomArrayGenerator(numberOfRooms, panel);
         roomListStatic = roomList;

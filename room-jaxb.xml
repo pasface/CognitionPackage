@@ -2,28 +2,23 @@
 <game gameIdIntended="0">
     <roomList>
         <room roomId="1">
+            <target targetId="0">
+                <targetIcon></targetIcon>
+                <targetName></targetName>
+            </target>
+            <indicatorList/>
+        </room>
+        <room roomId="2">
             <target targetId="1">
                 <targetIcon>target</targetIcon>
                 <targetName>target</targetName>
             </target>
             <indicatorList>
                 <indicator indicatorId="1">
-                    <indicatorIcon>2</indicatorIcon>
-                    <indicatorName>2</indicatorName>
+                    <indicatorIcon>1</indicatorIcon>
+                    <indicatorName>1</indicatorName>
                 </indicator>
                 <indicator indicatorId="2">
-                    <indicatorIcon>4</indicatorIcon>
-                    <indicatorName>4</indicatorName>
-                </indicator>
-            </indicatorList>
-        </room>
-        <room roomId="2">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList>
-                <indicator indicatorId="1">
                     <indicatorIcon>4</indicatorIcon>
                     <indicatorName>4</indicatorName>
                 </indicator>
@@ -43,8 +38,8 @@
             </target>
             <indicatorList>
                 <indicator indicatorId="1">
-                    <indicatorIcon>2</indicatorIcon>
-                    <indicatorName>2</indicatorName>
+                    <indicatorIcon>1</indicatorIcon>
+                    <indicatorName>1</indicatorName>
                 </indicator>
             </indicatorList>
         </room>
@@ -53,7 +48,12 @@
                 <targetIcon></targetIcon>
                 <targetName></targetName>
             </target>
-            <indicatorList/>
+            <indicatorList>
+                <indicator indicatorId="1">
+                    <indicatorIcon>1</indicatorIcon>
+                    <indicatorName>1</indicatorName>
+                </indicator>
+            </indicatorList>
         </room>
         <room roomId="6">
             <target targetId="0">
@@ -62,8 +62,8 @@
             </target>
             <indicatorList>
                 <indicator indicatorId="1">
-                    <indicatorIcon>2</indicatorIcon>
-                    <indicatorName>2</indicatorName>
+                    <indicatorIcon>4</indicatorIcon>
+                    <indicatorName>4</indicatorName>
                 </indicator>
             </indicatorList>
         </room>

@@ -121,7 +121,7 @@ public final class Room {
 
     // method to create and populate a room array
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
-        ArrayList<Room> r = new ArrayList<Room>();
+        ArrayList<Room> r = new ArrayList<>();
         // create variable for roomArray number
         int currentRoom = 0;
         // create a bool to check if target exists
