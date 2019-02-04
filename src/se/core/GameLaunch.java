@@ -32,6 +32,7 @@ public class GameLaunch {
     private static boolean b = false;
     private static IntroScreen introPanel;
     private static final String ROOM_XML = "./room-jaxb.xml";
+    private static int incrementId;
 
     public static void main(String[] args) throws JAXBException {
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +41,7 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        unmarshallFile("./room-jaxb.xml");
+        unmarshallFile(ROOM_XML);
     }
 
     public static void open() throws JAXBException {
@@ -75,7 +76,8 @@ public class GameLaunch {
         Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
-        System.out.print("Game ID: " + g.getGameId());
+        //set incrementor for the gameId
+        incrementId = g.getGameId();
         System.out.print(g.toString());
     }
 
@@ -111,7 +113,7 @@ public class GameLaunch {
             gamePanel.setVisible(true);
             
             //create new game
-            Game g = new Game(cs.getNumOfGames(), 0, gamePanel);
+            Game g = new Game(cs.getNumOfGames(), incrementId+1, gamePanel);
             
             //marshal game
             marshallClasses(g);

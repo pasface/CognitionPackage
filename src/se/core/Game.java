@@ -11,8 +11,11 @@ package se.core;
  */
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElement;
@@ -38,7 +41,7 @@ public class Game {
     }
 
     public Game(int numberOfRooms, int id, JPanel panel) {
-        gameId = 6;
+        gameId = id;
         // generate rooms
         roomList = Room.roomArrayGenerator(numberOfRooms, panel);
         roomListStatic = roomList;
