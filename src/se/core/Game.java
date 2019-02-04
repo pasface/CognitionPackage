@@ -13,17 +13,15 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlElement;
 
 @XmlRootElement
 public class Game {
 
     // fields
-    @XmlAttribute()
-    private int gameIdIntended = 3;
+    private int gameId;
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
     private ArrayList<Room> roomList;
@@ -40,6 +38,7 @@ public class Game {
     }
 
     public Game(int numberOfRooms, int id, JPanel panel) {
+        gameId = 6;
         // generate rooms
         roomList = Room.roomArrayGenerator(numberOfRooms, panel);
         roomListStatic = roomList;
@@ -63,7 +62,7 @@ public class Game {
 
     // getters
     public int getGameId() {
-        return gameIdIntended;
+        return gameId;
     }
 
     public static Room getRoom(int num) {
@@ -92,7 +91,7 @@ public class Game {
     }
 
     public void setGameId(int gameId) {
-        this.gameIdIntended = gameId;
+        this.gameId = gameId;
     }
 
     //class methods
@@ -134,7 +133,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "{Game id=" + this.gameIdIntended + ",\n " + roomList.toString() + '}';
+        return "{Game id=" + this.gameId + ",\n " + roomList.toString() + '}';
     }
 
 }

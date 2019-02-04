@@ -40,6 +40,7 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
+        unmarshallFile("./room-jaxb.xml");
     }
 
     public static void open() throws JAXBException {
@@ -55,7 +56,7 @@ public class GameLaunch {
             roomLayout.setVgap(cs.getGap());
             gamePanel.setLayout(roomLayout);
             gamePanel.setVisible(true);
-            unmarshallFile();
+            unmarshallFile(ROOM_XML);
             Game.resetCounts();
             FRAME.add(gamePanel);
             FRAME.validate();
@@ -65,16 +66,17 @@ public class GameLaunch {
         }
     }
 
-    public static void unmarshallFile() throws JAXBException {
+    public static void unmarshallFile(String fileName) throws JAXBException {
         //getting the xml file to read
-        File file = new File(ROOM_XML);
+        File file = new File(fileName);
         //creating the JAXB context
         JAXBContext jContext = JAXBContext.newInstance(Game.class);
         //creating the unmarshall object
         Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
-        System.out.print(g.getGameId());
+        System.out.print("Game ID: " + g.getGameId());
+        System.out.print(g.toString());
     }
 
     public static void marshallClasses(Game g) throws JAXBException {
