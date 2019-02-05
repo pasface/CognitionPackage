@@ -9,6 +9,33 @@ package se.core;
  *
  * @author nikki
  */
+import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+
 public class AdaptedGame {
-    
+
+    private int gameId;
+    private ArrayList<String> roomList;
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    @XmlAttribute
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    @XmlElementWrapper(name = "roomList")
+    @XmlElement(name = "room")
+    public ArrayList<String> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(ArrayList<String> roomList) {
+        this.roomList = roomList;
+    }
+
 }

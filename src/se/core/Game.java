@@ -16,14 +16,16 @@ import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
+@XmlJavaTypeAdapter(GameAdapter.class)
 public class Game {
 
     // fields
     private int gameId;
-    @XmlElementWrapper(name = "roomList")
-    @XmlElement(name = "room")
+    //@XmlElementWrapper(name = "roomList")
+    //@XmlElement(name = "room")
     private ArrayList<Room> roomList;
     private static ArrayList<Room> roomListStatic;
     private static int countSearch = 0, countPeek = 0, total = 0;
@@ -81,6 +83,10 @@ public class Game {
         return SEARCH_BUTTONS;
     }
 
+    public ArrayList<Room> getRoomList() {
+        return roomList;
+    }
+
     // setters
     public static void setCountSearch(int countSearch) {
         Game.countSearch = countSearch;
@@ -96,6 +102,10 @@ public class Game {
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
+    }
+
+    public void setRoomList(ArrayList<Room> roomList) {
+        this.roomList = roomList;
     }
 
     //class methods

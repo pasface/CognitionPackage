@@ -22,7 +22,7 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         ComponentSettings cs = new ComponentSettings();
         ArrayList<Indicator> indiList = null;
         Target targ = new Target(adaptedRoom.getTarget());
-        Room r = new Room(indiList, targ, cs.getNumOfGames(), panel);
+        Room r = new Room(indiList, targ, cs.getNumOfRooms(), panel);
         r.setRoomId(adaptedRoom.getRoomId());
         r.setIcon(IconFinder.setIconFinder(adaptedRoom.getRoomIcon()));
         for (int count = 0; count < adaptedRoom.getIndicatorList().size(); count++) {

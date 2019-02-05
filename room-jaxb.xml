@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <game>
-    <roomList>
-        <room roomId="1">
-            <indicatorList>
-                <indicator>3</indicator>
-                <indicator>1</indicator>
-            </indicatorList>
-            <target>target</target>
-        </room>
-        <room roomId="2">
-            <indicatorList>
-                <indicator>2</indicator>
-            </indicatorList>
-            <target></target>
-        </room>
-        <room roomId="3">
-            <indicatorList>
-                <indicator>1</indicator>
-            </indicatorList>
-            <target></target>
-        </room>
-        <room roomId="4">
-            <indicatorList>
-                <indicator>1</indicator>
-            </indicatorList>
-            <target></target>
-        </room>
-        <room roomId="5">
-            <indicatorList>
-                <indicator>1</indicator>
-            </indicatorList>
-            <target></target>
-        </room>
-        <room roomId="6">
-            <indicatorList>
-                <indicator>1</indicator>
-            </indicatorList>
-            <target></target>
-        </room>
+    <gameId>8</gameId>
+    <roomList roomId="1">
+        <indicatorList>
+            <indicator>4</indicator>
+        </indicatorList>
+        <target></target>
     </roomList>
-    <gameId>6</gameId>
+    <roomList roomId="2">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="3">
+        <indicatorList>
+            <indicator>4</indicator>
+            <indicator>2</indicator>
+        </indicatorList>
+        <target>target</target>
+    </roomList>
+    <roomList roomId="4">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="5">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="6">
+        <indicatorList/>
+        <target></target>
+    </roomList>
 </game>

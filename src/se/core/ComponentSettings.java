@@ -21,7 +21,7 @@ public class ComponentSettings {
     private int offset = 40; //offset
 
     // game vars
-    private int numOfGames = 6; //number of games
+    private int numOfRooms = 6; //number of rooms
     private int rows = 3; //number of room rows
     private int cols = 3; //number of room columns
     private int gap = 7; //gap between rooms
@@ -59,8 +59,8 @@ public class ComponentSettings {
         return offset;
     }
 
-    public int getNumOfGames() {
-        return numOfGames;
+    public int getNumOfRooms() {
+        return numOfRooms;
     }
 
     public int getRows() {
@@ -112,8 +112,8 @@ public class ComponentSettings {
         this.offset = offset;
     }
 
-    public void setNumOfGames(int numOfGames) {
-        this.numOfGames = numOfGames;
+    public void setNumOfRooms(int numOfRooms) {
+        this.numOfRooms = numOfRooms;
     }
 
     public void setRows(int rows) {

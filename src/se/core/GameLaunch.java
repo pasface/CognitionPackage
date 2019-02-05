@@ -146,7 +146,7 @@ public class GameLaunch {
             gamePanel.setVisible(true);
 
             //create new game
-            Game g = new Game(cs.getNumOfGames(), incrementId + 1, gamePanel);
+            Game g = new Game(cs.getNumOfRooms(), incrementId + 1, gamePanel);
 
             //marshal game
             marshallClasses(g);
