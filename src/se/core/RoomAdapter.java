@@ -6,6 +6,7 @@
 package se.core;
 
 import java.util.ArrayList;
+import javax.swing.JPanel;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
@@ -16,17 +17,20 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
 
     @Override
     public Room unmarshal(AdaptedRoom adaptedRoom) throws Exception {
-        Room r = new Room(adaptedRoom.getRoomName());
+        //indicators, target, id, panel
+        JPanel panel = new JPanel();
+        ComponentSettings cs = new ComponentSettings();
+        ArrayList<Indicator> indiList = null;
+        Target targ = new Target(adaptedRoom.getTarget());
+        Room r = new Room(indiList, targ, cs.getNumOfGames(), panel);
         r.setRoomId(adaptedRoom.getRoomId());
         r.setIcon(IconFinder.setIconFinder(adaptedRoom.getRoomIcon()));
-        r.setTarget(new Target(adaptedRoom.getTarget()));
-        ArrayList<Indicator> indiList = null;
-        for (int count = 0; count < adaptedRoom.getIndicatorList().size(); count++){
+        for (int count = 0; count < adaptedRoom.getIndicatorList().size(); count++) {
             indiList.add(r.getIndicatorList().get(count));
-            System.out.println("indiList: "+indiList);
+            System.out.println("indiList: " + indiList);
         }
         r.setIndicators(indiList);
-        
+
         return r;
     }
 

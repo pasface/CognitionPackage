@@ -90,8 +90,9 @@ public class GameLaunch {
         setBool(false);
     }
 
-    public static void unmarshallFile(String fileName) {
-        try {
+    public static void unmarshallFile(String fileName) throws JAXBException {
+//        Game g = new Game();
+//        try {
             //getting the xml file to read
             File file = new File(fileName);
             //creating the JAXB context
@@ -103,9 +104,10 @@ public class GameLaunch {
             //set incrementor for the gameId
             incrementId = g.getGameId();
             System.out.print(g.toString());
-        } catch (JAXBException ex) {
-            Logger.getLogger(GameLaunch.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (JAXBException ex) {
+//            Logger.getLogger(GameLaunch.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return g;
     }
 
     public static void marshallClasses(Game g)  {

@@ -41,13 +41,6 @@ public final class Room extends JLabel {
         this.roomId = 0;
     }
 
-    public Room(String name) {
-        this.peekButton = new PeekButton(0);
-        this.searchButton = new SearchButton(0);
-        this.indicators = new ArrayList<>();
-        this.roomId = 0;
-    }
-
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
 
