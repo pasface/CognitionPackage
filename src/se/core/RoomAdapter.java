@@ -26,11 +26,9 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         r.setRoomId(adaptedRoom.getRoomId());
         r.setIcon(IconFinder.setIconFinder(adaptedRoom.getRoomIcon()));
         for (int count = 0; count < adaptedRoom.getIndicatorList().size(); count++) {
-            indiList.add(r.getIndicatorList().get(count));
-            System.out.println("indiList: " + indiList);
+            indiList.add(new Indicator(adaptedRoom.getIndicatorList().get(count)));
         }
         r.setIndicators(indiList);
-
         return r;
     }
 
