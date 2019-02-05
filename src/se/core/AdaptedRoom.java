@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class AdaptedRoom {
 
@@ -45,7 +44,7 @@ public class AdaptedRoom {
 
     @XmlElementWrapper(name = "indicatorList")
     @XmlElement(name = "indicator")
-    public ArrayList<String> getIndicator() {
+    public ArrayList<String> getIndicatorList() {
         return indicatorList;
     }
 

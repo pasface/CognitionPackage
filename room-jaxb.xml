@@ -3,33 +3,39 @@
     <roomList>
         <room roomId="1">
             <indicatorList>
-                <indicator>5</indicator>
-                <indicator>5</indicator>
+                <indicator>4</indicator>
+                <indicator>2</indicator>
             </indicatorList>
             <target>target</target>
         </room>
         <room roomId="2">
-            <indicatorList/>
-            <target></target>
-        </room>
-        <room roomId="3">
-            <indicatorList/>
-            <target></target>
-        </room>
-        <room roomId="4">
-            <indicatorList/>
-            <target></target>
-        </room>
-        <room roomId="5">
             <indicatorList>
-                <indicator>1</indicator>
+                <indicator>2</indicator>
             </indicatorList>
             <target></target>
         </room>
-        <room roomId="6">
+        <room roomId="3">
+            <indicatorList>
+                <indicator>3</indicator>
+            </indicatorList>
+            <target></target>
+        </room>
+        <room roomId="4">
+            <indicatorList>
+                <indicator>4</indicator>
+            </indicatorList>
+            <target></target>
+        </room>
+        <room roomId="5">
             <indicatorList/>
             <target></target>
         </room>
+        <room roomId="6">
+            <indicatorList>
+                <indicator>5</indicator>
+            </indicatorList>
+            <target></target>
+        </room>
     </roomList>
-    <gameId>1</gameId>
+    <gameId>4</gameId>
 </game>

@@ -20,8 +20,13 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         r.setRoomId(adaptedRoom.getRoomId());
         r.setIcon(IconFinder.setIconFinder(adaptedRoom.getRoomIcon()));
         r.setTarget(new Target(adaptedRoom.getTarget()));
-        //indiList = adaptedRoom.getIndicator();
-        //r.setIndicators(indiList);
+        ArrayList<Indicator> indiList = null;
+        for (int count = 0; count < adaptedRoom.getIndicatorList().size(); count++){
+            indiList.add(r.getIndicatorList().get(count));
+            System.out.println("indiList: "+indiList);
+        }
+        r.setIndicators(indiList);
+        
         return r;
     }
 
@@ -33,8 +38,8 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         adaptedRoom.setRoomIcon(room.getName());
         adaptedRoom.setTarget(room.getTarget().getName());
         ArrayList<String> indi = new ArrayList<>();
-        for (int count = 0; count < room.getIndicator().size(); count++) {
-            indi.add(room.getIndicator().get(count).getName());
+        for (int count = 0; count < room.getIndicatorList().size(); count++) {
+            indi.add(room.getIndicatorList().get(count).getName());
         }
         adaptedRoom.setIndicatorList(indi);
         return adaptedRoom;

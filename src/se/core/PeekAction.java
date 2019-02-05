@@ -59,7 +59,7 @@ public class PeekAction extends AbstractAction implements ActionListener {
         r.setState(s);
         Target target = r.getTarget();
         JLabel roomface = r.getRoomFace();
-        ArrayList<Indicator> indicator = r.getIndicator();
+        ArrayList<Indicator> indicator = r.getIndicatorList();
         r.orderComponents(target, roomface, indicator);
     }
 

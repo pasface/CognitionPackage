@@ -33,7 +33,7 @@ public class SearchAction extends AbstractAction {
         Room r = Game.getStaticRoom(Integer.parseInt(name) - 1);
         JLabel roomface = r.getRoomFace();
         Target target = r.getTarget();
-        ArrayList<Indicator> indicator = r.getIndicator();
+        ArrayList<Indicator> indicator = r.getIndicatorList();
         final String stateName = "search";
         
         //update total and search count

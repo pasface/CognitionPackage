@@ -74,7 +74,7 @@ public final class Room extends JLabel {
     }
 
     // getters
-    public ArrayList<Indicator> getIndicator() {
+    public ArrayList<Indicator> getIndicatorList() {
         return indicators;
     }
 
