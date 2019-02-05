@@ -34,15 +34,9 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         adaptedRoom.setTarget(room.getTarget().getName());
         ArrayList<String> indi = new ArrayList<>();
         for (int count = 0; count < room.getIndicator().size(); count++) {
-            String thing = room.getIndicator().get(count).getName();
-            if (!thing.isEmpty()) {
-                indi.add(room.getIndicator().get(count).getName());
-            } else {
-                indi.add("0");
-            }
+            indi.add(room.getIndicator().get(count).getName());
         }
         adaptedRoom.setIndicatorList(indi);
-
         return adaptedRoom;
     }
 }
