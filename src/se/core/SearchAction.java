@@ -30,7 +30,7 @@ public class SearchAction extends AbstractAction {
         //set method vars
         JButton btn = (JButton) e.getSource();
         String name = btn.getName();
-        Room r = Game.getRoom(Integer.parseInt(name) - 1);
+        Room r = Game.getStaticRoom(Integer.parseInt(name) - 1);
         JLabel roomface = r.getRoomFace();
         Target target = r.getTarget();
         ArrayList<Indicator> indicator = r.getIndicator();

@@ -22,9 +22,12 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.awt.GridLayout;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileSystemView;
 import javax.xml.bind.Unmarshaller;
 
 public class GameLaunch {
@@ -43,49 +46,47 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        unmarshallFile(ROOM_XML);
+        //unmarshallFile(ROOM_XML);
     }
 
     public static void open() throws JAXBException, IOException {
         //ensure gamepanel is off so we don't create new games on top of old ones
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
-        //if launch is ready, start game
-        if (isBool() == true) {
-            //reset game counters
-            Game.resetCounts();
 
-            //set layout and gap spaces
-            ComponentSettings cs = new ComponentSettings();
-            GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
-            roomLayout.setHgap(cs.getGap());
-            roomLayout.setVgap(cs.getGap());
-            gamePanel = new JPanel();
-            gamePanel.setLayout(roomLayout);
-            gamePanel.setVisible(true);
+        //reset game counters
+        Game.resetCounts();
 
-            //Create a file chooser
-            final JFileChooser fc = new JFileChooser();
-            int a = fc.showOpenDialog(null);
-            if (a == JFileChooser.APPROVE_OPTION) {
-                File fileToOpen = fc.getSelectedFile();
-                Desktop.getDesktop().open(fileToOpen);
-                //create new game
-                //creating the JAXB context
-                JAXBContext jContext = JAXBContext.newInstance(Game.class);
-                //creating the unmarshall object
-                Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
-                //calling the unmarshall method
-                Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
-            }
-            //remove intro screen and add gamePanel
-            FRAME.remove(introPanel);
-            FRAME.add(gamePanel);
-            FRAME.validate();
-            setBool(false);
-        } else {
-            FRAME.validate();
+        //set layout and gap spaces
+        ComponentSettings cs = new ComponentSettings();
+        GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+        roomLayout.setHgap(cs.getGap());
+        roomLayout.setVgap(cs.getGap());
+        gamePanel = new JPanel();
+        gamePanel.setLayout(roomLayout);
+        gamePanel.setVisible(true);
+
+        //Create a file chooser
+        final JFileChooser fc = new JFileChooser();
+        int a = fc.showOpenDialog(null);
+        if (a == JFileChooser.APPROVE_OPTION) {
+            File fileToOpen = fc.getSelectedFile();
+            Desktop.getDesktop().open(fileToOpen);
+            //create new game
+            //creating the JAXB context
+            JAXBContext jContext = JAXBContext.newInstance(Game.class);
+            //creating the unmarshall object
+            Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+            //calling the unmarshall method
+            Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
+            gamePanel.add(g.getRoom(0).getRoomFace());
+            System.out.println(g.getRoom(0).toString() );
         }
+        //remove intro screen and add gamePanel
+        FRAME.remove(introPanel);
+        FRAME.add(gamePanel);
+        FRAME.validate();
+        setBool(false);
     }
 
     public static void unmarshallFile(String fileName) throws JAXBException {
@@ -102,17 +103,21 @@ public class GameLaunch {
         System.out.print(g.toString());
     }
 
-    public static void marshallClasses(Game g) throws JAXBException {
-        // create JAXB context and instantiate marshaller
-        JAXBContext context = JAXBContext.newInstance(Game.class);
-        Marshaller m = context.createMarshaller();
-        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-        // Write to System.out
-        m.marshal(g, System.out);
-
-        // Write to File
-        m.marshal(g, new File(ROOM_XML));
+    public static void marshallClasses(Game g)  {
+        try {
+            // create JAXB context and instantiate marshaller
+            JAXBContext context = JAXBContext.newInstance(Game.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            
+            // Write to System.out
+            m.marshal(g, System.out);
+            
+            // Write to File
+            m.marshal(g, new File(ROOM_XML));
+        } catch (JAXBException ex) {
+            Logger.getLogger(GameLaunch.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static void launch() throws JAXBException, IOException, Exception {
@@ -144,7 +149,7 @@ public class GameLaunch {
             FRAME.add(gamePanel);
             FRAME.validate();
             setBool(false);
-            System.out.println(g.toString());
+            System.out.println("launched game: "+g.toString());
         } else {
             FRAME.validate();
         }

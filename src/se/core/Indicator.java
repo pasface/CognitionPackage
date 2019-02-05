@@ -11,7 +11,9 @@ package se.core;
  * @author nikki
  */
 import javax.swing.JLabel;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+@XmlJavaTypeAdapter(IndicatorAdapter.class)
 public final class Indicator extends JLabel {
     private int indicatorId;
 

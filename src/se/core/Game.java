@@ -11,11 +11,8 @@ package se.core;
  */
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElement;
@@ -47,8 +44,8 @@ public class Game {
         roomListStatic = roomList;
         //add peek/search buttons
         for (int btnNum = 0; btnNum < numberOfRooms; btnNum++) {
-            Game.PEEK_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getPeekButton());
-            Game.SEARCH_BUTTONS.add(getRoom(Integer.parseInt("" + btnNum)).getSearchButton());
+            Game.PEEK_BUTTONS.add(getStaticRoom(Integer.parseInt("" + btnNum)).getPeekButton());
+            Game.SEARCH_BUTTONS.add(getStaticRoom(Integer.parseInt("" + btnNum)).getSearchButton());
         }
 
         //feedback settings
@@ -68,8 +65,12 @@ public class Game {
         return gameId;
     }
 
-    public static Room getRoom(int num) {
+    public static Room getStaticRoom(int num) {
         return roomListStatic.get(num);
+    }
+    
+    public Room getRoom(int num) {
+        return roomList.get(num);
     }
 
     public static ArrayList<PeekButton> getPeek_buttons() {

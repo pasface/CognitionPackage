@@ -17,14 +17,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@XmlType
-public final class Room {
+@XmlJavaTypeAdapter(RoomAdapter.class)
+public final class Room extends JLabel {
 
     // fields
     private static final SecureRandom RAND = new SecureRandom();
@@ -33,18 +29,19 @@ public final class Room {
     private final EmptyRoom roomFace = new EmptyRoom();
     private final JLayeredPane roomPane = new JLayeredPane();
     private static String state = "";
-    @XmlAttribute(name = "roomId")
-    private final int roomId;
-    @XmlElement(name = "target")
-    @XmlJavaTypeAdapter(TargetAdapter.class)
+    private int roomId;
     private Target target = new Target();
-    @XmlElementWrapper(name = "indicatorList")
-    @XmlElement(name = "indicator")
-    @XmlJavaTypeAdapter(IndicatorAdapter.class)
-    private final ArrayList<Indicator> indicators;
+    private ArrayList<Indicator> indicators;
 
     // constructor
     public Room() {
+        this.peekButton = new PeekButton(0);
+        this.searchButton = new SearchButton(0);
+        this.indicators = new ArrayList<>();
+        this.roomId = 0;
+    }
+
+    public Room(String name) {
         this.peekButton = new PeekButton(0);
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
@@ -107,6 +104,10 @@ public final class Room {
     }
 
     //setters
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
     public void setRoomFaceIcon(ImageIcon icon) {
         roomFace.setIcon(icon);
     }
@@ -115,8 +116,12 @@ public final class Room {
         Room.state = state;
     }
 
-    public void setTarget() {
+    public void setTarget(Target target) {
+        this.target = target;
+    }
 
+    public void setIndicators(ArrayList<Indicator> indicators) {
+        this.indicators = indicators;
     }
 
     // method to create and populate a room array
@@ -131,7 +136,7 @@ public final class Room {
             int randInt = RAND.nextInt(2);
             ArrayList<Indicator> indicatorList;
             // randomly place a target into a roomArray 
-            // (if no target built, 50% chancee to build a target in current roomArray
+            // (if no target built, chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
                 Target t1 = new Target("target");
