@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <game>
-    <gameId>14</gameId>
+    <gameId>15</gameId>
     <roomList roomId="1">
         <indicatorList>
             <indicator>3</indicator>
-            <indicator>3</indicator>
+            <indicator>2</indicator>
         </indicatorList>
         <target>target</target>
     </roomList>
@@ -13,24 +13,22 @@
         <target></target>
     </roomList>
     <roomList roomId="3">
-        <indicatorList>
-            <indicator>1</indicator>
-        </indicatorList>
-        <target></target>
-    </roomList>
-    <roomList roomId="4">
         <indicatorList/>
         <target></target>
     </roomList>
-    <roomList roomId="5">
+    <roomList roomId="4">
         <indicatorList>
-            <indicator>1</indicator>
+            <indicator>4</indicator>
         </indicatorList>
+        <target></target>
+    </roomList>
+    <roomList roomId="5">
+        <indicatorList/>
         <target></target>
     </roomList>
     <roomList roomId="6">
         <indicatorList>
-            <indicator>4</indicator>
+            <indicator>2</indicator>
         </indicatorList>
         <target></target>
     </roomList>
