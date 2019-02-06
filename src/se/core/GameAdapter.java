@@ -16,8 +16,7 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
 
     @Override
     public Game unmarshal(AdaptedGame adaptedGame) throws Exception {
-        JPanel panel = new JPanel();
-        Game g = new Game(adaptedGame.getRoomList().size(), adaptedGame.getGameId(), panel);
+        Game g = new Game(adaptedGame.getRoomList().size(), adaptedGame.getGameId());
         g.setGameId(adaptedGame.getGameId());
         g.setRoomList(adaptedGame.getRoomList());
         System.out.println("AdaptedGame unmarshal");

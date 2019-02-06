@@ -5,19 +5,18 @@
  */
 package se.core;
 
-import java.util.ArrayList;
-import javax.swing.JPanel;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
 /**
  *
  * @author nikki
  */
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
 public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
 
     @Override
     public Room unmarshal(AdaptedRoom adaptedRoom) throws Exception {
-        //indicators, target, id, panel
         JPanel panel = new JPanel();
         ComponentSettings cs = new ComponentSettings();
         ArrayList<Indicator> indiList = new ArrayList<>();
@@ -28,9 +27,8 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         Room r = new Room(indiList, targ, cs.getNumOfRooms(), panel);
         r.setRoomId(adaptedRoom.getRoomId());
         r.setIcon(IconFinder.setIconFinder(""));
-        
         r.setIndicators(indiList);
-        System.out.println("\nAdaptedRoom unmarshal");
+        //System.out.println("\nAdaptedRoom unmarshal");
         return r;
     }
 
@@ -46,7 +44,7 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
             indi.add(room.getIndicatorList().get(count).getName());
         }
         adaptedRoom.setIndicatorList(indi);
-        System.out.println("\nAdaptedRoom marshal");
+        //System.out.println("\nAdaptedRoom marshal");
         return adaptedRoom;
     }
 }

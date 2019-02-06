@@ -15,7 +15,6 @@ package se.core;
  *
  * @author nikki
  */
-import java.awt.Desktop;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,14 +26,12 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileSystemView;
 import javax.xml.bind.Unmarshaller;
 
 public class GameLaunch {
 
     private static final JFrame FRAME = new MyFrame();
     private static JPanel gamePanel = new JPanel();
-    private static boolean b = false;
     private static IntroScreen introPanel;
     private static final String ROOM_XML = "./room-jaxb.xml";
     private static int incrementId;
@@ -46,7 +43,8 @@ public class GameLaunch {
         FRAME.add(introPanel);
         FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        unmarshallFile(ROOM_XML);
+        //unmarshallFile(ROOM_XML);
+        gamePanel.removeAll();
 
     }
 
@@ -71,23 +69,23 @@ public class GameLaunch {
         final JFileChooser fc = new JFileChooser();
         int a = fc.showOpenDialog(null);
         if (a == JFileChooser.APPROVE_OPTION) {
+
+            //getting the xml file to read
             File fileToOpen = fc.getSelectedFile();
-            Desktop.getDesktop().open(fileToOpen);
-            //create new game
             //creating the JAXB context
             JAXBContext jContext = JAXBContext.newInstance(Game.class);
             //creating the unmarshall object
             Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+
             //calling the unmarshall method
             Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
-            gamePanel.add(g.getRoom(0).getRoomFace());
-            System.out.println(g.getRoom(0).toString());
+            System.out.println();
+            System.out.println("Open: " + g.toString());
         }
         //remove intro screen and add gamePanel
         FRAME.remove(introPanel);
         FRAME.add(gamePanel);
         FRAME.validate();
-        setBool(false);
     }
 
     public static void unmarshallFile(String fileName) throws JAXBException {
@@ -101,7 +99,7 @@ public class GameLaunch {
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
         //set incrementor for the gameId
-        //incrementId = g.getGameId();
+        incrementId = g.getGameId();
         System.out.print("UnmarshallFile: " + g.toString());
     }
 
@@ -113,8 +111,7 @@ public class GameLaunch {
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             // Write to System.out
-            m.marshal(g, System.out);
-
+            //m.marshal(g, System.out);
             // Write to File
             m.marshal(g, new File(ROOM_XML));
         } catch (JAXBException ex) {
@@ -123,46 +120,33 @@ public class GameLaunch {
     }
 
     public static void launch() throws JAXBException, IOException, Exception {
+        //remove former rooms
+        gamePanel.removeAll();
+        //reset game counters
+        Game.resetCounts();
+
         //ensure gamepanel is off so we don't create new games on top of old ones
-        gamePanel.setVisible(false);
-        FRAME.remove(gamePanel);
-        //if launch is ready, start game
-        if (isBool() == true) {
-            //reset game counters
-            Game.resetCounts();
+        ComponentSettings cs = new ComponentSettings();
 
-            //set layout and gap spaces
-            ComponentSettings cs = new ComponentSettings();
-            GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
-            roomLayout.setHgap(cs.getGap());
-            roomLayout.setVgap(cs.getGap());
-            gamePanel = new JPanel();
-            gamePanel.setLayout(roomLayout);
-            gamePanel.setVisible(true);
+        //set layout and gap spaces
+        GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+        roomLayout.setHgap(cs.getGap());
+        roomLayout.setVgap(cs.getGap());
+        gamePanel = Game.getPanel();
+        gamePanel.setLayout(roomLayout);
+        gamePanel.setVisible(true);
 
-            //create new game
-            Game g = new Game(cs.getNumOfRooms(), incrementId + 1, gamePanel);
+        //create new game
+        Game g = new Game(cs.getNumOfRooms(), incrementId + 1);
 
-            //marshal game
-            marshallClasses(g);
+        //marshal game
+        marshallClasses(g);
 
-            //remove intro screen and add gamePanel
-            FRAME.remove(introPanel);
-            FRAME.add(gamePanel);
-            FRAME.validate();
-            setBool(false);
-            System.out.println("launched game: " + g.toString());
-        } else {
-            FRAME.validate();
-        }
-    }
-
-    public static void setBool(boolean b) {
-        GameLaunch.b = b;
-    }
-
-    public static boolean isBool() {
-        return b;
+        //remove intro screen and add gamePanel
+        FRAME.remove(introPanel);
+        FRAME.add(gamePanel);
+        FRAME.validate();
+        System.out.println("launched game: " + g.toString());
     }
 
 }

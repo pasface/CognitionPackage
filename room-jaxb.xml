@@ -2,14 +2,12 @@
 <game>
     <gameId>1</gameId>
     <roomList roomId="1">
-        <indicatorList>
-            <indicator>5</indicator>
-        </indicatorList>
+        <indicatorList/>
         <target></target>
     </roomList>
     <roomList roomId="2">
         <indicatorList>
-            <indicator>2</indicator>
+            <indicator>3</indicator>
             <indicator>4</indicator>
         </indicatorList>
         <target>target</target>
@@ -19,17 +17,19 @@
         <target></target>
     </roomList>
     <roomList roomId="4">
-        <indicatorList>
-            <indicator>1</indicator>
-        </indicatorList>
+        <indicatorList/>
         <target></target>
     </roomList>
     <roomList roomId="5">
-        <indicatorList/>
+        <indicatorList>
+            <indicator>3</indicator>
+        </indicatorList>
         <target></target>
     </roomList>
     <roomList roomId="6">
-        <indicatorList/>
+        <indicatorList>
+            <indicator>5</indicator>
+        </indicatorList>
         <target></target>
     </roomList>
 </game>

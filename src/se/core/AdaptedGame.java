@@ -30,7 +30,7 @@ public class AdaptedGame {
         this.gameId = gameId;
     }
 
-    @XmlElementWrapper(name = "roomList")
+    //@XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
     public ArrayList<Room> getRoomList() {
         return roomList;

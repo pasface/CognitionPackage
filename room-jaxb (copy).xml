@@ -1,67 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <game>
-    <roomList>
-        <room roomId="1">
-            <target targetId="1">
-                <targetIcon>target</targetIcon>
-                <targetName>target</targetName>
-            </target>
-            <indicatorList>
-                <indicator indicatorId="1">
-                    <indicatorIcon>3</indicatorIcon>
-                    <indicatorName>3</indicatorName>
-                </indicator>
-                <indicator indicatorId="2">
-                    <indicatorIcon>3</indicatorIcon>
-                    <indicatorName>3</indicatorName>
-                </indicator>
-            </indicatorList>
-        </room>
-        <room roomId="2">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList/>
-        </room>
-        <room roomId="3">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList>
-                <indicator indicatorId="1">
-                    <indicatorIcon>1</indicatorIcon>
-                    <indicatorName>1</indicatorName>
-                </indicator>
-            </indicatorList>
-        </room>
-        <room roomId="4">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList/>
-        </room>
-        <room roomId="5">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList/>
-        </room>
-        <room roomId="6">
-            <target targetId="0">
-                <targetIcon></targetIcon>
-                <targetName></targetName>
-            </target>
-            <indicatorList>
-                <indicator indicatorId="1">
-                    <indicatorIcon>1</indicatorIcon>
-                    <indicatorName>1</indicatorName>
-                </indicator>
-            </indicatorList>
-        </room>
+    <gameId>9</gameId>
+    <roomList roomId="1">
+        <indicatorList/>
+        <target></target>
     </roomList>
-    <gameId>2</gameId>
+    <roomList roomId="2">
+        <indicatorList>
+            <indicator>3</indicator>
+            <indicator>1</indicator>
+        </indicatorList>
+        <target>target</target>
+    </roomList>
+    <roomList roomId="3">
+        <indicatorList>
+            <indicator>2</indicator>
+        </indicatorList>
+        <target></target>
+    </roomList>
+    <roomList roomId="4">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="5">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="6">
+        <indicatorList>
+            <indicator>3</indicator>
+        </indicatorList>
+        <target></target>
+    </roomList>
 </game>

@@ -30,12 +30,13 @@ public class Game {
     private static final JLabel DISPLAY_PEEK_COUNT = new JLabel();
     private static final ArrayList<PeekButton> PEEK_BUTTONS = new ArrayList<>();
     private static final ArrayList<SearchButton> SEARCH_BUTTONS = new ArrayList<>();
+    private static JPanel panel = new JPanel();
 
     // constructors
     public Game() {
     }
 
-    public Game(int numberOfRooms, int id, JPanel panel) {
+    public Game(int numberOfRooms, int id) {
         gameId = id;
         // generate rooms
         room_List = Room.roomArrayGenerator(numberOfRooms, panel);
@@ -81,6 +82,10 @@ public class Game {
 
     public ArrayList<Room> getRoomList() {
         return room_List;
+    }
+
+    public static JPanel getPanel() {
+        return panel;
     }
 
     // setters

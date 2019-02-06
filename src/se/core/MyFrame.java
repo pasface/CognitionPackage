@@ -114,7 +114,7 @@ public class MyFrame extends javax.swing.JFrame {
 
     private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
         try {
-            GameLaunch.setBool(true);
+            //GameLaunch.setBool(true);
             GameLaunch.launch();
         } catch (JAXBException ex) {
             System.out.println("jax" + ex);

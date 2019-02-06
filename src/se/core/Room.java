@@ -27,7 +27,7 @@ public final class Room extends JLabel {
     private final PeekButton peekButton;
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
-    private final JLayeredPane roomPane = new JLayeredPane();
+    private JLayeredPane roomPane;
     private static String state = "";
     private int roomId;
     private Target target = new Target();
@@ -39,11 +39,12 @@ public final class Room extends JLabel {
         this.searchButton = new SearchButton(0);
         this.indicators = new ArrayList<>();
         this.roomId = 0;
+        this.roomPane = new JLayeredPane();
     }
 
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
-
+        this.roomPane = new JLayeredPane();
         //initialize fields
         this.indicators = indicators;
         this.target = target;
