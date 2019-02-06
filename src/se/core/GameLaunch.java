@@ -15,6 +15,7 @@ package se.core;
  *
  * @author nikki
  */
+import java.awt.Color;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -41,11 +42,13 @@ public class GameLaunch {
         FRAME.setLayout(new GridLayout());
         introPanel = new IntroScreen(new JPanel());
         FRAME.add(introPanel);
-        FRAME.add(gamePanel);
+        //FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        //unmarshallFile(ROOM_XML);
+        FRAME.setBackground(Color.yellow);
+        introPanel.setBackground(Color.red);
+        gamePanel.setBackground(Color.MAGENTA);
+        unmarshallFile(ROOM_XML);
         gamePanel.removeAll();
-
     }
 
     public static void open() throws JAXBException, IOException {
@@ -112,6 +115,7 @@ public class GameLaunch {
 
             // Write to System.out
             //m.marshal(g, System.out);
+            
             // Write to File
             m.marshal(g, new File(ROOM_XML));
         } catch (JAXBException ex) {
@@ -121,6 +125,7 @@ public class GameLaunch {
 
     public static void launch() throws JAXBException, IOException, Exception {
         //remove former rooms
+        FRAME.remove(introPanel);
         gamePanel.removeAll();
         //reset game counters
         Game.resetCounts();
@@ -135,9 +140,11 @@ public class GameLaunch {
         gamePanel = Game.getPanel();
         gamePanel.setLayout(roomLayout);
         gamePanel.setVisible(true);
-
+        
+        incrementId+=1;
+        
         //create new game
-        Game g = new Game(cs.getNumOfRooms(), incrementId + 1);
+        Game g = new Game(cs.getNumOfRooms(), incrementId);
 
         //marshal game
         marshallClasses(g);
