@@ -53,14 +53,16 @@ public class GameLaunch {
 
     public static void open() throws JAXBException, IOException {
         //ensure gamepanel is off so we don't create new games on top of old ones
-        gamePanel.setVisible(false);
-        FRAME.remove(gamePanel);
+        FRAME.remove(introPanel);
+        gamePanel.removeAll();
 
         //reset game counters
         Game.resetCounts();
 
         //set layout and gap spaces
         ComponentSettings cs = new ComponentSettings();
+        
+        //set layout and gap spaces
         GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
         roomLayout.setHgap(cs.getGap());
         roomLayout.setVgap(cs.getGap());
@@ -82,11 +84,11 @@ public class GameLaunch {
 
             //calling the unmarshall method
             Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
+            gamePanel = Game.getPanel();
             System.out.println();
             System.out.println("Open: " + g.toString());
         }
         //remove intro screen and add gamePanel
-        FRAME.remove(introPanel);
         FRAME.add(gamePanel);
         FRAME.validate();
     }
@@ -97,7 +99,7 @@ public class GameLaunch {
         //creating the JAXB context
         JAXBContext jContext = JAXBContext.newInstance(Game.class);
         //creating the unmarshall object
-        Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+        Unmarshaller unmarshallerObj = jContext.createUnmarshaller(); 
 
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
@@ -150,7 +152,6 @@ public class GameLaunch {
         marshallClasses(g);
 
         //remove intro screen and add gamePanel
-        FRAME.remove(introPanel);
         FRAME.add(gamePanel);
         FRAME.validate();
         System.out.println("launched game: " + g.toString());
