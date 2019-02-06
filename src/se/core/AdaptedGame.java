@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 public class AdaptedGame {
 
     private int gameId;
-    private ArrayList<String> roomList;
+    private ArrayList<Room> roomList;
 
     public int getGameId() {
         return gameId;
@@ -30,11 +32,11 @@ public class AdaptedGame {
 
     @XmlElementWrapper(name = "roomList")
     @XmlElement(name = "room")
-    public ArrayList<String> getRoomList() {
+    public ArrayList<Room> getRoomList() {
         return roomList;
     }
 
-    public void setRoomList(ArrayList<String> roomList) {
+    public void setRoomList(ArrayList<Room> roomList) {
         this.roomList = roomList;
     }
 

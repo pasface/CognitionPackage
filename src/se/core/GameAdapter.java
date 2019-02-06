@@ -5,7 +5,6 @@
  */
 package se.core;
 
-import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
@@ -18,26 +17,19 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
     @Override
     public Game unmarshal(AdaptedGame adaptedGame) throws Exception {
         JPanel panel = new JPanel();
-        ComponentSettings cs = new ComponentSettings();
-        ArrayList<Room> roomList = null;
-        Game g = new Game(cs.getNumOfRooms(), 1, panel);
+        Game g = new Game(adaptedGame.getRoomList().size(), adaptedGame.getGameId(), panel);
         g.setGameId(adaptedGame.getGameId());
-        for (int count = 0; count < adaptedGame.getRoomList().size(); count++) {
-            roomList.add(new Room());
-        }
-        g.setRoomList(roomList);
+        g.setRoomList(adaptedGame.getRoomList());
+        System.out.println("AdaptedGame unmarshal");
         return g;
     }
 
-        @Override
-        public AdaptedGame marshal(Game game) throws Exception {
+    @Override
+    public AdaptedGame marshal(Game game) throws Exception {
         AdaptedGame adaptedGame = new AdaptedGame();
         adaptedGame.setGameId(game.getGameId());
-        ArrayList roomList = new ArrayList<>();
-        for (int count = 0; count < game.getRoomList().size(); count++){
-            roomList.add(game.getRoomList().get(count).getName());
-        }
-        adaptedGame.setRoomList(roomList);
+        adaptedGame.setRoomList(game.getRoomList());
+        System.out.println("AdaptedGame marshal");
         return adaptedGame;
     }
 }

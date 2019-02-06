@@ -18,6 +18,7 @@ public class TargetAdapter extends XmlAdapter<AdaptedTarget, Target> {
         Target t= new Target(adaptedTarget.getTargetName());
         t.setTargetId(adaptedTarget.getTargetId());
         t.setIcon(IconFinder.setIconFinder(adaptedTarget.getTargetIcon()));
+        System.out.println("AdaptedTarget unmarshal");
         return t;
     }
     
@@ -27,6 +28,7 @@ public class TargetAdapter extends XmlAdapter<AdaptedTarget, Target> {
         adaptedTarget.setTargetName(target.getName());
         adaptedTarget.setTargetId(target.getTargetId());
         adaptedTarget.setTargetIcon(target.getName());
+        System.out.println("AdaptedTarget marshal");
         return adaptedTarget;
     }
 }

@@ -18,6 +18,7 @@ public class IndicatorAdapter extends XmlAdapter<AdaptedIndicator, Indicator> {
         Indicator i= new Indicator(adaptedIndicator.getIndicatorName());
         i.setIndicatorId(adaptedIndicator.getIndicatorId());
         i.setIcon(IconFinder.setIconFinder(adaptedIndicator.getIndicatorIcon()));
+        System.out.println("AdaptedIndicator unmarshal");
         return i;
     }
 
@@ -27,6 +28,7 @@ public class IndicatorAdapter extends XmlAdapter<AdaptedIndicator, Indicator> {
         adaptedIndicator.setIndicatorName(indicator.getName());
         adaptedIndicator.setIndicatorId(indicator.getIndicatorId());
         adaptedIndicator.setIndicatorIcon(indicator.getName());
+        System.out.println("AdaptedIndicator marshal");
         return adaptedIndicator;
     }
 

@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
@@ -24,9 +22,7 @@ public class Game {
 
     // fields
     private int gameId;
-    //@XmlElementWrapper(name = "roomList")
-    //@XmlElement(name = "room")
-    private ArrayList<Room> roomList;
+    private ArrayList<Room> room_List;
     private static ArrayList<Room> roomListStatic;
     private static int countSearch = 0, countPeek = 0, total = 0;
     private static final JLabel DISPLAY_TOTAL = new JLabel();
@@ -42,8 +38,8 @@ public class Game {
     public Game(int numberOfRooms, int id, JPanel panel) {
         gameId = id;
         // generate rooms
-        roomList = Room.roomArrayGenerator(numberOfRooms, panel);
-        roomListStatic = roomList;
+        room_List = Room.roomArrayGenerator(numberOfRooms, panel);
+        roomListStatic = room_List;
         //add peek/search buttons
         for (int btnNum = 0; btnNum < numberOfRooms; btnNum++) {
             Game.PEEK_BUTTONS.add(getStaticRoom(Integer.parseInt("" + btnNum)).getPeekButton());
@@ -72,7 +68,7 @@ public class Game {
     }
     
     public Room getRoom(int num) {
-        return roomList.get(num);
+        return room_List.get(num);
     }
 
     public static ArrayList<PeekButton> getPeek_buttons() {
@@ -84,7 +80,7 @@ public class Game {
     }
 
     public ArrayList<Room> getRoomList() {
-        return roomList;
+        return room_List;
     }
 
     // setters
@@ -105,7 +101,7 @@ public class Game {
     }
 
     public void setRoomList(ArrayList<Room> roomList) {
-        this.roomList = roomList;
+        this.room_List = roomList;
     }
 
     //class methods
@@ -147,7 +143,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "{Game id=" + this.gameId + ",\n " + roomList.toString() + '}';
+        return "{Game id=" + this.gameId + ",\n " + room_List.toString() + '}';
     }
 
 }
