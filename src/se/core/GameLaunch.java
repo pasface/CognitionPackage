@@ -16,12 +16,14 @@ package se.core;
  * @author nikki
  */
 import java.awt.Color;
+import java.awt.Desktop;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.awt.GridLayout;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -44,25 +46,20 @@ public class GameLaunch {
         FRAME.add(introPanel);
         //FRAME.add(gamePanel);
         FRAME.setVisible(true);
-        FRAME.setBackground(Color.yellow);
-        introPanel.setBackground(Color.red);
-        gamePanel.setBackground(Color.MAGENTA);
         unmarshallFile(ROOM_XML);
         gamePanel.removeAll();
     }
 
     public static void open() throws JAXBException, IOException {
         //ensure gamepanel is off so we don't create new games on top of old ones
-        FRAME.remove(introPanel);
-        gamePanel.removeAll();
+        gamePanel.setVisible(false);
+        FRAME.remove(gamePanel);
 
         //reset game counters
         Game.resetCounts();
 
         //set layout and gap spaces
         ComponentSettings cs = new ComponentSettings();
-        
-        //set layout and gap spaces
         GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
         roomLayout.setHgap(cs.getGap());
         roomLayout.setVgap(cs.getGap());
@@ -74,21 +71,27 @@ public class GameLaunch {
         final JFileChooser fc = new JFileChooser();
         int a = fc.showOpenDialog(null);
         if (a == JFileChooser.APPROVE_OPTION) {
-
-            //getting the xml file to read
             File fileToOpen = fc.getSelectedFile();
+            Desktop.getDesktop().open(fileToOpen);
             //creating the JAXB context
             JAXBContext jContext = JAXBContext.newInstance(Game.class);
             //creating the unmarshall object
             Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
-
             //calling the unmarshall method
             Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
-            gamePanel = Game.getPanel();
-            System.out.println();
-            System.out.println("Open: " + g.toString());
+            for (int count = 0; count < g.getRoomList().size(); count++) {
+                EmptyRoom er = g.getRoom(count).getRoomFace();
+                Target target = g.getRoom(count).getTarget();
+                ArrayList<Indicator> indicators = g.getRoom(count).getIndicatorList();
+                g.getRoom(count).setState("search");
+                g.getRoom(count).orderComponents(target, er, indicators);
+                
+                gamePanel.add(er);
+            }
+            System.out.println("open: " + g.toString());
         }
         //remove intro screen and add gamePanel
+        FRAME.remove(introPanel);
         FRAME.add(gamePanel);
         FRAME.validate();
     }
@@ -99,7 +102,7 @@ public class GameLaunch {
         //creating the JAXB context
         JAXBContext jContext = JAXBContext.newInstance(Game.class);
         //creating the unmarshall object
-        Unmarshaller unmarshallerObj = jContext.createUnmarshaller(); 
+        Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
 
         //calling the unmarshall method
         Game g = (Game) unmarshallerObj.unmarshal(file);
@@ -117,7 +120,6 @@ public class GameLaunch {
 
             // Write to System.out
             //m.marshal(g, System.out);
-            
             // Write to File
             m.marshal(g, new File(ROOM_XML));
         } catch (JAXBException ex) {
@@ -142,9 +144,9 @@ public class GameLaunch {
         gamePanel = Game.getPanel();
         gamePanel.setLayout(roomLayout);
         gamePanel.setVisible(true);
-        
-        incrementId+=1;
-        
+
+        incrementId += 1;
+
         //create new game
         Game g = new Game(cs.getNumOfRooms(), incrementId);
 

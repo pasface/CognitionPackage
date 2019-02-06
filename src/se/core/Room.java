@@ -217,7 +217,7 @@ public final class Room extends JLabel {
     }
 
     //change the state of the room based on mouse click
-    private void changeState() {
+    public void changeState() {
         if ("search".equals(Room.state)) {          // search state
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
