@@ -23,8 +23,7 @@ public class GameAdapter extends XmlAdapter<AdaptedGame, Game> {
         Game g = new Game(cs.getNumOfRooms(), 1, panel);
         g.setGameId(adaptedGame.getGameId());
         for (int count = 0; count < adaptedGame.getRoomList().size(); count++) {
-            //ArrayList<Indicator> indicators, Target target, int id, JPanel panel
-            roomList.add(new Room(adaptedGame.getRoomList().get(count)));
+            roomList.add(new Room());
         }
         g.setRoomList(roomList);
         return g;

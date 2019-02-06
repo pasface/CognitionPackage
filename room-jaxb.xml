@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <game>
-    <gameId>8</gameId>
+    <gameId>9</gameId>
     <roomList roomId="1">
         <indicatorList>
+            <indicator>2</indicator>
             <indicator>4</indicator>
         </indicatorList>
-        <target></target>
+        <target>target</target>
     </roomList>
     <roomList roomId="2">
-        <indicatorList/>
+        <indicatorList>
+            <indicator>3</indicator>
+        </indicatorList>
         <target></target>
     </roomList>
     <roomList roomId="3">
         <indicatorList>
-            <indicator>4</indicator>
             <indicator>2</indicator>
         </indicatorList>
-        <target>target</target>
+        <target></target>
     </roomList>
     <roomList roomId="4">
-        <indicatorList/>
+        <indicatorList>
+            <indicator>1</indicator>
+        </indicatorList>
         <target></target>
     </roomList>
     <roomList roomId="5">
@@ -27,7 +31,9 @@
         <target></target>
     </roomList>
     <roomList roomId="6">
-        <indicatorList/>
+        <indicatorList>
+            <indicator>5</indicator>
+        </indicatorList>
         <target></target>
     </roomList>
 </game>
