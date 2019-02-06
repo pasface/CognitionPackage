@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class IconFinder extends ImageIcon {
     private static String S = "";
     
-    public static final ImageIcon setIconFinder(String image){
+    public static ImageIcon setIconFinder(String image){
         try {
             return icon(image);
         } catch (NullPointerException e) {

@@ -27,7 +27,7 @@ public class RoomAdapter extends XmlAdapter<AdaptedRoom, Room> {
         }
         Room r = new Room(indiList, targ, cs.getNumOfRooms(), panel);
         r.setRoomId(adaptedRoom.getRoomId());
-        r.setIcon(IconFinder.setIconFinder(adaptedRoom.getRoomIcon()));
+        r.setIcon(IconFinder.setIconFinder(""));
         
         r.setIndicators(indiList);
         System.out.println("\nAdaptedRoom unmarshal");
