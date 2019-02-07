@@ -77,7 +77,7 @@ public class ComponentSettings {
 
     public static int getSEARCH() {
         return SEARCH;
-    }
+    }            
 
     public static int getPEEKS() {
         return PEEKS;

@@ -15,7 +15,6 @@ package se.core;
  *
  * @author nikki
  */
-import java.awt.Color;
 import java.awt.Desktop;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
@@ -23,7 +22,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.awt.GridLayout;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -51,6 +49,8 @@ public class GameLaunch {
     }
 
     public static void open() throws JAXBException, IOException {
+        //NEEDS WORK        
+        
         //ensure gamepanel is off so we don't create new games on top of old ones
         gamePanel.setVisible(false);
         FRAME.remove(gamePanel);
@@ -80,15 +80,9 @@ public class GameLaunch {
             //calling the unmarshall method
             Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
             for (int count = 0; count < g.getRoomList().size(); count++) {
-                EmptyRoom er = g.getRoom(count).getRoomFace();
-                Target target = g.getRoom(count).getTarget();
-                ArrayList<Indicator> indicators = g.getRoom(count).getIndicatorList();
-                g.getRoom(count).setState("search");
-                g.getRoom(count).orderComponents(target, er, indicators);
-                
-                gamePanel.add(er);
+                gamePanel.add(g.getRoom(count));
             }
-            System.out.println("open: " + g.toString());
+           System.out.println("\nopen: " + g.toString());
         }
         //remove intro screen and add gamePanel
         FRAME.remove(introPanel);

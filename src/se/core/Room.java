@@ -32,6 +32,7 @@ public final class Room extends JLabel {
     private int roomId;
     private Target target = new Target();
     private ArrayList<Indicator> indicators;
+    private JPanel panel = new JPanel();
 
     // constructor
     public Room() {
@@ -45,6 +46,7 @@ public final class Room extends JLabel {
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
         this.roomPane = new JLayeredPane();
+        
         //initialize fields
         this.indicators = indicators;
         this.target = target;
@@ -65,6 +67,7 @@ public final class Room extends JLabel {
         this.orderComponents(target, this.roomFace, indicators);
 
         panel.add(this.roomPane);
+        this.panel = panel;
     }
 
     // getters
@@ -97,7 +100,19 @@ public final class Room extends JLabel {
         return searchButton;
     }
 
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public JLayeredPane getRoomPane() {
+        return roomPane;
+    }
+
     //setters
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
@@ -238,7 +253,7 @@ public final class Room extends JLabel {
     }
 
     //place component levels on teh 
-    private void placeComponents() {
+    public void placeComponents() {
         ComponentSettings s = new ComponentSettings();
 
         Point originP = new Point(s.getOrigin(), s.getOrigin() * 2);

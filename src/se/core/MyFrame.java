@@ -35,7 +35,6 @@ public class MyFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuNew = new javax.swing.JMenuItem();
-        jMenuSave = new javax.swing.JMenuItem();
         jMenuOpen = new javax.swing.JMenuItem();
         jMenuExit = new javax.swing.JMenuItem();
         jMenuView = new javax.swing.JMenu();
@@ -62,10 +61,6 @@ public class MyFrame extends javax.swing.JFrame {
             }
         });
         jMenuFile.add(jMenuNew);
-
-        jMenuSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuSave.setText("Save");
-        jMenuFile.add(jMenuSave);
 
         jMenuOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuOpen.setText("Open");
@@ -149,7 +144,6 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuNew;
     private javax.swing.JMenuItem jMenuOpen;
     private javax.swing.JMenuItem jMenuPrefs;
-    private javax.swing.JMenuItem jMenuSave;
     private javax.swing.JMenuItem jMenuStats;
     private javax.swing.JMenu jMenuView;
     private javax.swing.JMenuItem jMenuViewHelp;
