@@ -1,4 +1,4 @@
-package se.core;
+package se.stuff;
 
 import java.io.File;
 import java.io.BufferedReader;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<game>
+    <gameId>33</gameId>
+    <roomList roomId="1">
+        <indicatorList>
+            <indicator>3</indicator>
+            <indicator>2</indicator>
+        </indicatorList>
+        <target>target</target>
+    </roomList>
+    <roomList roomId="2">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="3">
+        <indicatorList>
+            <indicator>1</indicator>
+        </indicatorList>
+        <target></target>
+    </roomList>
+    <roomList roomId="4">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="5">
+        <indicatorList/>
+        <target></target>
+    </roomList>
+    <roomList roomId="6">
+        <indicatorList>
+            <indicator>2</indicator>
+        </indicatorList>
+        <target></target>
+    </roomList>
+</game>

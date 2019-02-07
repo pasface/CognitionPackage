@@ -1,7 +1,5 @@
 package se.core;
 
-import javax.swing.JLabel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,20 +10,22 @@ import javax.swing.JLabel;
  *
  * @author nikki
  */
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-public final class Target extends JLabel{
-    
+@XmlJavaTypeAdapter(TargetAdapter.class)
+public final class Target extends JLabel {
     private int targetId;
-    
+
     public Target() {
         super.setName("");
         this.targetId = 0;
     }
 
-    public Target(int x, int y) { 
-        String icon = "target";
-        super.setName(icon);
-        super.setIcon(IconFinder.setIconFinder(icon));
+    public Target(String name) {
+        super.setIcon(IconFinder.setIconFinder(name));
+        super.setName(name);
         this.targetId = 1;
     }
 
@@ -38,8 +38,13 @@ public final class Target extends JLabel{
     }
 
     @Override
+    public void setIcon(Icon icon) {
+        super.setIcon(icon);
+    }
+    
+    @Override
     public String toString() {
         return '{' + getName() + '}';
     }
-    
+
 }

@@ -1,14 +1,5 @@
 package se.core;
 
-import java.awt.Point;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,23 +9,44 @@ import javax.swing.JPanel;
  *
  * @author nikki
  */
-public final class Room {
+import java.awt.Point;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlJavaTypeAdapter(RoomAdapter.class)
+public final class Room extends JLabel {
 
     // fields
     private static final SecureRandom RAND = new SecureRandom();
     private final PeekButton peekButton;
     private final SearchButton searchButton;
     private final EmptyRoom roomFace = new EmptyRoom();
-    private final JLayeredPane roomPane = new JLayeredPane();
-    private final ArrayList<Indicator> indicators;
-    private final Target target;
-    private final int roomId;
+    private JLayeredPane roomPane;
     private static String state = "";
+    private int roomId;
+    private Target target = new Target();
+    private ArrayList<Indicator> indicators;
+    private JPanel panel = new JPanel();
 
     // constructor
+    public Room() {
+        this.peekButton = new PeekButton(0);
+        this.searchButton = new SearchButton(0);
+        this.indicators = new ArrayList<>();
+        this.roomId = 0;
+        this.roomPane = new JLayeredPane();
+    }
+
     public Room(ArrayList<Indicator> indicators, Target target, int id, JPanel panel) {
         this.roomFace.setName("" + id);
-
+        this.roomPane = new JLayeredPane();
+        
         //initialize fields
         this.indicators = indicators;
         this.target = target;
@@ -55,10 +67,11 @@ public final class Room {
         this.orderComponents(target, this.roomFace, indicators);
 
         panel.add(this.roomPane);
+        this.panel = panel;
     }
 
-    // getters and setters
-    public ArrayList<Indicator> getIndicator() {
+    // getters
+    public ArrayList<Indicator> getIndicatorList() {
         return indicators;
     }
 
@@ -79,12 +92,29 @@ public final class Room {
     }
 
     public PeekButton getPeekButtonById(int id) {
-        
+
         return peekButton;
     }
 
     public SearchButton getSearchButton() {
         return searchButton;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public JLayeredPane getRoomPane() {
+        return roomPane;
+    }
+
+    //setters
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public void setRoomFaceIcon(ImageIcon icon) {
@@ -95,22 +125,31 @@ public final class Room {
         Room.state = state;
     }
 
+    public void setTarget(Target target) {
+        this.target = target;
+    }
+
+    public void setIndicators(ArrayList<Indicator> indicators) {
+        this.indicators = indicators;
+    }
+
     // method to create and populate a room array
     public static ArrayList<Room> roomArrayGenerator(int totalRooms, JPanel panel) {
-        ArrayList<Room> r = new ArrayList();
+        ArrayList<Room> r = new ArrayList<>();
         // create variable for roomArray number
         int currentRoom = 0;
         // create a bool to check if target exists
         boolean b = false;
         // while loop to randomize target location
         while (currentRoom < totalRooms) {
-            int randInt = RAND.nextInt(3);
-            ArrayList indicatorList;
+            int randInt = RAND.nextInt(2);
+            ArrayList<Indicator> indicatorList;
             // randomly place a target into a roomArray 
-            // (if no target built, 50% chancee to build a target in current roomArray
+            // (if no target built, chancee to build a target in current roomArray
             //  OR if on last roomArray w/o target, build target in last roomArray)
             if ((randInt == 1 && b == false) || (currentRoom == totalRooms - 1 && b == false)) {
-                Target t1 = new Target(30, 30);
+                Target t1 = new Target("target");
+                //t1.setIcon(IconFinder.setIconFinder("target"));
                 indicatorList = modifiedIndicatorList(1);
                 r.add(new Room(indicatorList, t1, (currentRoom + 1), panel));
                 currentRoom++;
@@ -118,7 +157,6 @@ public final class Room {
             } else {
                 // enter empty target in current roomArray
                 Target t0 = new Target();
-                indicatorList = modifiedIndicatorList(0);
                 r.add(new Room(modifiedIndicatorList(0), t0, (currentRoom + 1), panel));
                 currentRoom++;
             }
@@ -128,13 +166,13 @@ public final class Room {
 
     // ArrayList that stores all possible Indicators
     private static ArrayList<Indicator> indicatorList() {
-        ArrayList<Indicator> indicators = new ArrayList();
+        ArrayList<Indicator> indicators = new ArrayList<>();
         // create indicator objects (location x, location y, imagename)
-        Indicator i0 = new Indicator(0, 0, "1");
-        Indicator i1 = new Indicator(0, 0, "2");
-        Indicator i2 = new Indicator(0, 0, "3");
-        Indicator i3 = new Indicator(0, 0, "4");
-        Indicator i4 = new Indicator(0, 0, "5");
+        Indicator i0 = new Indicator("1");
+        Indicator i1 = new Indicator("2");
+        Indicator i2 = new Indicator("3");
+        Indicator i3 = new Indicator("4");
+        Indicator i4 = new Indicator("5");
 
         // add indicator objects to indicators list
         indicators.add(i0);
@@ -148,7 +186,7 @@ public final class Room {
 
     // ArrayList that builds and stores indicators for a room
     private static ArrayList<Indicator> modifiedIndicatorList(int i) {
-        ArrayList<Indicator> modList = new ArrayList();
+        ArrayList<Indicator> modList = new ArrayList<>();
         int randInt;
 
         if (i == 0) {
@@ -161,7 +199,7 @@ public final class Room {
                 int currentPosition = 0;
                 for (Indicator indi : modList) {
                     currentPosition++;
-                    indi.setInId(currentPosition);
+                    indi.setIndicatorId(currentPosition);
                 }
             }
             return modList;
@@ -176,7 +214,7 @@ public final class Room {
             int currentPosition = 0;
             for (Indicator indi : modList) {
                 currentPosition++;
-                indi.setInId(currentPosition);
+                indi.setIndicatorId(currentPosition);
             }
             return modList;
         }
@@ -184,7 +222,7 @@ public final class Room {
 
     //ArrayList for room labels
     private ArrayList<JLabel> labelList(Target target, JLabel roomFace, ArrayList<Indicator> indicators) {
-        ArrayList list = new ArrayList();
+        ArrayList<JLabel> list = new ArrayList<>();
         list.add(roomFace);
         list.add(target);
         for (Indicator indicator : indicators) {
@@ -194,7 +232,7 @@ public final class Room {
     }
 
     //change the state of the room based on mouse click
-    private void changeState() {
+    public void changeState() {
         if ("search".equals(Room.state)) {          // search state
             roomPane.moveToFront(target);
             roomPane.moveToBack(roomFace);
@@ -202,12 +240,6 @@ public final class Room {
                 roomPane.moveToBack(indicator);
             }
             Room.state = "";
-            if ("target".equals(target.getName())) {
-                System.out.println("Found: " + target.getName());
-                //remove buttons
-
-            }
-
         } else if ("peek".equals(Room.state)) {     // peek state
             for (Indicator indicator : indicators) {
                 roomPane.moveToFront(indicator);
@@ -221,7 +253,7 @@ public final class Room {
     }
 
     //place component levels on teh 
-    private void placeComponents() {
+    public void placeComponents() {
         ComponentSettings s = new ComponentSettings();
 
         Point originP = new Point(s.getOrigin(), s.getOrigin() * 2);
@@ -233,7 +265,7 @@ public final class Room {
         roomFace.setBounds(originP.x, originP.y, s.getRfW(), s.getRfH());
         target.setBounds((originP.x + s.getOffset()), (originP.y + s.getOffset()), s.getItemHW(), s.getItemHW());
         for (Indicator indicator : indicators) {
-            int indiOffset = s.getItemHW() * indicator.getInId();
+            int indiOffset = s.getItemHW() * indicator.getIndicatorId();
             indicator.setBounds((originP.x + indiOffset), (originP.y + 60), s.getItemHW(), s.getItemHW());
         }
     }
@@ -256,6 +288,6 @@ public final class Room {
     //toString
     @Override
     public String toString() {
-        return "Room{" + "Rm id=" + roomId + ",  Target=" + target.toString() + ",  Indicators=" + indicators.toString() + "    \n";
+        return "{" + "Room Id = " + roomId + ",  Target = " + target.toString() + ",  Indicators = " + indicators.toString() + "    \n";
     }
 }

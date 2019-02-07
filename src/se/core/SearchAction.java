@@ -5,6 +5,10 @@
  */
 package se.core;
 
+/**
+ *
+ * @author nikki
+ */
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
@@ -12,50 +16,60 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author nikki
- */
 public class SearchAction extends AbstractAction {
 
-    //
-    private static final int SEARCH = 100;
-    private ImageIcon icon;
-    private JButton btn;
-    private final String stateName = "search";
-
-    //
+    //constructor
     public SearchAction(String shortDescription) {
         super();
         super.putValue(SHORT_DESCRIPTION, shortDescription);
     }
 
-    //
+    //button action
     @Override
     public void actionPerformed(ActionEvent e) {
-        Game.setTotal(SEARCH);
-        Game.setCountSearch();
-        icon = IconFinder.setIconFinder(stateName);
-        btn = (JButton) e.getSource();
+        //set method vars
+        JButton btn = (JButton) e.getSource();
         String name = btn.getName();
-        Room r = Game.getRoom(Integer.parseInt(name) - 1);
+        Room r = Game.getStaticRoom(Integer.parseInt(name) - 1);
+        JLabel roomface = r.getRoomFace();
+        Target target = r.getTarget();
+        ArrayList<Indicator> indicator = r.getIndicatorList();
+        final String stateName = "search";
         
-        //cancel peek timer
-        PeekAction p = r.getPeekButton().a;
+        //update total and search count
+        final int SEARCH = new ComponentSettings().getSEARCH();
+        Game.incrementTotal(SEARCH);
+        Game.incrementCountSearch();
+        
+        //cancel peek timer 
+        PeekAction p = r.getPeekButton().getA();
         p.timer.cancel();
         
+        //set state
         r.setState(stateName);
-        Target target = r.getTarget();
-        JLabel roomface = r.getRoomFace();
-        ArrayList<Indicator> indicator = r.getIndicator();
+        
+        //set order of components
         r.orderComponents(target, roomface, indicator);
+        
+        //set to search icon
+        ImageIcon icon = IconFinder.setIconFinder(stateName);  
         r.setRoomFaceIcon(icon);
-        int i = r.getTarget().getTargetId();
+        
+        //hide room buttons after searching room
         r.getPeekButton().setVisible(false);
         r.getSearchButton().setVisible(false);
+        
+        //if target found, hide all buttons
+        int i = r.getTarget().getTargetId();
         if (i == 1) {
-            
-            System.out.println("target found.");
+            for (int x=0; x<Game.getPeek_buttons().size(); x++){
+                //cancel all peek timers
+                PeekAction peek = Game.getPeek_buttons().get(x).getA();
+                peek.timer.cancel();
+                //remove all buttons
+                Game.getPeek_buttons().get(x).setVisible(false);
+                Game.getSearch_buttons().get(x).setVisible(false);
+            }
         }
     }
 }

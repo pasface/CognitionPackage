@@ -5,25 +5,25 @@
  */
 package se.core;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author nikki
  */
+import javax.swing.ImageIcon;
+
 public class IconFinder extends ImageIcon {
+    private static String S = "";
     
-    public static final ImageIcon setIconFinder(String image){
+    public static ImageIcon setIconFinder(String image){
         try {
             return icon(image);
         } catch (NullPointerException e) {
-            System.out.print(e);
+            System.out.println(" null_icon ");
         }
         return null;
     }
     
     public static ImageIcon icon(String image){
-        String S;
         switch (image){
             case "default": S = "images/office.jpg";
             break;
@@ -48,6 +48,14 @@ public class IconFinder extends ImageIcon {
             default : S = "images/office.jpg";
         }
         return new javax.swing.ImageIcon(IconFinder.class.getResource(S));
+    }
+
+    public static String getS() {
+        return S;
+    }
+
+    public static void setS(String S) {
+        IconFinder.S = S;
     }
     
 }

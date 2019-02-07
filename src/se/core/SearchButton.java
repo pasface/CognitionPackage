@@ -5,13 +5,13 @@
  */
 package se.core;
 
-import javax.swing.Action;
-import javax.swing.JButton;
-
 /**
  *
  * @author nikki
  */
+import javax.swing.Action;
+import javax.swing.JButton;
+
 public class SearchButton extends JButton {
 
     public SearchButton(int id) {

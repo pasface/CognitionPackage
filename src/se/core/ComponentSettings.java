@@ -21,102 +21,116 @@ public class ComponentSettings {
     private int offset = 40; //offset
 
     // game vars
-    private int numOfGames = 6; //number of games
+    private int numOfRooms = 6; //number of rooms
     private int rows = 3; //number of room rows
     private int cols = 3; //number of room columns
     private int gap = 7; //gap between rooms
 
+    // cost vars
+    private static final int SEARCH = 100;
+    private static final int PEEKS = 10;
+    
+    //getters
     public int getRfH() {
         return rfH;
-    }
-
-    public void setRfH(int rfH) {
-        this.rfH = rfH;
     }
 
     public int getRfW() {
         return rfW;
     }
 
-    public void setRfW(int rfW) {
-        this.rfW = rfW;
-    }
-
     public int getItemHW() {
         return itemHW;
-    }
-
-    public void setItemHW(int itemHW) {
-        this.itemHW = itemHW;
     }
 
     public int getBtnW() {
         return btnW;
     }
 
-    public void setBtnW(int btnW) {
-        this.btnW = btnW;
-    }
-
     public int getBtnH() {
         return btnH;
-    }
-
-    public void setBtnH(int btnH) {
-        this.btnH = btnH;
     }
 
     public int getOrigin() {
         return origin;
     }
 
-    public void setOrigin(int origin) {
-        this.origin = origin;
-    }
-
     public int getOffset() {
         return offset;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
-    //add resize code here
-    public void resize(int x, int y) {
-
-    }
-
-    public int getNumOfGames() {
-        return numOfGames;
-    }
-
-    public void setNumOfGames(int numOfGames) {
-        this.numOfGames = numOfGames;
+    public int getNumOfRooms() {
+        return numOfRooms;
     }
 
     public int getRows() {
         return rows;
     }
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public int getCols() {
         return cols;
-    }
-
-    public void setCols(int cols) {
-        this.cols = cols;
     }
 
     public int getGap() {
         return gap;
     }
 
+    public static int getSEARCH() {
+        return SEARCH;
+    }            
+
+    public static int getPEEKS() {
+        return PEEKS;
+    }
+
+    //setters
+    public void setRfH(int rfH) {
+        this.rfH = rfH;
+    }
+
+    public void setRfW(int rfW) {
+        this.rfW = rfW;
+    }
+
+    public void setItemHW(int itemHW) {
+        this.itemHW = itemHW;
+    }
+
+    public void setBtnW(int btnW) {
+        this.btnW = btnW;
+    }
+
+    public void setBtnH(int btnH) {
+        this.btnH = btnH;
+    }
+
+    public void setOrigin(int origin) {
+        this.origin = origin;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public void setNumOfRooms(int numOfRooms) {
+        this.numOfRooms = numOfRooms;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
     public void setGap(int gap) {
         this.gap = gap;
+    }
+
+    //add resize code here
+    public void resize(int x, int y) {
+
     }
 
 }

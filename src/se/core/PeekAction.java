@@ -5,25 +5,24 @@
  */
 package se.core;
 
+/**
+ *
+ * @author nikki
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author nikki
- */
 public class PeekAction extends AbstractAction implements ActionListener {
 
     //fields
-    private static final int PEEK = 10, PEEKDURATION = 2000;
+    private static final int PEEK = new ComponentSettings().getPEEKS(), PEEKDURATION = 2000;
     private ImageIcon icon;
     private JButton btn;
     public Timer timer = new Timer();
@@ -37,15 +36,9 @@ public class PeekAction extends AbstractAction implements ActionListener {
     //Action events
     @Override
     public void actionPerformed(ActionEvent e) {
-        Game.setTotal(PEEK);
-        Game.setCountPeek();
+        Game.incrementTotal(PEEK);
+        Game.incrementCountPeek();
         resetLabels("peek", e);
-        int dingus = Integer.parseInt(btn.getName()) -1;
-        //if searchbtn clicked cancel timer
-        
-        //if (){
-
-        //}
         peekTimer(e);
     }
 
@@ -60,14 +53,13 @@ public class PeekAction extends AbstractAction implements ActionListener {
 
     public void resetLabels(String s, ActionEvent e) {
         btn = (JButton) e.getSource();
-        String name = btn.getName();
-        Room r = Game.getRoom(Integer.parseInt(name) - 1);
         icon = IconFinder.setIconFinder(s);
+        Room r = Game.getStaticRoom(Integer.parseInt(btn.getName()) - 1);
         r.setRoomFaceIcon(icon);
         r.setState(s);
         Target target = r.getTarget();
         JLabel roomface = r.getRoomFace();
-        ArrayList<Indicator> indicator = r.getIndicator();
+        ArrayList<Indicator> indicator = r.getIndicatorList();
         r.orderComponents(target, roomface, indicator);
     }
 

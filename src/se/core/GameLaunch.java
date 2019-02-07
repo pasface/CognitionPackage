@@ -3,69 +3,154 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
-TO DO:  Fix graphics.
-        Set order of visibility.
-        Rework organization.
-        Continue xml stuff.
-        Document everything.
+ TO DO:  Fix graphics.
+ Rework organization.
+ Continue xml stuff.
+ Document everything.
         
  */
 package se.core;
 
-import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 /**
  *
  * @author nikki
  */
-public class GameLaunch {
-    
-    private static final JFrame frame = new MyFrame();
-    private static JPanel gamePanel = new JPanel();
-    private static boolean b = false;
-    private static IntroScreen introPanel;
+import java.awt.Desktop;
+import java.io.IOException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.awt.GridLayout;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.xml.bind.Unmarshaller;
 
-    public static void main(String[] args) {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout());
+public class GameLaunch {
+
+    private static final JFrame FRAME = new MyFrame();
+    private static JPanel gamePanel = new JPanel();
+    private static IntroScreen introPanel;
+    private static final String ROOM_XML = "./room-jaxb.xml";
+    private static int incrementId;
+
+    public static void main(String[] args) throws JAXBException {
+        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        FRAME.setLayout(new GridLayout());
         introPanel = new IntroScreen(new JPanel());
-        frame.add(introPanel);
-        frame.add(gamePanel);
-        frame.setVisible(true);
+        FRAME.add(introPanel);
+        //FRAME.add(gamePanel);
+        FRAME.setVisible(true);
+        unmarshallFile(ROOM_XML);
+        gamePanel.removeAll();
     }
 
-    public static void launch(){
+    public static void open() throws JAXBException, IOException {
+        //NEEDS WORK        
+        
+        //ensure gamepanel is off so we don't create new games on top of old ones
         gamePanel.setVisible(false);
-        frame.remove(gamePanel);
-        if (isB()==true){
-            ComponentSettings cs = new ComponentSettings();
-            //remove intro screen
-            introPanel.setVisible(false);
-            frame.remove(introPanel);
-            gamePanel = new JPanel();
-            GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
-            roomLayout.setHgap(cs.getGap());
-            roomLayout.setVgap(cs.getGap());
-            gamePanel.setLayout(roomLayout);
-            gamePanel.setVisible(true);
-            GameId.setGameId("src/files/file.xml");
-            Game g = new Game(cs.getNumOfGames(), GameId.getGameId(), gamePanel);
-            System.out.println(g.toString());
-            frame.add(gamePanel);
-            frame.validate();
-            setB(false);
-        } else {
-            frame.validate();
+        FRAME.remove(gamePanel);
+
+        //reset game counters
+        Game.resetCounts();
+
+        //set layout and gap spaces
+        ComponentSettings cs = new ComponentSettings();
+        GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+        roomLayout.setHgap(cs.getGap());
+        roomLayout.setVgap(cs.getGap());
+        gamePanel = new JPanel();
+        gamePanel.setLayout(roomLayout);
+        gamePanel.setVisible(true);
+
+        //Create a file chooser
+        final JFileChooser fc = new JFileChooser();
+        int a = fc.showOpenDialog(null);
+        if (a == JFileChooser.APPROVE_OPTION) {
+            File fileToOpen = fc.getSelectedFile();
+            Desktop.getDesktop().open(fileToOpen);
+            //creating the JAXB context
+            JAXBContext jContext = JAXBContext.newInstance(Game.class);
+            //creating the unmarshall object
+            Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+            //calling the unmarshall method
+            Game g = (Game) unmarshallerObj.unmarshal(fileToOpen);
+            for (int count = 0; count < g.getRoomList().size(); count++) {
+                gamePanel.add(g.getRoom(count));
+            }
+           System.out.println("\nopen: " + g.toString());
+        }
+        //remove intro screen and add gamePanel
+        FRAME.remove(introPanel);
+        FRAME.add(gamePanel);
+        FRAME.validate();
+    }
+
+    public static void unmarshallFile(String fileName) throws JAXBException {
+        //getting the xml file to read
+        File file = new File(fileName);
+        //creating the JAXB context
+        JAXBContext jContext = JAXBContext.newInstance(Game.class);
+        //creating the unmarshall object
+        Unmarshaller unmarshallerObj = jContext.createUnmarshaller();
+
+        //calling the unmarshall method
+        Game g = (Game) unmarshallerObj.unmarshal(file);
+        //set incrementor for the gameId
+        incrementId = g.getGameId();
+        System.out.print("UnmarshallFile: " + g.toString());
+    }
+
+    public static void marshallClasses(Game g) {
+        try {
+            // create JAXB context and instantiate marshaller
+            JAXBContext context = JAXBContext.newInstance(Game.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            // Write to System.out
+            //m.marshal(g, System.out);
+            // Write to File
+            m.marshal(g, new File(ROOM_XML));
+        } catch (JAXBException ex) {
+            Logger.getLogger(GameLaunch.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public static void setB(boolean b) {
-        GameLaunch.b = b;
+
+    public static void launch() throws JAXBException, IOException, Exception {
+        //remove former rooms
+        FRAME.remove(introPanel);
+        gamePanel.removeAll();
+        //reset game counters
+        Game.resetCounts();
+
+        //ensure gamepanel is off so we don't create new games on top of old ones
+        ComponentSettings cs = new ComponentSettings();
+
+        //set layout and gap spaces
+        GridLayout roomLayout = new GridLayout(cs.getRows(), cs.getCols());
+        roomLayout.setHgap(cs.getGap());
+        roomLayout.setVgap(cs.getGap());
+        gamePanel = Game.getPanel();
+        gamePanel.setLayout(roomLayout);
+        gamePanel.setVisible(true);
+
+        incrementId += 1;
+
+        //create new game
+        Game g = new Game(cs.getNumOfRooms(), incrementId);
+
+        //marshal game
+        marshallClasses(g);
+
+        //remove intro screen and add gamePanel
+        FRAME.add(gamePanel);
+        FRAME.validate();
+        System.out.println("launched game: " + g.toString());
     }
 
-    public static boolean isB() {
-        return b;
-    }
-    
 }
